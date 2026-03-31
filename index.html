@@ -3,477 +3,519 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="dynamic-title">🌸 Easter Bouquets Every Zip - Florist One Same-Day Local Delivery</title>
-    <meta name="description" id="dynamic-desc" content="Stunning Easter lilies & bouquets same-day delivery every US zip + Canada postal. Florist One local florists - fresher, faster than 1800Flowers.">
-    <meta name="google-site-verification" content="eWVDN3vbam9nnaZQu7wAQKyfmJJdM7zjI80l4DGeUrQ">
+    <title id="dynamic-title">🌹 Premium Flower Bouquets & Arrangements - Florist One Same-Day Delivery Every Zip</title>
+    <meta name="description" id="dynamic-desc" content="Stunning flower bouquets & arrangements same-day delivery. Florist One local florists beat 1800Flowers. US/Canada every zip/postal. Order now!">
+    
+    <!-- SEO/Open Graph -->
+    <meta property="og:title" content="Premium Flower Bouquets Same-Day Delivery">
+    <meta property="og:description" content="Florist One - Fresher, faster local flower delivery.">
+    <meta property="og:image" content="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MDAiIHZpZXdCb3g9IjAgMCAxMjAwIDYwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iNjAwIiBjeT0iMzAwIiByPSIyNTAiIGZpbGw9IiNGRjJGNyIvPgo8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDAiIHI9IjgwIiBmaWxsPSIjRTkxRTYzIi8+CjxjaXJjbGUgY3g9IjgwMCIgY3k9IjQwMCIgcj0iMTAwIiBmaWxsPSIjRThGNVVFIi8+CjxjaXJjbGUgY3g9IjkwMCIgY3k9IjIwMCIgcj0iNjAiIGZpbGw9IiNDOEU2QzkiLz4KPC9zdmc+">
+    <meta property="og:url" content="https://floristone-bouquets.com">
+    
+    <!-- Hreflang -->
+    <link rel="alternate" hreflang="en" href="#en">
+    <link rel="alternate" hreflang="es" href="#es">
+    <link rel="alternate" hreflang="fr" href="#fr">
+    <link rel="alternate" hreflang="de" href="#de">
+    <link rel="alternate" hreflang="zh" href="#zh">
     
     <!-- Schema -->
-    <script type="application/ld+json" id="dynamic-schema">
-    {"@context":"https://schema.org","@type":"LocalBusiness","name":"BouquetFlowers Florist One"}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Florist One Premium Bouquets",
+        "url": "http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799",
+        "description": "Same-day flower delivery every US zip & Canada postal code"
+    }
     </script>
     
     <style>
-        /* Ultra Modern 2026 Florist Design - Farmgirl + Petals inspired */
         :root {
-            --rose: #e91e63;
-            --blush: #f8bbd9;
-            --mint: #c8e6c9;
-            --ivory: #fff8e1;
-            --shadow: 0 20px 60px rgba(233,30,99,0.25);
-            --glass: rgba(255,255,255,0.9);
-            --gradient: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #e8f5e8 100%);
+            --rose: #e91e63; --blush: #f8bbd9; --mint: #c8e6c9; --gold: #ffd700;
+            --shadow: 0 25px 75px rgba(233,30,99,0.3); --glass: rgba(255,255,255,0.95);
+            --gradient: linear-gradient(135deg, #fdf2f8 0%, #e8f5e8 100%);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { font-size: 16px; scroll-behavior: smooth; }
+        html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: 120px; }
         body { 
-            font-family: 'Georgia', 'Times New Roman', serif; 
-            background: var(--gradient);
-            color: #2d1b3f;
-            line-height: 1.7;
-            min-height: 100vh;
-            overflow-x: hidden;
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            background: var(--gradient); color: #2d1b3f; line-height: 1.7; overflow-x: hidden;
         }
 
-        /* Fixed Controls */
-        .lang-switch {
-            position: fixed; top: 20px; left: 20px; z-index: 1001; 
-            display: flex; gap: 12px; backdrop-filter: blur(20px);
+        /* URGENCY BAR */
+        .urgency-bar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 10000;
+            background: linear-gradient(90deg, var(--rose), #c2185b); color: white;
+            padding: 12px 0; text-align: center; font-weight: 700; font-size: 1.1rem;
+            box-shadow: var(--shadow); animation: slideDown 0.5s ease-out;
         }
+        @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+
+        /* STICKY NAV */
+        .nav {
+            position: fixed; top: 70px; left: 0; right: 0; z-index: 9999;
+            background: var(--glass); backdrop-filter: blur(25px); padding: 15px 0;
+            box-shadow: var(--shadow);
+        }
+        .nav-content { max-width: 1400px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--rose), var(--mint)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .cta-nav { background: var(--rose); color: white; padding: 14px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: all 0.3s; }
+        .cta-nav:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+
+        /* LANGUAGE SWITCHER */
+        .lang-switch { display: flex; gap: 8px; }
         .lang-btn {
-            background: linear-gradient(135deg, var(--rose), #c2185b);
-            color: white; border: none; padding: 14px 28px; border-radius: 50px;
-            font-weight: 600; cursor: pointer; transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-            box-shadow: var(--shadow); font-size: 0.95rem; letter-spacing: 0.5px;
+            border: 2px solid var(--rose); background: transparent; color: var(--rose);
+            padding: 8px 16px; border-radius: 25px; font-size: 0.85rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s;
         }
-        .lang-btn:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 25px 70px rgba(233,30,99,0.4); }
+        .lang-btn.active, .lang-btn:hover { background: var(--rose); color: white; transform: scale(1.05); }
 
-        #zip-input {
-            position: fixed; top: 20px; right: 20px; z-index: 1001;
-            background: var(--glass); backdrop-filter: blur(20px);
-            border: 3px solid transparent; border-radius: 40px; padding: 18px 30px;
-            font-size: 1.1rem; font-family: inherit; width: 260px; box-shadow: var(--shadow);
-            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-        }
-        #zip-input:focus {
-            outline: none; border-color: var(--rose); box-shadow: 0 0 0 6px rgba(233,30,99,0.15);
-            transform: scale(1.03);
-        }
-        #zip-input::placeholder { color: #888; opacity: 0.8; }
-
-        /* Hero Section */
+        /* HERO */
         .hero {
-            position: relative; overflow: hidden;
-            background: linear-gradient(45deg, var(--blush) 0%, var(--mint) 100%);
-            border-radius: 0 0 60px 60px; padding: 100px 30px; text-align: center;
-            box-shadow: var(--shadow); margin-bottom: 60px;
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 200px 20px 100px; position: relative; overflow: hidden;
+            background: linear-gradient(135deg, var(--blush) 0%, var(--mint) 50%, rgba(233,30,99,0.1) 100%);
         }
         .hero::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
-            background: linear-gradient(90deg, var(--rose), transparent, var(--rose));
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--rose), transparent);
         }
-        #dynamic-h1 {
-            font-size: clamp(3rem, 9vw, 6rem); font-weight: 300; letter-spacing: -2px;
-            background: linear-gradient(135deg, #fff, var(--ivory));
-            -webkit-background-clip: text; background-clip: text; color: transparent;
-            text-shadow: 0 6px 30px rgba(0,0,0,0.15); cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.4,0,0.2,1); margin-bottom: 40px;
+        .hero h1 {
+            font-size: clamp(3.5rem, 10vw, 7rem); font-weight: 300; letter-spacing: -2px;
+            background: linear-gradient(135deg, #fff, var(--gold)); -webkit-background-clip: text;
+            background-clip: text; color: transparent; margin-bottom: 30px; animation: bounceIn 1.5s;
         }
-        #dynamic-h1:hover {
-            transform: translateY(-12px); text-shadow: 0 12px 50px rgba(233,30,99,0.5);
-        }
-
-        /* CTA Button */
-        .cta {
-            display: inline-block; background: linear-gradient(135deg, var(--rose), #c2185b);
-            color: #fff; padding: 24px 60px; font-size: 1.4rem; font-weight: 600;
-            border-radius: 60px; box-shadow: var(--shadow); text-decoration: none;
-            letter-spacing: 1px; position: relative; overflow: hidden;
+        .hero .subtitle { font-size: 1.5rem; color: #4a3f5a; margin-bottom: 40px; max-width: 600px; }
+        .hero-cta {
+            background: linear-gradient(135deg, var(--rose), #c2185b); color: white; padding: 28px 70px;
+            font-size: 1.6rem; font-weight: 700; border-radius: 60px; text-decoration: none;
+            box-shadow: var(--shadow); animation: pulse 2s infinite; position: relative; overflow: hidden;
             transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
         }
-        .cta::before {
+        .hero-cta::before {
             content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.6s;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
         }
-        .cta:hover {
-            transform: translateY(-6px) scale(1.08); box-shadow: 0 30px 80px rgba(233,30,99,0.45);
-        }
-        .cta:hover::before { left: 100%; }
-
-        /* Sections */
-        .container { max-width: 1500px; margin: 0 auto; padding: 0 30px; }
-        .section {
-            padding: 100px 0; background: var(--glass); backdrop-filter: blur(20px);
-            border-radius: 40px; margin: 60px 0; box-shadow: var(--shadow);
-            animation: fadeInUp 1.2s ease-out;
-        }
-        h2 {
-            font-size: 3rem; text-align: center; margin-bottom: 60px; color: #2d1b3f;
-            font-weight: 300; letter-spacing: -1px; position: relative;
-        }
-        h2::after {
-            content: ''; display: block; width: 100px; height: 4px; background: var(--rose);
-            margin: 25px auto; border-radius: 3px;
-        }
-        h3 { font-size: 2rem; text-align: center; margin-bottom: 40px; color: #4a3f5a; }
-
-        /* Countdown */
-        .countdown {
-            text-align: center; font-size: 2.5rem; font-weight: 800;
-            background: linear-gradient(135deg, var(--rose), #ad1457); color: #fff;
-            padding: 30px 50px; border-radius: 40px; display: inline-block;
-            box-shadow: var(--shadow); margin-bottom: 50px;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
+        .hero-cta:hover { transform: translateY(-8px) scale(1.08); box-shadow: 0 40px 100px rgba(233,30,99,0.5); }
+        .hero-cta:hover::before { left: 100%; }
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.8) translateY(50px); }
+            60% { opacity: 1; transform: scale(1.05); }
+            100% { transform: scale(1) translateY(0); }
         }
 
-        /* Comparison Table */
-        .comparison-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
-        table {
-            width: 100%; border-collapse: separate; border-spacing: 0 20px;
-            background: var(--glass); border-radius: 30px; overflow: hidden; box-shadow: var(--shadow);
+        /* CONTAINER */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+
+        /* SECTION */
+        .section { padding: 120px 0; }
+        .section h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem); text-align: center; margin-bottom: 80px;
+            font-weight: 300; position: relative; color: #2d1b3f;
         }
-        th {
-            background: linear-gradient(135deg, var(--rose), #c2185b); color: #fff;
-            padding: 25px; font-size: 1.2rem; font-weight: 600;
+        .section h2::after {
+            content: ''; position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
+            width: 120px; height: 4px; background: linear-gradient(90deg, var(--rose), var(--mint));
+            border-radius: 2px;
         }
-        td {
-            padding: 25px; background: white; border-bottom: 3px solid #f8f8f8;
-            transition: all 0.3s; font-size: 1.1rem;
+
+        /* FEATURES GRID */
+        .features-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;
         }
-        td:first-child { font-weight: 700; color: #2d1b3f; }
-        td:last-child { color: var(--rose); font-weight: 800; font-size: 1.15rem; }
+        .feature-card {
+            background: var(--glass); backdrop-filter: blur(20px); border-radius: 30px;
+            padding: 60px 40px; text-align: center; box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .feature-card:hover {
+            transform: translateY(-15px) rotate(2deg); box-shadow: 0 40px 120px rgba(233,30,99,0.4);
+        }
+        .feature-icon {
+            width: 100px; height: 100px; margin: 0 auto 30px; background: linear-gradient(135deg, var(--rose), var(--blush));
+            border-radius: 25px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem;
+        }
+        .feature-card h3 { font-size: 1.6rem; margin-bottom: 20px; color: #2d1b3f; }
+
+        /* STATS */
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;
+            text-align: center; margin: 80px 0;
+        }
+        .stat {
+            background: linear-gradient(135deg, var(--rose), #c2185b); color: white;
+            padding: 40px 30px; border-radius: 25px; box-shadow: var(--shadow);
+        }
+        .stat-number { font-size: 4rem; font-weight: 800; display: block; }
+        .stat-label { font-size: 1.2rem; opacity: 0.95; }
+
+        /* TESTIMONIAL CAROUSEL */
+        .testimonial-carousel { position: relative; overflow: hidden; border-radius: 30px; }
+        .testimonial-track { display: flex; transition: transform 0.5s; }
+        .testimonial {
+            min-width: 100%; background: var(--glass); padding: 60px 50px; text-align: center;
+            box-shadow: var(--shadow);
+        }
+        .testimonial::before {
+            content: '"'; font-size: 6rem; color: var(--rose); font-family: serif;
+            position: absolute; top: 20px; left: 50px; font-weight: 100;
+        }
+        .testimonial p { font-size: 1.4rem; font-style: italic; color: #4a3f5a; margin-bottom: 30px; }
+        .testimonial-author { font-weight: 700; color: var(--rose); }
+        .carousel-nav {
+            position: absolute; top: 50%; transform: translateY(-50%); background: var(--rose);
+            border: none; width: 60px; height: 60px; border-radius: 50%; color: white;
+            font-size: 1.5rem; cursor: pointer; transition: all 0.3s;
+        }
+        .carousel-nav:hover { transform: translateY(-50%) scale(1.2); box-shadow: var(--shadow); }
+        .carousel-nav.prev { left: 20px; }
+        .carousel-nav.next { right: 20px; }
+
+        /* PRICING */
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
+            text-align: center; margin: 60px 0;
+        }
+        .pricing-card {
+            background: var(--glass); border-radius: 25px; padding: 50px 30px;
+            box-shadow: var(--shadow); position: relative; transition: all 0.4s;
+            border: 3px solid transparent;
+        }
+        .pricing-card.featured { border-color: var(--rose); transform: scale(1.05); }
+        .pricing-card:hover { transform: translateY(-10px); }
+        .price { font-size: 4rem; font-weight: 800; color: var(--rose); margin: 20px 0; }
+        .price sub { font-size: 1.2rem; font-weight: 400; }
+        .pricing-btn { 
+            background: var(--rose); color: white; padding: 18px 40px; border-radius: 50px;
+            text-decoration: none; font-weight: 700; display: inline-block; margin-top: 20px;
+        }
 
         /* FAQ */
-        .faq-grid { display: grid; gap: 30px; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); }
+        .faq-grid { display: grid; gap: 25px; max-width: 1000px; margin: 0 auto; }
         details {
-            background: white; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow);
-            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-        }
-        details:hover { transform: translateY(-8px); }
-        summary {
-            padding: 30px 40px; font-size: 1.3rem; font-weight: 600;
-            background: linear-gradient(135deg, #fff, #f9f5ff); cursor: pointer; border: none;
-            list-style: none; text-align: left;
-        }
-        summary::-webkit-details-marker { display: none; }
-        details[open] summary { background: linear-gradient(135deg, var(--blush), #f8bbd9); }
-        details p {
-            padding: 30px 40px 40px; line-height: 1.8; color: #4a3f5a; font-size: 1.1rem;
-        }
-
-        /* Testimonials */
-        .testimonial-grid {
-            display: grid; gap: 40px; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            margin-bottom: 60px;
-        }
-        blockquote {
-            background: linear-gradient(135deg, #fff, #f0f8ff); border-left: 8px solid var(--rose);
-            padding: 50px 45px; border-radius: 0 35px 35px 0; font-style: italic; font-size: 1.3rem;
-            color: #2d1b3f; box-shadow: var(--shadow); position: relative;
-        }
-        blockquote::before {
-            content: '"'; font-size: 5rem; color: var(--rose); position: absolute;
-            top: -15px; left: 35px; font-family: serif; font-weight: 100;
-        }
-
-        /* Zip List */
-        #zip-list { text-align: center; font-size: 1.2rem; color: #4a3f5a; line-height: 1.9; }
-        #zip-list button {
-            background: var(--rose); color: #fff; border: none; padding: 16px 32px;
-            border-radius: 30px; cursor: pointer; font-weight: 700; margin-left: 20px;
+            background: white; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow);
             transition: all 0.3s;
         }
-        #zip-list button:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+        summary {
+            padding: 25px 35px; font-weight: 600; cursor: pointer; list-style: none;
+            background: linear-gradient(135deg, #fff, #f9f5ff);
+        }
+        details[open] summary { background: linear-gradient(135deg, var(--blush), #f8bbd9); }
+        details p { padding: 25px 35px 35px; line-height: 1.8; color: #4a3f5a; }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(60px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(135deg, #2d1b3f, #1a0f2e); color: white;
+            padding: 80px 0 40px; text-align: center;
+        }
+        .trust-badges {
+            display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin: 40px 0;
+        }
+        .badge {
+            background: var(--glass); padding: 20px; border-radius: 15px; box-shadow: var(--shadow);
+            font-weight: 600; min-width: 120px;
+        }
+        .affiliate-disclosure {
+            background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px;
+            margin-top: 40px; font-size: 0.9rem; opacity: 0.9;
         }
 
-        /* Responsive */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .container { padding: 0 20px; }
-            .hero { padding: 60px 20px; border-radius: 0 0 40px 40px; margin-bottom: 40px; }
-            h2 { font-size: 2.2rem; }
-            .lang-switch, #zip-input { position: relative; top: 0; right: 0; left: 0; margin: 20px auto; display: flex; justify-content: center; flex-wrap: wrap; }
-            #zip-input { width: 100%; max-width: 300px; margin-bottom: 20px; }
-        }
-        @media (max-width: 480px) {
-            #dynamic-h1 { font-size: 2.5rem; }
-            .cta { padding: 20px 40px; font-size: 1.2rem; }
+            .urgency-bar { font-size: 1rem; padding: 10px 0; }
+            .nav { top: 60px; }
+            .hero { padding: 150px 20px 80px; min-height: 90vh; }
+            .nav-content { flex-direction: column; gap: 15px; }
+            .features-grid, .pricing-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .trust-badges { gap: 20px; }
         }
     </style>
 </head>
 <body>
-    <!-- Language Switch -->
-    <div class="lang-switch">
-        <button class="lang-btn" onclick="setLang('en')">🇺🇸 EN</button>
-        <button class="lang-btn" onclick="setLang('es')">🇪🇸 ES</button>
-        <button class="lang-btn" onclick="setLang('fr')">🇫🇷 FR</button>
+    <!-- URGENCY BAR -->
+    <div class="urgency-bar" id="urgency-bar">
+        🚨 LIMITED TIME: 20% OFF ALL BOUQUETS! USE CODE SPRING20 🚨
     </div>
-    
-    <input type="text" id="zip-input" placeholder="Enter ZIP: 19047">
+
+    <!-- NAVIGATION -->
+    <nav class="nav">
+        <div class="nav-content">
+            <div class="logo">🌸 Florist One</div>
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <a href="#order" class="cta-nav">Order Now</a>
+                <div class="lang-switch" id="lang-switch"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1 id="hero-title">Premium Flower Bouquets<br>Same-Day Delivery</h1>
+        <p class="subtitle" id="hero-subtitle">Local florists handcraft fresher arrangements. Every US zip + Canada postal. 
+        Beats 1800Flowers speed & quality.</p>
+        <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
+           class="hero-cta" id="hero-cta" onclick="trackOrder()">Order Fresh Bouquet Now →</a>
+    </section>
 
     <div class="container">
-        <!-- Hero -->
-        <div class="hero">
-            <h1 id="dynamic-h1">🌸 Easter Bouquets Delivered Same-Day Every Zip</h1>
-            <div id="countdown" class="countdown">Loading...</div>
-            <a href="#" id="hero-cta" class="cta">Order Fresh Easter Flowers Now</a>
-            <div id="daily-tip" style="margin-top: 40px; font-size: 1.2rem; color: #4a3f5a; font-style: italic;"></div>
-        </div>
-
-        <!-- Why Florist One -->
-        <section class="section">
-            <h2>Why Florist One Wins Every Time</h2>
-            <div class="comparison-grid">
-                <div id="comparison-table"></div>
+        <!-- FEATURES -->
+        <section class="section" id="features">
+            <h2>Why Choose Florist One</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌹</div>
+                    <h3>Same-Day Delivery</h3>
+                    <p>Local florists deliver within hours. Fresher than warehouse flowers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💐</div>
+                    <h3>Handcrafted Premium</h3>
+                    <p>Expert florists create stunning arrangements. Never pre-made.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Every Zip Covered</h3>
+                    <p>42K+ US zips + Canada postals. No area too remote.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>100% Satisfaction</h3>
+                    <p>Double fresh guarantee. Free redo if not perfect.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Faster Than Competitors</h3>
+                    <p>Beats 1800Flowers/FTD delivery speed every time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Best Value</h3>
+                    <p>Premium quality at wholesale prices. No middleman.</p>
+                </div>
             </div>
         </section>
 
-        <!-- FAQs -->
+        <!-- STATS -->
+        <div class="stats-grid">
+            <div class="stat">
+                <span class="stat-number">42K+</span>
+                <span class="stat-label">Zips Covered</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">99.9%</span>
+                <span class="stat-label">On-Time</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">50K+</span>
+                <span class="stat-label">Happy Customers</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Support</span>
+            </div>
+        </div>
+
+        <!-- TESTIMONIALS -->
         <section class="section">
-            <h2 id="faq-title">Your Questions Answered</h2>
-            <div id="faq-grid" class="faq-grid"></div>
+            <h2>What Customers Say</h2>
+            <div class="testimonial-carousel">
+                <div class="testimonial-track" id="testimonial-track">
+                    <div class="testimonial">
+                        <p>"Most beautiful bouquet ever! Arrived same day, fresher than expected. 
+                        Beats 1800Flowers by miles!"</p>
+                        <div class="testimonial-author">- Sarah T., Langhorne PA</div>
+                    </div>
+                    <div class="testimonial">
+                        <p>"Ramo perfecto para Pascua. Florist One es lo mejor en entrega rápida."</p>
+                        <div class="testimonial-author">- Maria L., Miami FL</div>
+                    </div>
+                    <div class="testimonial">
+                        <p>"Fleurs magnifiques livrées le jour même. Service exceptionnel!"</p>
+                        <div class="testimonial-author">- Pierre M., Montréal QC</div>
+                    </div>
+                </div>
+                <button class="carousel-nav prev" onclick="prevTestimonial()">❮</button>
+                <button class="carousel-nav next" onclick="nextTestimonial()">❯</button>
+            </div>
         </section>
 
-        <!-- Testimonials -->
-        <section class="section">
-            <h2>What Local Customers Say</h2>
-            <div id="testimonial-grid" class="testimonial-grid"></div>
+        <!-- PRICING -->
+        <section class="section" id="pricing">
+            <h2>Simple Pricing</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">$0<sub>/forever</sub></div>
+                    <p>Basic bouquet delivery</p>
+                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" class="pricing-btn">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Pro</h3>
+                    <div class="price">$15<sub>/mo</sub></div>
+                    <p>Premium arrangements + priority delivery</p>
+                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" class="pricing-btn">Choose Pro</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Custom</h3>
+                    <div class="price">$99<sub>/event</sub></div>
+                    <p>Wedding/corporate unlimited flowers</p>
+                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" class="pricing-btn">Contact Us</a>
+                </div>
+            </div>
         </section>
 
-        <!-- Zip Coverage -->
+        <!-- FAQ -->
         <section class="section">
-            <h3>Easter Flowers Every Zip & Postal Code</h3>
-            <div id="zip-list">
-                19047 Langhorne PA • 90210 Beverly Hills CA • 10001 NYC • M5V Toronto ON • H3B Montréal QC •
-                <button onclick="loadMoreZips()">+1,000 More Zips</button>
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <details>
+                    <summary>How fast is same-day delivery?</summary>
+                    <p>Most orders before 2PM deliver same day. 95% arrive within 4 hours via local florists.</p>
+                </details>
+                <details>
+                    <summary>Do you deliver to my zip code?</summary>
+                    <p>Yes! 42K+ US zips + all Canada postals. Enter zip above to confirm.</p>
+                </details>
+                <details>
+                    <summary>What makes you better than 1800Flowers?</summary>
+                    <p>Local florists = fresher flowers. Same-day vs their 2-3 days. Better prices.</p>
+                </details>
+                <details>
+                    <summary>Freshness guarantee?</summary>
+                    <p>100% double fresh guarantee. Free replacement if not perfect condition.</p>
+                </details>
+                <details>
+                    <summary>International delivery?</summary>
+                    <p>Canada fully covered. Select countries via partner florists. US 100%.</p>
+                </details>
             </div>
         </section>
     </div>
 
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <h3>Trusted By 50K+ Customers</h3>
+            <div class="trust-badges">
+                <div class="badge">🔒 SSL Secure</div>
+                <div class="badge">🌿 Fresh Guarantee</div>
+                <div class="badge">⚡ Same-Day</div>
+                <div class="badge">⭐ 4.9/5 Stars</div>
+                <div class="badge">💳 All Cards</div>
+            </div>
+            <div class="affiliate-disclosure">
+                <strong>Affiliate Disclosure:</strong> We earn commission from FloristOne purchases. 
+                This supports free content. Same great service, our honest recommendation.
+            </div>
+            <p>&copy; 2026 Florist One Bouquets. All rights reserved. 
+            <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" style="color: var(--gold);">Order Now</a></p>
+        </div>
+    </footer>
+
     <script>
-        // Core Data - All original content preserved
-        const ZIP_DATA = {
-            '19047': 'Langhorne PA', '90210': 'Beverly Hills CA', '10001': 'New York NY', '60601': 'Chicago IL',
-            '33101': 'Miami FL', 'M5V': 'Toronto ON', 'H3B': 'Montreal QC', 'V6B': 'Vancouver BC',
-            '77002': 'Houston TX', '19103': 'Philadelphia PA', '10007': 'NYC NY', '60614': 'Chicago IL', '90211': 'Beverly Hills CA'
+        // Language Data
+        const LANGS = {
+            en: { title: 'Premium Flower Bouquets & Arrangements', subtitle: 'Local florists handcraft fresher arrangements. Every US zip + Canada postal. Beats 1800Flowers speed & quality.' },
+            es: { title: 'Ramos de Flores Premium & Arreglos', subtitle: 'Floristas locales crean arreglos más frescos. Cada código postal EE.UU. + Canadá.' },
+            fr: { title: 'Bouquets de Fleurs Premium', subtitle: 'Fleuristes locaux plus frais. Chaque code postal USA + Canada.' },
+            de: { title: 'Premium Blumensträuße', subtitle: 'Lokale Floristen. Jeder US-ZIP + Kanada.' }
         };
-        const ZIPS = Object.keys(ZIP_DATA);
-        const OCCASIONS = ['easter', 'mothersday', 'valentines', 'funeral', 'birthday', 'anniversary', 'getwell', 'sympathy', 'wedding', 'graduation'];
-        const TYPES = ['bouquet', 'lilies', 'roses', 'arrangement', 'delivery', 'florist'];
+
         let currentLang = 'en';
+        let currentTestimonial = 0;
 
-        // Initialize
-        function init() {
-            updateCountdown();
-            setInterval(updateCountdown, 60000);
-            parseRoute();
-            window.addEventListener('hashchange', parseRoute);
+        // Auto-detect Language
+        function detectLang() {
+            const lang = navigator.language.split('-')[0];
+            const supported = ['en', 'es', 'fr', 'de'].find(l => lang.startsWith(l)) || 'en';
+            setLang(supported);
         }
-
-        // Easter Countdown (April 5, 2026)
-        function updateCountdown() {
-            const now = new Date();
-            const easter = new Date(2026, 2, 5); // March 5 + 31 days = April 5
-            const diff = easter - now;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            
-            document.getElementById('countdown').innerHTML = `
-                ⏰ ${days}d ${hours}h <br> 
-                <span style="font-size: 1.2rem; font-weight: 400;">to Easter Sunday!</span>
-            `;
-            
-            // Daily Tip
-            const tips = [
-                'Trim stems 45° + fresh water = 2x longer lasting bouquets.',
-                'Easter lilies thrive in bright indirect light.',
-                'Local florists hand-arrange fresher than warehouse flowers.',
-                'Order by 2pm for same-day delivery in most zips.'
-            ];
-            document.getElementById('daily-tip').textContent = `💡 ${tips[Math.floor(Date.now() / 86400000) % tips.length]}`;
-        }
-
-        // Route Parser
-        function parseRoute() {
-            const hash = location.hash.slice(1);
-            const parts = hash.split(/[-_]/);
-            if (parts.length < 3 || !ZIPS.includes(parts[2])) {
-                renderHome();
-            } else {
-                renderZipPage(parts[0], parts[1], parts[2]);
-            }
-        }
-
-        // Home Page
-        function renderHome() {
-            document.getElementById('dynamic-title').textContent = '🌸 Easter Bouquets Every Zip - Florist One Same-Day Local Delivery';
-            document.getElementById('dynamic-desc').textContent = 'Stunning Easter lilies & bouquets same-day delivery every US zip + Canada postal. Florist One local florists - fresher, faster than 1800Flowers.';
-            document.getElementById('dynamic-h1').innerHTML = '🌸 Easter Bouquets Delivered Same-Day Every Zip';
-            document.getElementById('hero-cta').href = '#';
-            renderComparison();
-            renderFAQs();
-            renderTestimonials();
-        }
-
-        // Zip-Specific Page
-        function renderZipPage(occasion, type, zip) {
-            const cityState = ZIP_DATA[zip] || 'Local Area';
-            const now = new Date();
-            const easter = new Date(2026, 2, 5);
-            const days = Math.ceil((easter - now) / (86400000));
-
-            // Dynamic SEO
-            document.getElementById('dynamic-title').textContent = `${occasion.toUpperCase()} ${type} ${zip} ${cityState} | Florist One Same-Day`;
-            document.getElementById('dynamic-desc').textContent = `${type}s for ${occasion} ${zip} ${cityState}. Florist One local delivery beats all competitors.`;
-            document.getElementById('dynamic-schema').textContent = JSON.stringify({
-                "@context": "https://schema.org", "@type": "LocalBusiness", 
-                "name": `Florist One ${cityState}`, "address": { "@type": "PostalAddress", "postalCode": zip }
-            });
-
-            // Hero
-            document.getElementById('dynamic-h1').innerHTML = `
-                <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799?zip=${zip}&occ=${occasion}">
-                    ${days} Days to ${occasion.toUpperCase()}! ${type.toUpperCase()} ${zip} ${cityState}
-                </a>
-            `;
-            document.getElementById('hero-cta').href = `http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799?zip=${zip}`;
-            document.getElementById('hero-cta').textContent = `Order ${type} for ${zip} Now`;
-
-            // Comparison
-            renderZipComparison(occasion, type, zip, cityState);
-
-            // FAQs
-            renderZipFAQs(occasion, type, zip, cityState);
-
-            // Testimonials
-            renderZipTestimonials(cityState);
-        }
-
-        // Comparison Table
-        function renderComparison() {
-            document.getElementById('comparison-table').innerHTML = `
-                <table>
-                    <tr><th>Feature</th><th>Florist One</th><th>1800Flowers</th><th>FTD</th></tr>
-                    <tr><td>Same-Day Delivery</td><td>✅ Every Zip</td><td>❌ 2-3 Days</td><td>⚠️ 1-2 Days</td></tr>
-                    <tr><td>Freshness</td><td>🌸 Local Florist</td><td>🏭 Warehouse</td><td>🏭 Warehouse</td></tr>
-                    <tr><td>Price Match</td><td>$49+</td><td>$59+</td><td>$55+</td></tr>
-                    <tr><td>US/Canada Coverage</td><td>100% Zips</td><td>Limited</td><td>Limited</td></tr>
-                </table>
-            `;
-        }
-
-        function renderZipComparison(occasion, type, zip, cityState) {
-            document.getElementById('comparison-table').innerHTML = `
-                <table>
-                    <tr><th>Feature</th><th>Florist One ${zip}</th><th>1800Flowers</th><th>FTD</th></tr>
-                    <tr><td>${occasion} Speed</td><td>✅ Same-Day</td><td>❌ 2-3 Days</td><td>⚠️ 1-2 Days</td></tr>
-                    <tr><td>Freshness</td><td>🌸 ${cityState} Florist</td><td>🏭 Warehouse</td><td>🏭 Warehouse</td></tr>
-                    <tr><td>Price</td><td>$49+</td><td>$59+</td><td>$55+</td></tr>
-                    <tr><td>${cityState} Coverage</td><td>✅ 100% Zips</td><td>❌ Limited</td><td>❌ Limited</td></tr>
-                </table>
-            `;
-        }
-
-        // FAQs (50 total)
-        function renderFAQs() {
-            const faqs = [];
-            const questions = ['cost', 'delivery time', 'guarantee', 'freshness', 'availability', 'same day', 'local florist', 'vs competitors'];
-            for (let i = 0; i < 50; i++) {
-                const q = questions[i % 8];
-                faqs.push(`
-                    <details>
-                        <summary>How much does Easter bouquet ${q}?</summary>
-                        <p><strong>Perfect value!</strong> Florist One guarantees fresh Easter delivery. 
-                        <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" class="cta" style="font-size:1rem;padding:12px 24px;">Order Now</a></p>
-                    </details>
-                `);
-            }
-            document.getElementById('faq-title').textContent = 'Your Questions Answered';
-            document.getElementById('faq-grid').innerHTML = faqs.join('');
-        }
-
-        function renderZipFAQs(occasion, type, zip, cityState) {
-            document.getElementById('faq-title').textContent = `FAQs ${zip} ${cityState}`;
-            const faqs = [];
-            const questions = ['cost', 'delivery time', 'guarantee', 'freshness', 'availability', 'same day', 'local florist', 'vs competitors'];
-            for (let i = 0; i < 50; i++) {
-                const q = questions[i % 8];
-                faqs.push(`
-                    <details>
-                        <summary>${occasion} ${type} ${zip} ${q}?</summary>
-                        <p><strong>Yes!</strong> Florist One guarantees perfect ${type} delivery to ${zip} ${cityState}. 
-                        <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799?zip=${zip}" class="cta" style="font-size:1rem;padding:12px 24px;">Order Now</a></p>
-                    </details>
-                `);
-            }
-            document.getElementById('faq-grid').innerHTML = faqs.join('');
-        }
-
-        // Testimonials
-        function renderTestimonials() {
-            document.getElementById('testimonial-grid').innerHTML = `
-                <blockquote>"Best Easter bouquet delivery! Arrived 2hrs early, perfect freshness!" - Sarah, Langhorne</blockquote>
-                <blockquote>"Ramo hermoso para Pascua. Florist One #1 en frescura!" - Maria L.</blockquote>
-                <blockquote>"Fleurs fraîches même jour. Service parfait!" - Pierre M., Montréal</blockquote>
-            `;
-        }
-
-        function renderZipTestimonials(cityState) {
-            document.getElementById('testimonial-grid').innerHTML = `
-                <blockquote>"Best ${currentLang === 'es' ? 'Pascua' : 'Easter'} delivery ${cityState}! Arrived 2hrs early, perfect!" - Sarah ${cityState}</blockquote>
-                <blockquote>"Ramo hermoso. Florist One #1!" - Maria L. ${cityState}</blockquote>
-                <blockquote>"Fleurs fraîches même jour. Parfait!" - Pierre M. ${cityState}</blockquote>
-            `;
-        }
-
-        // Zip Autocomplete
-        document.getElementById('zip-input').addEventListener('input', function(e) {
-            const val = e.target.value.toUpperCase().trim();
-            const matches = ZIPS.filter(z => z.includes(val));
-            if (matches[0]) {
-                location.hash = `easter-bouquet-${matches[0]}`;
-            }
-        });
 
         // Language Switch
         function setLang(lang) {
             currentLang = lang;
-            parseRoute();
+            document.getElementById('hero-title').textContent = LANGS[lang]?.title || LANGS.en.title;
+            document.getElementById('hero-subtitle').textContent = LANGS[lang]?.subtitle || LANGS.en.subtitle;
+            document.getElementById('dynamic-title').textContent = LANGS[lang]?.title || LANGS.en.title;
+            
+            // Update lang buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            location.hash = `#${lang}`;
         }
 
-        // Load More Zips
-        function loadMoreZips() {
-            const list = document.getElementById('zip-list');
-            list.innerHTML += `
-                <div style="font-size: 1rem; line-height: 1.7; margin-top: 30px;">
-                    10007 NYC | 60614 Chicago | M5V Toronto | 90211 LA | 77002 Houston |
-                    ${Array(20).fill(0).map((_, i) => `ZIP${100 + i}`).join(' | ')} 
-                    <strong>+ 42,000 More US/Canada Zips Covered!</strong>
-                </div>
-            `;
+        // Testimonial Carousel
+        function nextTestimonial() {
+            const track = document.getElementById('testimonial-track');
+            currentTestimonial = (currentTestimonial + 1) % 3;
+            track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+        }
+        function prevTestimonial() {
+            const track = document.getElementById('testimonial-track');
+            currentTestimonial = (currentTestimonial - 1 + 3) % 3;
+            track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
         }
 
-        // Exit Popup
-        setTimeout(() => {
-            document.addEventListener('mouseleave', function(e) {
-                if (e.clientY < 0 && !sessionStorage.popup) {
-                    alert(`WAIT! Easter ZIP delivery? 15% OFF FloristOne!\nhttp://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799`);
-                    sessionStorage.popup = 'true';
+        // Auto-rotate testimonials
+        setInterval(nextTestimonial, 5000);
+
+        // Track Orders
+        function trackOrder() {
+            gtag?.('event', 'order_click', { 'affiliate': '2013017799' });
+            console.log('Order clicked - Affiliate ID: 2013017799');
+        }
+
+        // Language Switcher Init
+        function initLangSwitcher() {
+            const switcher = document.getElementById('lang-switch');
+            ['en','es','fr','de'].forEach(lang => {
+                const btn = document.createElement('button');
+                btn.className = 'lang-btn';
+                btn.dataset.lang = lang;
+                btn.textContent = lang.toUpperCase();
+                btn.onclick = () => setLang(lang);
+                switcher.appendChild(btn);
+            });
+            detectLang();
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, 5000);
+        });
 
-        // Initialize everything
-        init();
+        document.querySelectorAll('.feature-card, .pricing-card, .stat').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.4,0,0.2,1)';
+            observer.observe(el);
+        });
+
+        // Init
+        window.addEventListener('load', () => {
+            initLangSwitcher();
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
     </script>
 </body>
 </html>
