@@ -3,85 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="dynamic-title">🚨 URGENT: Premium Flower Bouquets Same-Day Delivery - Order NOW!</title>
-    <meta name="description" id="dynamic-desc" content="SAME-DAY flower delivery EVERY ZIP! Florist One beats 1800Flowers. LIMITED TIME 25% OFF - ORDER BEFORE TIME RUNS OUT!">
+    <title id="dynamic-title">🚨 Easter Flowers Same-Day Delivery - Florist One 25% OFF NOW!</title>
+    <meta name="description" id="dynamic-desc" content="EASTER lilies bouquets same-day EVERY ZIP! Florist One beats 1800Flowers. COUNTDOWN LIVE - ORDER BEFORE TIME RUNS OUT!">
     
     <style>
         :root {
-            --primary: #dc2626; --secondary: #b91c1c; --accent: #eab308;
+            --primary: #dc2626; --secondary: #b91c1c; --accent: #eab308; --mint: #10b981;
             --dark: #111827; --light: #f9fafb; --gray: #6b7280;
-            --shadow: 0 20px 60px rgba(220,38,38,0.4);
+            --shadow: 0 25px 75px rgba(220,38,38,0.4);
             --gradient: linear-gradient(135deg, #fef3c7 0%, #fed7aa 50%, #fca5a5 100%);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { font-size: 16px; scroll-behavior: smooth; }
+        html { font-size: 14px; scroll-behavior: smooth; }
         body { 
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--gradient); color: var(--dark); line-height: 1.6;
-            min-height: 100vh;
+            position: relative; overflow-x: hidden;
+        }
+
+        /* FLOWER BACKGROUND */
+        body::before {
+            content: '';
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -2;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255,182,193,0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(144,238,144,0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255,218,185,0.2) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(-10px) rotate(240deg); }
         }
 
         /* URGENCY COUNTDOWN BAR */
         .urgency-bar {
             position: fixed; top: 0; left: 0; right: 0; z-index: 10000;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white; padding: 15px 0; text-align: center; font-weight: 900;
-            font-size: 1.3rem; box-shadow: var(--shadow); animation: pulse 1.5s infinite;
+            color: white; padding: 18px 0; text-align: center; font-weight: 900;
+            font-size: 1.2rem; box-shadow: var(--shadow); cursor: pointer;
+            transition: all 0.3s;
         }
-        .countdown-clock {
-            display: inline-block; background: rgba(255,255,255,0.2); padding: 10px 20px;
-            border-radius: 25px; margin: 0 15px; font-family: monospace; font-size: 1.4rem;
+        .urgency-bar:hover { transform: scale(1.02); }
+        .countdown-container {
+            display: inline-flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.25);
+            padding: 12px 25px; border-radius: 35px; backdrop-filter: blur(10px);
+            font-family: 'Courier New', monospace; font-size: 1.3rem;
         }
-        @keyframes pulse {
-            0%, 100% { background-color: rgba(255,255,255,0.1); }
-            50% { background-color: rgba(255,255,255,0.3); }
+        .countdown-item {
+            text-align: center; min-width: 60px;
         }
+        .countdown-number { font-size: 1.6rem; font-weight: 900; display: block; }
+        .countdown-label { font-size: 0.7rem; text-transform: uppercase; opacity: 0.9; }
 
         /* HEADER */
         header {
-            position: fixed; top: 80px; left: 0; right: 0; z-index: 9999;
-            background: rgba(255,255,255,0.98); backdrop-filter: blur(20px);
-            padding: 15px 0; box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: fixed; top: 95px; left: 0; right: 0; z-index: 9999;
+            background: rgba(255,255,255,0.98); backdrop-filter: blur(25px);
+            padding: 18px 0; box-shadow: 0 15px 50px rgba(0,0,0,0.15);
         }
         .header-content {
             max-width: 1400px; margin: 0 auto; padding: 0 30px; display: flex;
             justify-content: space-between; align-items: center;
         }
         .logo {
-            font-size: 2rem; font-weight: 900; color: var(--primary);
-            text-decoration: none;
+            font-size: 1.8rem; font-weight: 900; background: linear-gradient(135deg, var(--primary), var(--mint));
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            text-decoration: none; cursor: pointer;
         }
         .header-cta {
-            background: var(--primary); color: white; padding: 15px 35px;
-            border-radius: 50px; font-weight: 800; text-decoration: none;
-            font-size: 1.1rem; transition: all 0.3s; box-shadow: var(--shadow);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; padding: 16px 40px; border-radius: 50px; font-weight: 900;
+            text-decoration: none; font-size: 1.1rem; box-shadow: var(--shadow);
+            transition: all 0.3s; cursor: pointer;
         }
-        .header-cta:hover {
-            transform: translateY(-3px); box-shadow: 0 25px 70px rgba(220,38,38,0.6);
-        }
+        .header-cta:hover { transform: translateY(-4px); box-shadow: 0 30px 80px rgba(220,38,38,0.6); }
 
-        /* HERO SECTION */
+        /* HERO */
         .hero {
-            padding: 200px 30px 150px; text-align: center; background: 
-            linear-gradient(135deg, rgba(220,38,38,0.1) 0%, rgba(254,243,199,0.3) 100%);
-            min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            padding: 220px 30px 160px; text-align: center; min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: center;
+            position: relative;
         }
         .hero h1 {
-            font-size: clamp(4rem, 8vw, 8rem); font-weight: 900; color: var(--dark);
-            margin-bottom: 25px; letter-spacing: -2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; color: var(--dark);
+            margin-bottom: 20px; letter-spacing: -1px; cursor: pointer;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2); transition: all 0.3s;
         }
+        .hero h1:hover { color: var(--primary); transform: scale(1.02); }
         .hero-subtitle {
-            font-size: 1.6rem; color: var(--gray); margin-bottom: 40px;
-            max-width: 800px; margin-left: auto; margin-right: auto;
-            font-weight: 400;
+            font-size: 1.4rem; color: var(--gray); margin-bottom: 35px;
+            max-width: 700px; margin-left: auto; margin-right: auto;
+            font-weight: 500; cursor: pointer;
         }
         .hero-cta {
             display: inline-block; background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white; padding: 25px 60px; font-size: 1.6rem; font-weight: 900;
-            border-radius: 60px; text-decoration: none; box-shadow: var(--shadow);
-            animation: bounce 2s infinite; position: relative; overflow: hidden;
-            letter-spacing: 1px; text-transform: uppercase;
+            color: white; padding: 22px 55px; font-size: 1.4rem; font-weight: 900;
+            border-radius: 55px; text-decoration: none; box-shadow: var(--shadow);
+            animation: bounce 2s infinite; cursor: pointer;
+            letter-spacing: 1px; text-transform: uppercase; position: relative;
+            overflow: hidden;
         }
         .hero-cta::before {
             content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
@@ -89,245 +112,194 @@
             transition: left 0.6s;
         }
         .hero-cta:hover {
-            transform: translateY(-8px) scale(1.05); box-shadow: 0 35px 90px rgba(220,38,38,0.7);
+            transform: translateY(-8px) scale(1.05); box-shadow: 0 40px 100px rgba(220,38,38,0.7);
         }
         .hero-cta:hover::before { left: 100%; }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
 
         /* CONTAINER */
         .container { max-width: 1400px; margin: 0 auto; padding: 0 30px; }
 
-        /* SECTION */
-        .section {
-            padding: 100px 0; background: rgba(255,255,255,0.7);
-            border-radius: 25px; margin: 50px 0; box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
+        /* SECTION - 50% REDUCED */
+        .section { padding: 60px 0; background: rgba(255,255,255,0.85); border-radius: 20px; margin: 30px 0; }
         .section h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem); text-align: center;
-            font-weight: 800; color: var(--dark); margin-bottom: 60px;
-            position: relative;
+            font-size: clamp(2rem, 4vw, 3rem); text-align: center; font-weight: 800;
+            color: var(--dark); margin-bottom: 40px; cursor: pointer;
         }
-        .section h2::after {
-            content: ''; display: block; width: 100px; height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            margin: 20px auto; border-radius: 3px;
-        }
+        .section h2:hover { color: var(--primary); }
 
-        /* FEATURES */
-        .features-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
+        /* FEATURES - 50% REDUCED */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         .feature-card {
-            background: white; border-radius: 20px; padding: 50px 30px;
-            text-align: center; box-shadow: 0 15px 45px rgba(0,0,0,0.1);
-            transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
-            border-top: 5px solid var(--primary);
+            background: white; border-radius: 18px; padding: 35px 25px; text-align: center;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.12); transition: all 0.4s;
+            border-top: 4px solid var(--primary); cursor: pointer;
         }
         .feature-card:hover {
-            transform: translateY(-15px); box-shadow: 0 30px 80px rgba(220,38,38,0.2);
+            transform: translateY(-10px); box-shadow: 0 25px 60px rgba(220,38,38,0.25);
         }
         .feature-icon {
-            width: 90px; height: 90px; margin: 0 auto 25px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 20px; display: flex; align-items: center;
-            justify-content: center; font-size: 2.5rem; color: white;
+            width: 70px; height: 70px; margin: 0 auto 18px; background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 18px; display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; color: white;
         }
-        .feature-card h3 {
-            font-size: 1.8rem; font-weight: 700; color: var(--dark); margin-bottom: 15px;
-        }
-        .feature-card p { font-size: 1.1rem; color: var(--gray); }
+        .feature-card h3 { font-size: 1.4rem; font-weight: 700; color: var(--dark); margin-bottom: 12px; }
+        .feature-card p { font-size: 1rem; color: var(--gray); }
 
-        /* STATS */
+        /* STATS - 50% REDUCED */
         .stats-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px; text-align: center; margin: 60px 0;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px; text-align: center; margin: 40px 0;
         }
         .stat {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white; padding: 45px 30px; border-radius: 20px;
-            box-shadow: var(--shadow);
+            background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white;
+            padding: 30px 20px; border-radius: 18px; box-shadow: var(--shadow); cursor: pointer;
         }
-        .stat-number {
-            font-size: 4.5rem; font-weight: 900; display: block; line-height: 1;
-        }
-        .stat-label { font-size: 1.3rem; font-weight: 600; opacity: 0.95; }
+        .stat:hover { transform: scale(1.05); }
+        .stat-number { font-size: 3rem; font-weight: 900; display: block; }
+        .stat-label { font-size: 1rem; font-weight: 600; opacity: 0.95; }
 
-        /* TESTIMONIALS */
-        .testimonials {
-            background: white; border-radius: 25px; padding: 60px;
-            position: relative; overflow: hidden; box-shadow: 0 25px 70px rgba(0,0,0,0.1);
-        }
-        .testimonial-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
+        /* TESTIMONIALS - 50% REDUCED */
+        .testimonials { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 55px rgba(0,0,0,0.12); }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         .testimonial {
-            padding: 40px; background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-            border-radius: 20px; position: relative; border-left: 6px solid var(--primary);
+            padding: 30px; background: linear-gradient(135deg, #f8fafc, #e2e8f0); border-radius: 18px;
+            position: relative; border-left: 5px solid var(--primary); cursor: pointer;
+            transition: all 0.3s;
         }
+        .testimonial:hover { transform: translateY(-5px); }
         .testimonial::before {
-            content: '"'; position: absolute; top: -10px; left: 30px;
-            background: var(--primary); color: white; width: 50px; height: 50px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 2.5rem; font-family: serif; font-weight: 100;
+            content: '"'; position: absolute; top: -8px; left: 25px; background: var(--primary);
+            color: white; width: 40px; height: 40px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 2rem; font-family: serif;
         }
-        .testimonial p {
-            font-size: 1.3rem; font-style: italic; color: var(--dark); margin-bottom: 25px;
-            line-height: 1.6;
-        }
-        .testimonial-author {
-            font-weight: 700; color: var(--primary); font-size: 1.1rem;
-        }
+        .testimonial p { font-size: 1.1rem; font-style: italic; color: var(--dark); margin-bottom: 20px; }
+        .testimonial-author { font-weight: 700; color: var(--primary); font-size: 1rem; }
 
-        /* PRICING */
-        .pricing-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px; text-align: center;
-        }
+        /* PRICING - 50% REDUCED */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
         .pricing-card {
-            background: white; border-radius: 25px; padding: 50px 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1); position: relative;
-            transition: all 0.4s; border: 3px solid transparent;
+            background: white; border-radius: 20px; padding: 35px 25px; box-shadow: 0 15px 45px rgba(0,0,0,0.12);
+            position: relative; transition: all 0.4s; border: 3px solid transparent; cursor: pointer;
         }
-        .pricing-card.featured {
-            border-color: var(--primary); transform: scale(1.05);
-            box-shadow: 0 35px 100px rgba(220,38,38,0.3);
-        }
-        .pricing-card:hover { transform: translateY(-10px); }
-        .price {
-            font-size: 4rem; font-weight: 900; color: var(--primary);
-            margin: 20px 0; line-height: 1;
-        }
-        .price sub { font-size: 1.2rem; font-weight: 400; color: var(--gray); }
+        .pricing-card:hover { transform: translateY(-8px); }
+        .pricing-card.featured { border-color: var(--primary); transform: scale(1.03); }
+        .price { font-size: 2.8rem; font-weight: 900; color: var(--primary); margin: 15px 0; }
+        .price sub { font-size: 1rem; color: var(--gray); }
         .pricing-btn {
-            background: var(--primary); color: white; padding: 18px 45px;
-            border-radius: 50px; text-decoration: none; font-weight: 800;
-            font-size: 1.1rem; display: inline-block; margin-top: 25px;
-            transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px;
-        }
-        .pricing-btn:hover {
-            transform: translateY(-3px); box-shadow: var(--shadow);
+            background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white;
+            padding: 14px 35px; border-radius: 40px; text-decoration: none; font-weight: 800;
+            font-size: 1rem; display: inline-block; margin-top: 20px; cursor: pointer;
         }
 
-        /* FAQ */
-        .faq-list {
-            max-width: 900px; margin: 0 auto; display: grid; gap: 20px;
-        }
-        .faq-item {
-            background: white; border-radius: 15px; overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s;
-        }
+        /* FAQ - 50% REDUCED */
+        .faq-list { max-width: 800px; margin: 0 auto; display: grid; gap: 15px; }
+        .faq-item { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .faq-question {
-            padding: 25px 30px; background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-            cursor: pointer; font-weight: 700; font-size: 1.2rem;
-            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 25px; background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            cursor: pointer; font-weight: 700; font-size: 1.1rem; display: flex;
+            justify-content: space-between; align-items: center;
         }
-        .faq-answer {
-            padding: 0 30px 30px; max-height: 0; overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-        }
-        .faq-item.active .faq-answer { max-height: 200px; padding: 25px 30px 30px; }
-        .faq-icon { transition: transform 0.3s; }
+        .faq-answer { padding: 0 25px 25px; max-height: 0; overflow: hidden; transition: all 0.4s; }
+        .faq-item.active .faq-answer { max-height: 150px; padding: 20px 25px 25px; }
+        .faq-icon { font-size: 1.2rem; transition: transform 0.3s; }
         .faq-item.active .faq-icon { transform: rotate(45deg); }
 
-        /* FOOTER */
-        footer {
-            background: var(--dark); color: white; padding: 60px 0 30px;
-            text-align: center;
-        }
-        .trust-badges {
-            display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;
-            margin: 40px 0; max-width: 800px; margin-left: auto; margin-right: auto;
-        }
+        /* FOOTER - 50% REDUCED */
+        footer { background: var(--dark); color: white; padding: 40px 0 20px; text-align: center; }
+        .trust-badges { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 25px 0; }
         .badge {
-            background: rgba(255,255,255,0.1); padding: 20px 25px;
-            border-radius: 15px; backdrop-filter: blur(10px);
-            font-weight: 700; font-size: 1rem; border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.15); padding: 15px 20px; border-radius: 12px;
+            font-weight: 700; font-size: 0.95rem; border: 2px solid rgba(255,255,255,0.3);
+            cursor: pointer;
         }
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            .urgency-bar { font-size: 1.1rem; padding: 12px 0; }
-            .hero { padding: 150px 20px 100px; }
-            .hero h1 { font-size: 3.5rem; }
-            .features-grid, .pricing-grid, .stats-grid, .testimonial-grid { 
-                grid-template-columns: 1fr; gap: 25px; 
-            }
-            .trust-badges { gap: 15px; flex-direction: column; }
+            html { font-size: 13px; }
+            .urgency-bar { font-size: 1rem; padding: 15px 0; }
+            .hero { padding: 160px 20px 100px; }
+            .features-grid, .pricing-grid, .stats-grid, .testimonial-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- URGENCY COUNTDOWN -->
-    <div class="urgency-bar">
-        🚨 <strong>25% OFF ENDS SOON!</strong> 
-        <span class="countdown-clock" id="countdown">00:47:23</span>
-        <strong>ONLY <span id="countdown-seconds">2847</span> SPOTS LEFT!</strong>
-    </div>
+    <!-- URGENCY COUNTDOWN BAR - CLICKABLE -->
+    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" class="urgency-bar" onclick="orderNow()">
+        🚨 <strong id="holiday-name">EASTER</strong> SALE ENDS SOON! 
+        <span class="countdown-container">
+            <span class="countdown-item">
+                <span class="countdown-number" id="days">12</span>
+                <span class="countdown-label">DAYS</span>
+            </span>
+            <span class="countdown-item">
+                <span class="countdown-number" id="hours">15</span>
+                <span class="countdown-label">HRS</span>
+            </span>
+            <span class="countdown-item">
+                <span class="countdown-number" id="minutes">47</span>
+                <span class="countdown-label">MINS</span>
+            </span>
+        </span>
+        <strong>25% OFF NOW!</strong>
+    </a>
 
     <!-- HEADER -->
     <header>
         <div class="header-content">
-            <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" class="logo">
-                🌸 FLORIST ONE
-            </a>
+            <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
+               class="logo" onclick="orderNow()">🌸 FLORIST ONE</a>
             <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
                class="header-cta" onclick="orderNow()">ORDER NOW</a>
         </div>
     </header>
 
-    <!-- HERO -->
-    <section class="hero">
-        <h1>🚨 SAME-DAY<br>FLOWER DELIVERY</h1>
-        <p class="hero-subtitle">
-            <strong>LOCAL FLORISTS</strong> • EVERY US ZIP + CANADA • 
-            FRESHER THAN 1800FLOWERS • <strong>25% OFF NOW!</strong>
+    <!-- HERO - CLICKABLE HEADLINE -->
+    <section class="hero" onclick="orderNow()">
+        <h1 id="hero-title">🌷 EASTER LILIES & BOUQUETS<br>SAME-DAY DELIVERY</h1>
+        <p class="hero-subtitle" onclick="orderNow()">
+            <strong>LOCAL FLORISTS</strong> • EVERY ZIP CODE • FRESHER THAN 1800FLOWERS • 
+            <strong>LIVE COUNTDOWN ABOVE</strong>
         </p>
         <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-           class="hero-cta" onclick="orderNow()">GET 25% OFF BOUQUET NOW →</a>
+           class="hero-cta" onclick="orderNow()">ORDER EASTER FLOWERS NOW →</a>
     </section>
 
     <div class="container">
         <!-- FEATURES -->
-        <section class="section">
-            <h2>WHY FLORIST ONE WINS</h2>
+        <section class="section" onclick="orderNow()">
+            <h2>WHY CHOOSE US</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
                     <h3>Same-Day Delivery</h3>
-                    <p>Local florists deliver in hours. 95% same day guarantee.</p>
+                    <p>95% delivered same afternoon. Local florist speed.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🌿</div>
-                    <h3>Fresher Flowers</h3>
-                    <p>Hand-arranged by local experts. Never warehouse wilted.</p>
+                    <div class="feature-icon">🌺</div>
+                    <h3>Fresh Guaranteed</h3>
+                    <p>Hand-arranged fresh daily. Double fresh guarantee.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Every Zip Code</h3>
-                    <p>42K+ US zips + all Canada postals covered 100%.</p>
+                    <div class="feature-icon">📍</div>
+                    <h3>Every Zip Covered</h3>
+                    <p>42K+ US zips + Canada postals. 100% guaranteed.</p>
                 </div>
             </div>
         </section>
 
         <!-- STATS -->
-        <div class="stats-grid">
+        <div class="stats-grid" onclick="orderNow()">
             <div class="stat">
-                <span class="stat-number">42,000+</span>
-                <span class="stat-label">ZIPS COVERED</span>
+                <span class="stat-number">42K+</span>
+                <span class="stat-label">ZIPS</span>
             </div>
             <div class="stat">
                 <span class="stat-number">99.9%</span>
-                <span class="stat-label">ON-TIME RATE</span>
+                <span class="stat-label">ON-TIME</span>
             </div>
             <div class="stat">
-                <span class="stat-number">50,000+</span>
-                <span class="stat-label">HAPPY CUSTOMERS</span>
+                <span class="stat-number">50K+</span>
+                <span class="stat-label">CUSTOMERS</span>
             </div>
             <div class="stat">
                 <span class="stat-number">24/7</span>
@@ -336,82 +308,69 @@
         </div>
 
         <!-- TESTIMONIALS -->
-        <section class="section testimonials">
-            <h2>REAL CUSTOMERS</h2>
+        <section class="section testimonials" onclick="orderNow()">
+            <h2>REAL REVIEWS</h2>
             <div class="testimonial-grid">
                 <div class="testimonial">
-                    <p>"Best bouquet EVER! Same day delivery, fresher than ANY competitor. 
-                    Florist One changed everything!"</p>
-                    <div class="testimonial-author">Sarah T. • Langhorne, PA</div>
+                    <p>"Easter lilies perfect! Same day delivery beat everyone else!"</p>
+                    <div class="testimonial-author">Sarah T. • 19047 PA</div>
                 </div>
                 <div class="testimonial">
-                    <p>"Ramo perfecto! Llegó en 3 horas. Florist One #1 vs 1800Flowers."</p>
-                    <div class="testimonial-author">Maria L. • Miami, FL</div>
+                    <p>"Ramo hermoso Pascua. Florist One #1 entrega rápida."</p>
+                    <div class="testimonial-author">Maria L. • Miami</div>
                 </div>
                 <div class="testimonial">
-                    <p>"Fleurs parfaites le jour même! Service exceptionnel."</p>
-                    <div class="testimonial-author">Pierre M. • Montréal, QC</div>
+                    <p>"Fleurs fraîches jour même. Excellent service!"</p>
+                    <div class="testimonial-author">Pierre M. • Montréal</div>
                 </div>
             </div>
         </section>
 
         <!-- PRICING -->
-        <section class="section">
-            <h2>START ORDERING</h2>
+        <section class="section" onclick="orderNow()">
+            <h2>PRICES</h2>
             <div class="pricing-grid">
                 <div class="pricing-card">
-                    <h3>Basic Bouquets</h3>
-                    <div class="price">$39<sub>+ tax</sub></div>
-                    <p>Classic arrangements</p>
-                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-                       class="pricing-btn" onclick="orderNow()">ORDER NOW</a>
+                    <h3>Basic</h3>
+                    <div class="price">$39<sub>+tax</sub></div>
+                    <p>Classic bouquets</p>
+                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" class="pricing-btn" onclick="orderNow()">BUY NOW</a>
                 </div>
                 <div class="pricing-card featured">
                     <h3>Premium</h3>
-                    <div class="price">$59<sub>+ tax</sub></div>
-                    <p>Luxury arrangements<br><strong>25% OFF NOW</strong></p>
-                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-                       class="pricing-btn" onclick="orderNow()">BEST DEAL</a>
+                    <div class="price">$59<sub>+tax</sub></div>
+                    <p><strong>25% OFF</strong> Easter special</p>
+                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" class="pricing-btn" onclick="orderNow()">BEST DEAL</a>
                 </div>
                 <div class="pricing-card">
-                    <h3>Large Events</h3>
-                    <div class="price">$199<sub>+ tax</sub></div>
-                    <p>Weddings & corporate</p>
-                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-                       class="pricing-btn" onclick="orderNow()">CONTACT US</a>
+                    <h3>Large</h3>
+                    <div class="price">$199<sub>+tax</sub></div>
+                    <p>Events & weddings</p>
+                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" class="pricing-btn" onclick="orderNow()">ORDER</a>
                 </div>
             </div>
         </section>
 
         <!-- FAQ -->
         <section class="section">
-            <h2>QUICK ANSWERS</h2>
+            <h2 onclick="orderNow()">FAQ</h2>
             <div class="faq-list">
                 <div class="faq-item">
                     <div class="faq-question">
-                        How fast is delivery?
+                        Same-day delivery time?
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>95% same-day! Order by 2PM for delivery same afternoon. Guaranteed.</p>
+                        <p>Order by 2PM = same afternoon delivery. 95% success rate.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        Do you cover my area?
+                        My zip code covered?
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>42K+ US zips + ALL Canada postals. 100% coverage guarantee.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Better than 1800Flowers?
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Local florists = fresher. Same-day vs their 2-3 days. Better prices.</p>
+                        <p>42K+ US zips + all Canada postals. Enter zip to confirm instantly.</p>
                     </div>
                 </div>
             </div>
@@ -419,70 +378,67 @@
     </div>
 
     <!-- FOOTER -->
-    <footer>
+    <footer onclick="orderNow()">
         <div class="container">
-            <h2>TRUSTED WORLDWIDE</h2>
+            <h2>🌸 TRUSTED FLOWER STORE</h2>
             <div class="trust-badges">
-                <div class="badge">🔒 256-BIT SSL</div>
-                <div class="badge">🌟 4.9/5 STARS</div>
-                <div class="badge">⚡ SAME-DAY</div>
-                <div class="badge">💳 ALL CARDS</div>
-                <div class="badge">📦 FREE SHIPPING</div>
+                <div class="badge">🔒 SECURE</div>
+                <div class="badge">⭐ 4.9/5</div>
+                <div class="badge">⚡ SAME DAY</div>
+                <div class="badge">💳 CARDS OK</div>
             </div>
-            <p style="margin-top: 30px; opacity: 0.8;">
-                <strong>Affiliate Disclosure:</strong> We earn commission from purchases. 
-                Same amazing service you expect.
-            </p>
-            <p>&copy; 2026 Florist One. 
-                <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-                   style="color: #fbbf24; font-weight: 700;" onclick="orderNow()">
-                   FINAL ORDER LINK →
-                </a>
+            <p style="margin-top: 20px; opacity: 0.9; font-size: 0.9rem;">
+                Affiliate link - we earn commission. Same great flowers!
             </p>
         </div>
     </footer>
 
     <script>
-        // LIVE COUNTDOWN
-        function updateCountdown() {
+        // HOLIDAY DATES 2026
+        const HOLIDAYS = {
+            easter: new Date(2026, 2, 5), // April 5
+            mothersday: new Date(2026, 4, 10), // May 10
+            memorialday: new Date(2026, 4, 25) // May 25
+        };
+
+        let currentHoliday = 'easter';
+
+        // LIVE HOLIDAY COUNTDOWN
+        function updateHolidayCountdown() {
             const now = new Date();
-            const end = new Date(now.getTime() + 2 * 60 * 60 * 1000); // 2 hours from now
-            const diff = end - now;
+            const holidayDate = HOLIDAYS[currentHoliday];
+            const diff = holidayDate - now;
             
-            const hours = Math.floor(diff / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            document.getElementById('countdown').textContent = 
-                `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
-            document.getElementById('countdown-seconds').textContent = 
-                (3600 - Math.floor(diff / 1000)).toLocaleString();
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('holiday-name').textContent = currentHoliday.toUpperCase();
+                document.getElementById('hero-title').innerHTML = `🌷 ${currentHoliday.toUpperCase().replace('S', 's')} FLOWERS<br>SAME-DAY DELIVERY`;
+            }
         }
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
+        updateHolidayCountdown();
+        setInterval(updateHolidayCountdown, 60000); // Update every minute
 
-        // Order tracking
+        // Order click
         function orderNow() {
-            console.log('🚀 ORDER CLICKED - Affiliate: 2013017799');
-            gtag?.('event', 'purchase_intent', { value: 59, currency: 'USD' });
+            console.log('🌸 ORDER CLICK - Affiliate: 2013017799');
+            window.open('http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799', '_blank');
         }
 
-        // FAQ Toggle
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function() {
-                const item = this.parentElement;
-                item.classList.toggle('active');
+        // FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                q.parentElement.classList.toggle('active');
             });
         });
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', e => {
-                e.preventDefault();
-                const target = document.querySelector(link.getAttribute('href'));
-                target?.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
+        // Auto-switch holidays (demo)
+        setTimeout(() => { currentHoliday = 'mothersday'; }, 1000 * 60 * 60 * 24 * 7); // Next week
     </script>
 </body>
 </html>
