@@ -17,7 +17,6 @@
     <link rel="alternate" hreflang="es" href="#es">
     <link rel="alternate" hreflang="fr" href="#fr">
     <link rel="alternate" hreflang="de" href="#de">
-    <link rel="alternate" hreflang="zh" href="#zh">
     
     <!-- Schema -->
     <script type="application/ld+json">
@@ -33,65 +32,65 @@
     <style>
         :root {
             --rose: #e91e63; --blush: #f8bbd9; --mint: #c8e6c9; --gold: #ffd700;
-            --shadow: 0 25px 75px rgba(233,30,99,0.3); --glass: rgba(255,255,255,0.95);
+            --shadow: 0 12px 35px rgba(233,30,99,0.25); --glass: rgba(255,255,255,0.95);
             --gradient: linear-gradient(135deg, #fdf2f8 0%, #e8f5e8 100%);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: 120px; }
+        html { font-size: 10px; scroll-behavior: smooth; scroll-padding-top: 60px; }
         body { 
             font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
             background: var(--gradient); color: #2d1b3f; line-height: 1.7; overflow-x: hidden;
         }
 
-        /* URGENCY BAR */
+        /* URGENCY BAR - 50% SIZE */
         .urgency-bar {
             position: fixed; top: 0; left: 0; right: 0; z-index: 10000;
             background: linear-gradient(90deg, var(--rose), #c2185b); color: white;
-            padding: 12px 0; text-align: center; font-weight: 700; font-size: 1.1rem;
+            padding: 6px 0; text-align: center; font-weight: 700; font-size: 0.55rem;
             box-shadow: var(--shadow); animation: slideDown 0.5s ease-out;
         }
         @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
 
-        /* STICKY NAV */
+        /* STICKY NAV - 50% SIZE */
         .nav {
-            position: fixed; top: 70px; left: 0; right: 0; z-index: 9999;
-            background: var(--glass); backdrop-filter: blur(25px); padding: 15px 0;
+            position: fixed; top: 35px; left: 0; right: 0; z-index: 9999;
+            background: var(--glass); backdrop-filter: blur(25px); padding: 8px 0;
             box-shadow: var(--shadow);
         }
         .nav-content { max-width: 1400px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--rose), var(--mint)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .cta-nav { background: var(--rose); color: white; padding: 14px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: all 0.3s; }
-        .cta-nav:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+        .logo { font-size: 0.9rem; font-weight: 800; background: linear-gradient(135deg, var(--rose), var(--mint)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .cta-nav { background: var(--rose); color: white; padding: 7px 16px; border-radius: 25px; text-decoration: none; font-weight: 700; transition: all 0.3s; font-size: 0.5rem; }
+        .cta-nav:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
 
-        /* LANGUAGE SWITCHER */
-        .lang-switch { display: flex; gap: 8px; }
+        /* LANGUAGE SWITCHER - 50% SIZE */
+        .lang-switch { display: flex; gap: 4px; }
         .lang-btn {
-            border: 2px solid var(--rose); background: transparent; color: var(--rose);
-            padding: 8px 16px; border-radius: 25px; font-size: 0.85rem; font-weight: 600;
+            border: 1px solid var(--rose); background: transparent; color: var(--rose);
+            padding: 4px 8px; border-radius: 12px; font-size: 0.42rem; font-weight: 600;
             cursor: pointer; transition: all 0.3s;
         }
         .lang-btn.active, .lang-btn:hover { background: var(--rose); color: white; transform: scale(1.05); }
 
-        /* HERO */
+        /* HERO - 50% SIZE */
         .hero {
-            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; padding: 200px 20px 100px; position: relative; overflow: hidden;
+            min-height: 50vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 100px 20px 50px; position: relative; overflow: hidden;
             background: linear-gradient(135deg, var(--blush) 0%, var(--mint) 50%, rgba(233,30,99,0.1) 100%);
         }
         .hero::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 0.5px;
             background: linear-gradient(90deg, transparent, var(--rose), transparent);
         }
         .hero h1 {
-            font-size: clamp(3.5rem, 10vw, 7rem); font-weight: 300; letter-spacing: -2px;
+            font-size: clamp(1.75rem, 5vw, 3.5rem); font-weight: 300; letter-spacing: -1px;
             background: linear-gradient(135deg, #fff, var(--gold)); -webkit-background-clip: text;
-            background-clip: text; color: transparent; margin-bottom: 30px; animation: bounceIn 1.5s;
+            background-clip: text; color: transparent; margin-bottom: 15px; animation: bounceIn 1.5s;
         }
-        .hero .subtitle { font-size: 1.5rem; color: #4a3f5a; margin-bottom: 40px; max-width: 600px; }
+        .hero .subtitle { font-size: 0.75rem; color: #4a3f5a; margin-bottom: 20px; max-width: 300px; }
         .hero-cta {
-            background: linear-gradient(135deg, var(--rose), #c2185b); color: white; padding: 28px 70px;
-            font-size: 1.6rem; font-weight: 700; border-radius: 60px; text-decoration: none;
+            background: linear-gradient(135deg, var(--rose), #c2185b); color: white; padding: 14px 35px;
+            font-size: 0.8rem; font-weight: 700; border-radius: 30px; text-decoration: none;
             box-shadow: var(--shadow); animation: pulse 2s infinite; position: relative; overflow: hidden;
             transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
         }
@@ -99,139 +98,138 @@
             content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
         }
-        .hero-cta:hover { transform: translateY(-8px) scale(1.08); box-shadow: 0 40px 100px rgba(233,30,99,0.5); }
+        .hero-cta:hover { transform: translateY(-4px) scale(1.08); box-shadow: 0 20px 50px rgba(233,30,99,0.5); }
         .hero-cta:hover::before { left: 100%; }
         @keyframes bounceIn {
-            0% { opacity: 0; transform: scale(0.8) translateY(50px); }
-            60% { opacity: 1; transform: scale(1.05); }
+            0% { opacity: 0; transform: scale(0.8) translateY(25px); }
+            60% { opacity: 1; transform: scale(1.03); }
             100% { transform: scale(1) translateY(0); }
         }
 
         /* CONTAINER */
         .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
 
-        /* SECTION */
-        .section { padding: 120px 0; }
+        /* SECTION - 50% SIZE */
+        .section { padding: 60px 0; }
         .section h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem); text-align: center; margin-bottom: 80px;
+            font-size: clamp(1.25rem, 2.5vw, 2rem); text-align: center; margin-bottom: 40px;
             font-weight: 300; position: relative; color: #2d1b3f;
         }
         .section h2::after {
-            content: ''; position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
-            width: 120px; height: 4px; background: linear-gradient(90deg, var(--rose), var(--mint));
-            border-radius: 2px;
+            content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 2px; background: linear-gradient(90deg, var(--rose), var(--mint));
+            border-radius: 1px;
         }
+        .section h3 { font-size: 0.85rem; color: #2d1b3f; margin-bottom: 10px; }
 
-        /* FEATURES GRID */
+        /* FEATURES GRID - 50% SIZE */
         .features-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px;
         }
         .feature-card {
-            background: var(--glass); backdrop-filter: blur(20px); border-radius: 30px;
-            padding: 60px 40px; text-align: center; box-shadow: var(--shadow);
+            background: var(--glass); backdrop-filter: blur(20px); border-radius: 15px;
+            padding: 30px 20px; text-align: center; box-shadow: var(--shadow);
             transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
         }
         .feature-card:hover {
-            transform: translateY(-15px) rotate(2deg); box-shadow: 0 40px 120px rgba(233,30,99,0.4);
+            transform: translateY(-8px) rotate(1deg); box-shadow: 0 20px 60px rgba(233,30,99,0.4);
         }
         .feature-icon {
-            width: 100px; height: 100px; margin: 0 auto 30px; background: linear-gradient(135deg, var(--rose), var(--blush));
-            border-radius: 25px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem;
+            width: 50px; height: 50px; margin: 0 auto 15px; background: linear-gradient(135deg, var(--rose), var(--blush));
+            border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
         }
-        .feature-card h3 { font-size: 1.6rem; margin-bottom: 20px; color: #2d1b3f; }
+        .feature-card p { font-size: 0.55rem; }
 
-        /* STATS */
+        /* STATS - 50% SIZE */
         .stats-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;
-            text-align: center; margin: 80px 0;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(125px, 1fr)); gap: 20px;
+            text-align: center; margin: 40px 0;
         }
         .stat {
             background: linear-gradient(135deg, var(--rose), #c2185b); color: white;
-            padding: 40px 30px; border-radius: 25px; box-shadow: var(--shadow);
+            padding: 20px 15px; border-radius: 12px; box-shadow: var(--shadow);
         }
-        .stat-number { font-size: 4rem; font-weight: 800; display: block; }
-        .stat-label { font-size: 1.2rem; opacity: 0.95; }
+        .stat-number { font-size: 2rem; font-weight: 800; display: block; }
+        .stat-label { font-size: 0.6rem; opacity: 0.95; }
 
-        /* TESTIMONIAL CAROUSEL */
-        .testimonial-carousel { position: relative; overflow: hidden; border-radius: 30px; }
+        /* TESTIMONIAL CAROUSEL - 50% SIZE */
+        .testimonial-carousel { position: relative; overflow: hidden; border-radius: 15px; }
         .testimonial-track { display: flex; transition: transform 0.5s; }
         .testimonial {
-            min-width: 100%; background: var(--glass); padding: 60px 50px; text-align: center;
+            min-width: 100%; background: var(--glass); padding: 30px 25px; text-align: center;
             box-shadow: var(--shadow);
         }
         .testimonial::before {
-            content: '"'; font-size: 6rem; color: var(--rose); font-family: serif;
-            position: absolute; top: 20px; left: 50px; font-weight: 100;
+            content: '"'; font-size: 3rem; color: var(--rose); font-family: serif;
+            position: absolute; top: 10px; left: 25px; font-weight: 100;
         }
-        .testimonial p { font-size: 1.4rem; font-style: italic; color: #4a3f5a; margin-bottom: 30px; }
-        .testimonial-author { font-weight: 700; color: var(--rose); }
+        .testimonial p { font-size: 0.7rem; font-style: italic; color: #4a3f5a; margin-bottom: 15px; }
+        .testimonial-author { font-weight: 700; color: var(--rose); font-size: 0.6rem; }
         .carousel-nav {
             position: absolute; top: 50%; transform: translateY(-50%); background: var(--rose);
-            border: none; width: 60px; height: 60px; border-radius: 50%; color: white;
-            font-size: 1.5rem; cursor: pointer; transition: all 0.3s;
+            border: none; width: 30px; height: 30px; border-radius: 50%; color: white;
+            font-size: 0.75rem; cursor: pointer; transition: all 0.3s;
         }
         .carousel-nav:hover { transform: translateY(-50%) scale(1.2); box-shadow: var(--shadow); }
-        .carousel-nav.prev { left: 20px; }
-        .carousel-nav.next { right: 20px; }
+        .carousel-nav.prev { left: 10px; }
+        .carousel-nav.next { right: 10px; }
 
-        /* PRICING */
+        /* PRICING - 50% SIZE */
         .pricing-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
-            text-align: center; margin: 60px 0;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;
+            text-align: center; margin: 30px 0;
         }
         .pricing-card {
-            background: var(--glass); border-radius: 25px; padding: 50px 30px;
+            background: var(--glass); border-radius: 12px; padding: 25px 15px;
             box-shadow: var(--shadow); position: relative; transition: all 0.4s;
-            border: 3px solid transparent;
+            border: 2px solid transparent;
         }
-        .pricing-card.featured { border-color: var(--rose); transform: scale(1.05); }
-        .pricing-card:hover { transform: translateY(-10px); }
-        .price { font-size: 4rem; font-weight: 800; color: var(--rose); margin: 20px 0; }
-        .price sub { font-size: 1.2rem; font-weight: 400; }
+        .pricing-card.featured { border-color: var(--rose); transform: scale(1.03); }
+        .pricing-card:hover { transform: translateY(-5px); }
+        .price { font-size: 2rem; font-weight: 800; color: var(--rose); margin: 10px 0; }
+        .price sub { font-size: 0.6rem; font-weight: 400; }
         .pricing-btn { 
-            background: var(--rose); color: white; padding: 18px 40px; border-radius: 50px;
-            text-decoration: none; font-weight: 700; display: inline-block; margin-top: 20px;
+            background: var(--rose); color: white; padding: 9px 20px; border-radius: 25px;
+            text-decoration: none; font-weight: 700; display: inline-block; margin-top: 10px;
+            font-size: 0.55rem;
         }
 
-        /* FAQ */
-        .faq-grid { display: grid; gap: 25px; max-width: 1000px; margin: 0 auto; }
+        /* FAQ - 50% SIZE */
+        .faq-grid { display: grid; gap: 12px; max-width: 500px; margin: 0 auto; }
         details {
-            background: white; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow);
+            background: white; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow);
             transition: all 0.3s;
         }
         summary {
-            padding: 25px 35px; font-weight: 600; cursor: pointer; list-style: none;
-            background: linear-gradient(135deg, #fff, #f9f5ff);
+            padding: 12px 18px; font-weight: 600; cursor: pointer; list-style: none;
+            font-size: 0.6rem;
         }
         details[open] summary { background: linear-gradient(135deg, var(--blush), #f8bbd9); }
-        details p { padding: 25px 35px 35px; line-height: 1.8; color: #4a3f5a; }
+        details p { padding: 12px 18px 18px; line-height: 1.6; color: #4a3f5a; font-size: 0.55rem; }
 
-        /* FOOTER */
+        /* FOOTER - 50% SIZE */
         .footer {
             background: linear-gradient(135deg, #2d1b3f, #1a0f2e); color: white;
-            padding: 80px 0 40px; text-align: center;
+            padding: 40px 0 20px; text-align: center;
         }
         .trust-badges {
-            display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin: 40px 0;
+            display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 20px 0;
         }
         .badge {
-            background: var(--glass); padding: 20px; border-radius: 15px; box-shadow: var(--shadow);
-            font-weight: 600; min-width: 120px;
+            background: var(--glass); padding: 10px; border-radius: 8px; box-shadow: var(--shadow);
+            font-weight: 600; min-width: 60px; font-size: 0.5rem;
         }
         .affiliate-disclosure {
-            background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px;
-            margin-top: 40px; font-size: 0.9rem; opacity: 0.9;
+            background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px;
+            margin-top: 20px; font-size: 0.45rem; opacity: 0.9;
         }
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            .urgency-bar { font-size: 1rem; padding: 10px 0; }
-            .nav { top: 60px; }
-            .hero { padding: 150px 20px 80px; min-height: 90vh; }
-            .nav-content { flex-direction: column; gap: 15px; }
-            .features-grid, .pricing-grid { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .trust-badges { gap: 20px; }
+            html { font-size: 9px; }
+            .urgency-bar { font-size: 0.5rem; }
+            .nav { top: 30px; }
+            .hero { padding: 80px 15px 40px; min-height: 70vh; }
         }
     </style>
 </head>
@@ -245,8 +243,9 @@
     <nav class="nav">
         <div class="nav-content">
             <div class="logo">🌸 Florist One</div>
-            <div style="display: flex; gap: 20px; align-items: center;">
-                <a href="#order" class="cta-nav">Order Now</a>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
+                   class="cta-nav" onclick="trackOrder()">Order Now</a>
                 <div class="lang-switch" id="lang-switch"></div>
             </div>
         </div>
@@ -351,19 +350,22 @@
                     <h3>Free</h3>
                     <div class="price">$0<sub>/forever</sub></div>
                     <p>Basic bouquet delivery</p>
-                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" class="pricing-btn">Get Started</a>
+                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
+                       class="pricing-btn" onclick="trackOrder()">Get Started</a>
                 </div>
                 <div class="pricing-card featured">
                     <h3>Pro</h3>
                     <div class="price">$15<sub>/mo</sub></div>
-                    <p>Premium arrangements + priority delivery</p>
-                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" class="pricing-btn">Choose Pro</a>
+                    <p>Premium arrangements + priority</p>
+                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
+                       class="pricing-btn" onclick="trackOrder()">Choose Pro</a>
                 </div>
                 <div class="pricing-card">
                     <h3>Custom</h3>
                     <div class="price">$99<sub>/event</sub></div>
-                    <p>Wedding/corporate unlimited flowers</p>
-                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" class="pricing-btn">Contact Us</a>
+                    <p>Wedding/corporate unlimited</p>
+                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
+                       class="pricing-btn" onclick="trackOrder()">Contact Us</a>
                 </div>
             </div>
         </section>
@@ -409,10 +411,11 @@
             </div>
             <div class="affiliate-disclosure">
                 <strong>Affiliate Disclosure:</strong> We earn commission from FloristOne purchases. 
-                This supports free content. Same great service, our honest recommendation.
+                This supports free content. Same great service.
             </div>
             <p>&copy; 2026 Florist One Bouquets. All rights reserved. 
-            <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" style="color: var(--gold);">Order Now</a></p>
+            <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
+               style="color: var(--gold);" onclick="trackOrder()">Order Now</a></p>
         </div>
     </footer>
 
@@ -438,7 +441,7 @@
         // Language Switch
         function setLang(lang) {
             currentLang = lang;
-            document.getElementById('hero-title').textContent = LANGS[lang]?.title || LANGS.en.title;
+            document.getElementById('hero-title').innerHTML = LANGS[lang]?.title || LANGS.en.title;
             document.getElementById('hero-subtitle').textContent = LANGS[lang]?.subtitle || LANGS.en.subtitle;
             document.getElementById('dynamic-title').textContent = LANGS[lang]?.title || LANGS.en.title;
             
@@ -466,8 +469,8 @@
 
         // Track Orders
         function trackOrder() {
-            gtag?.('event', 'order_click', { 'affiliate': '2013017799' });
             console.log('Order clicked - Affiliate ID: 2013017799');
+            window.open('http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799', '_blank');
         }
 
         // Language Switcher Init
@@ -504,7 +507,7 @@
 
         document.querySelectorAll('.feature-card, .pricing-card, .stat').forEach(el => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(50px)';
+            el.style.transform = 'translateY(25px)';
             el.style.transition = 'all 0.6s cubic-bezier(0.4,0,0.2,1)';
             observer.observe(el);
         });
@@ -512,9 +515,6 @@
         // Init
         window.addEventListener('load', () => {
             initLangSwitcher();
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 100);
         });
     </script>
 </body>
