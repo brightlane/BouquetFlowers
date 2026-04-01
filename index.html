@@ -708,3 +708,126 @@
         { city: 'Springfield, IL', text: 'Springfield IL residents love a classic‑style white‑and‑pink bouquet for formal‑dinner and office‑style gifts.' },
         { city: 'Charleston, SC', text: 'For Charleston, a soft‑pastel, garden‑style bouquet feels right for historic‑district homes and porch‑sitting events.' },
         { city: 'Laredo, TX', text: 'Laredo florists often recommend compact, bright‑b
+        { city: 'Laredo, TX', text: 'Laredo florists often recommend compact, bright‑bouquets that look festive in small‑front‑porch decor.' },
+        { city: 'Port St. Lucie, FL', text: 'Port St. Lucie residents like easy‑maintenance arrangements that can sit for days during busy‑retiree lifestyles.' },
+        { city: 'Winston‑Salem, NC', text: 'In Winston‑Salem, a compact, classic‑style bouquet works well for small‑study and dining‑room layouts.' },
+        { city: 'Chesapeake, VA', text: 'Chesapeake customers love wide, low‑profile arrangements that fit nicely on family‑dining‑room tables.' },
+        { city: 'Garland, TX', text: 'Garland residents often pick medium‑sized bouquets that look big in photos but fit well in small homes.' },
+        { city: 'Scottsdale, AZ', text: 'Scottsdale florists recommend bright, modern‑style bouquets that pair well with contemporary desert‑architecture homes.' },
+        { city: 'Hialeah, FL', text: 'In Hialeah, a compact, colorful bouquet fits nicely in close‑knit, multigenerational‑family‑home layouts.' },
+        { city: 'Frisco, TX', text: 'Frisco residents often pick medium‑sized bouquets that feel festive but not overwhelming in family‑living‑rooms.' },
+        { city: 'Richmond, VA', text: 'Richmond florists recommend soft‑pastel bouquets for historic‑style homes and porch‑decor settings.' },
+        { city: 'Ann Arbor, MI', text: 'In Ann Arbor, a compact, academic‑style bouquet feels right for campus‑adjacent apartments and study spaces.' },
+        { city: 'Madison, WI', text: 'Madison residents love simple, green‑heavy arrangements that feel natural next to lakeside‑style decor.' },
+        { city: 'Aurora, CO', text: 'Aurora customers often pick bright, colorful bouquets that add cheer to larger‑family‑living‑rooms.' },
+        { city: 'Nashville, TN', text: 'For Nashville, a soft‑pink, country‑style bouquet pairs nicely with music‑themed, cozy‑home decor.' },
+        { city: 'Boise, ID', text: 'Boise florists recommend green‑and‑white arrangements that fit the city’s river‑walk and mountain‑style aesthetics.' },
+        { city: 'Rochester, NY', text: 'In Rochester, a compact, classic‑style bouquet works well for small‑apartment‑and‑house‑dinners.' },
+        { city: 'North Charleston, SC', text: 'North Charleston residents love coastal‑style arrangements that feel relaxed and welcoming on front porches.' },
+        { city: 'Tacoma, WA', text: 'Tacoma customers often pick green‑heavy arrangements that match the city’s rainy‑season, nature‑style vibes.' },
+        { city: 'Provo, UT', text: 'Provo florists recommend simple, family‑style bouquets that feel warm and welcoming in large‑family homes.' },
+        { city: 'Wichita, KS', text: 'In Wichita, a compact, budget‑style bouquet fits nicely in small‑dining‑area homes.' },
+        { city: 'Bakersfield, CA', text: 'Bakersfield residents like bright, low‑maintenance arrangements that stand out in dry‑climatelandscapes.' },
+        { city: 'Spokane, WA', text: 'Spokane florists often recommend green‑focused bouquets that feel natural next to mountain‑style decor.' },
+        { city: 'Akron, OH', text: 'In Akron, a compact, classic‑style bouquet works well for small‑dining‑room‑table setups.' },
+        { city: 'Huntington, WV', text: 'Huntington residents love simple, practical‑style arrangements that are easy to maintain in busy‑households.' },
+        { city: 'Newark, NJ', text: 'Newark florists recommend compact, urban‑style bouquets that fit nicely in small‑apartment living‑rooms and entryways.' },
+        { city: 'Jackson, MS', text: 'In Jackson, a soft‑pastel bouquet feels right for relaxed, porch‑sitting‑style Southern‑home decor.' },
+        { city: 'Bridgeport, CT', text: 'Bridgeport residents often pick compact, classic‑style bouquets suitable for small‑apartment‑tables and cozy houses.' },
+        { city: 'New Haven, CT', text: 'New Haven florists recommend compact bouquets that feel academic‑elegant for small‑study and dining‑room layouts.' },
+        { city: 'Des Moines, IA', text: 'Des Moines residents love simple, green‑heavy arrangements that feel natural and calming in everyday homes.' },
+        // Add as many more cities as you like following the same pattern
+    ];
+
+    // PICK CITY‑TIP BY DAY OF YEAR (so it changes once per day)
+    function getDailyTipIndex(date) {
+        const yearStart = new Date(date.getFullYear(), 0, 0);
+        const dayOfYear = Math.floor((date - yearStart) / 86400000);
+        return dayOfYear % TIPS_BY_CITY.length;
+    }
+
+    function updateTipOfTheDay() {
+        const today = new Date();
+        const index = getDailyTipIndex(today);
+        const tip = TIPS_BY_CITY[index];
+        document.getElementById('tip-city').textContent = `★★★ ${tip.city} ★★★`;
+        document.getElementById('tip-text').textContent = tip.text;
+    }
+
+    // INITIAL TIP
+    updateTipOfTheDay();
+
+    // Optional: refresh tip every hour so it matches day‑boundary change
+    setInterval(updateTipOfTheDay, 60 * 60 * 1000);
+
+    // EXIT INTENT POPUP (ONE TIME PER VISIT, SLOWER TRIGGER)
+    const exitPopup = document.getElementById('exit-popup');
+    let exitPopupShown = false;
+
+    function trackExitOrder() {
+        console.log('Exit popup ordered! Affiliate: 2013017799');
+        // Optionally send event to analytics here
+    }
+
+    function showExitPopup() {
+        if (exitPopupShown) return;
+        exitPopup.classList.add('active');
+        exitPopupShown = true;
+        localStorage.setItem('exitPopupShown', '1'); // never show again this session / “forever” if you want
+    }
+
+    // Delayed, soft exit‑intent detection (if mouse goes toward top of page, wait a bit, then show popup)
+    let mouseAtTop = false;
+    let exitTimeout;
+
+    document.addEventListener('mousemove', (e) => {
+        if (e.clientY < 30 && !mouseAtTop) {
+            mouseAtTop = true;
+            // Wait 1.8–2 seconds before showing exit popup if still at top
+            exitTimeout = setTimeout(() => {
+                showExitPopup();
+            }, 1800);
+        } else if (e.clientY >= 80 && mouseAtTop) {
+            mouseAtTop = false;
+            clearTimeout(exitTimeout);
+        }
+    });
+
+    // ALSO trigger popup once if user scrolls to bottom very quickly (time‑based flag)
+    let pageLoadTime = new Date();
+    window.addEventListener('scroll', () => {
+        const now = new Date();
+        if (!exitPopupShown && (now - pageLoadTime) > 30000) { // 30s, feels “slow”
+            const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+            if (scrollPercent > 0.95) {
+                showExitPopup();
+            }
+        }
+    });
+
+    // Close popup on “click anywhere” inside the content area
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.exit-popup-content')) return; // only if click lands inside the popup
+        if (e.target.classList.contains('exit-cta')) return;   // don’t close when clicking CTA
+        exitPopup.classList.remove('active');
+    });
+
+    // Order click (to affiliate)
+    function orderNow() {
+        console.log('🌸 CLICKED - Affiliate: 2013017799 - Holiday: ' + currentHoliday + ' - City Tip: ' + TIPS_BY_CITY[getDailyTipIndex(new Date())].city);
+        window.open('http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799', '_blank');
+    }
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', (e) => {
+            e.stopPropagation();
+            q.parentElement.classList.toggle('active');
+        });
+    });
+
+    // Hero click (launches order)
+    document.querySelector('.hero').addEventListener('click', orderNow);
+</script>
+</body>
+</html>
