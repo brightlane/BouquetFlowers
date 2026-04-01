@@ -8,63 +8,101 @@
 <style>
 body {
   font-family: Arial, sans-serif;
-  margin:0;
-  padding-top:120px;
-  background:#fff7ed;
-  text-align:center;
+  margin: 0;
+  padding-top: 120px;
+  background: #fff7ed;
+  text-align: center;
 }
 
-a { text-decoration:none; color:inherit; }
+a { 
+  text-decoration: none; 
+  color: inherit; 
+}
 
 .urgency-bar {
-  position:fixed;
-  top:0;
-  width:100%;
-  background:#dc2626;
-  color:white;
-  padding:12px;
-  font-weight:bold;
-  z-index:9999;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #dc2626;
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+  z-index: 9999;
 }
 
 header {
-  position:fixed;
-  top:50px;
-  width:100%;
-  background:white;
-  padding:15px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.1);
-  z-index:9998;
-  font-weight:bold;
+  position: fixed;
+  top: 50px;
+  width: 100%;
+  background: white;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 9998;
+  font-weight: bold;
 }
 
-.hero { padding:30px 20px; }
+.hero { 
+  padding: 30px 20px; 
+}
 
 .cta {
-  background:#dc2626;
-  color:white;
-  padding:15px 30px;
-  border-radius:30px;
-  display:inline-block;
-  margin-top:20px;
-  font-weight:bold;
+  background: #dc2626;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 30px;
+  display: inline-block;
+  margin-top: 20px;
+  font-weight: bold;
 }
 
-.section { margin:40px 20px; }
+.section { 
+  margin: 40px 20px; 
+}
 
 #clock {
-  font-size:18px;
-  margin-top:10px;
-  font-weight:bold;
+  font-size: 18px;
+  margin-top: 10px;
+  font-weight: bold;
 }
 
 .city-tip {
-  background:white;
-  padding:15px;
-  margin:10px;
-  border-radius:10px;
+  background: white;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
 }
 
+.city-tip:hover {
+  transform: scale(1.05);
+}
+
+.city-tip a {
+  color: #333;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.city-tip a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 20px 10px;
+  }
+
+  .cta {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  .urgency-bar {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
 </style>
 </head>
 
@@ -86,7 +124,6 @@ header {
 </header>
 
 <div class="hero">
-
 <a href="#" onclick="go()">
 <div id="small-headline">MOTHER’S DAY FLOWERS</div>
 <h1 id="hero-title">🌷 SAME DAY DELIVERY</h1>
@@ -98,7 +135,6 @@ header {
 <a href="#" onclick="go()" class="cta">
 🌸 Check Same-Day Delivery Availability
 </a>
-
 </div>
 
 <div class="section">
@@ -112,99 +148,102 @@ header {
 </div>
 
 <script>
-
 // ================= AFFILIATE =================
 const LINK = "http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799";
 
-function go(){
- window.location.href = LINK;
+function go() {
+  window.location.href = LINK;
 }
 
 // ================= DATE + CLOCK =================
-function updateClock(){
- const now = new Date();
+function updateClock() {
+  const now = new Date();
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  document.getElementById("current-date").innerText =
+      now.toLocaleDateString('en-US', options); // Use specific locale if needed
 
- document.getElementById("current-date").innerText =
-  now.toLocaleDateString(undefined, {year:'numeric', month:'long', day:'numeric'});
-
- document.getElementById("clock").innerText =
-  now.toLocaleTimeString();
+  document.getElementById("clock").innerText =
+      now.toLocaleTimeString('en-US');
 }
 
-setInterval(updateClock,1000);
+setInterval(updateClock, 1000);
 updateClock();
 
 // ================= HOLIDAYS =================
 const HOLIDAYS = [
- {name:"MOTHER’S DAY", date:new Date('May 10, 2026')},
- {name:"MEMORIAL DAY", date:new Date('May 25, 2026')},
- {name:"LABOR DAY", date:new Date('September 7, 2026')},
- {name:"THANKSGIVING", date:new Date('November 26, 2026')},
- {name:"CHRISTMAS", date:new Date('December 25, 2026')}
+  {name: "MOTHER’S DAY", date: new Date('May 10, 2026')},
+  {name: "MEMORIAL DAY", date: new Date('May 25, 2026')},
+  {name: "LABOR DAY", date: new Date('September 7, 2026')},
+  {name: "THANKSGIVING", date: new Date('November 26, 2026')},
+  {name: "CHRISTMAS", date: new Date('December 25, 2026')}
 ];
 
 let hIndex = 0;
 
-function rotateHoliday(){
- hIndex = (hIndex + 1) % HOLIDAYS.length;
+function rotateHoliday() {
+  hIndex = (hIndex + 1) % HOLIDAYS.length;
 }
 
-setInterval(rotateHoliday,10000);
+setInterval(rotateHoliday, 10000);
 
 // countdown
-function updateCountdown(){
- const now = new Date();
- let target = HOLIDAYS[hIndex].date;
+function updateCountdown() {
+  const now = new Date();
+  let target = HOLIDAYS[hIndex].date;
 
- if(target < now){
-  rotateHoliday();
-  target = HOLIDAYS[hIndex].date;
- }
+  if (target < now) {
+    rotateHoliday();
+    target = HOLIDAYS[hIndex].date;
+  }
 
- const diff = target - now;
+  const diff = target - now;
 
- document.getElementById('holiday-name').innerText = HOLIDAYS[hIndex].name;
+  document.getElementById('holiday-name').innerText = HOLIDAYS[hIndex].name;
 
- document.getElementById('days').innerText = Math.floor(diff/86400000);
- document.getElementById('hours').innerText = Math.floor(diff/3600000)%24;
- document.getElementById('minutes').innerText = Math.floor(diff/60000)%60;
- document.getElementById('seconds').innerText = Math.floor(diff/1000)%60;
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor(diff / 3600000) % 24;
+  const minutes = Math.floor(diff / 60000) % 60;
+  const seconds = Math.floor(diff / 1000) % 60;
+
+  document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+  document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+  document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+  document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
 }
 
-setInterval(updateCountdown,1000);
+setInterval(updateCountdown, 1000);
 updateCountdown();
 
 // ================= CITY TIPS =================
 const CITY_TIPS = [
- {city:"New York, NY", text:"Order before noon for same-day delivery."},
- {city:"Los Angeles, CA", text:"Go for tall arrangements for big rooms."},
- {city:"Chicago, IL", text:"Red tulips are a top local pick."},
- {city:"Houston, TX", text:"Add lilies for fragrance and fullness."},
- {city:"Phoenix, AZ", text:"Bright pastel bouquets work best."},
- {city:"Philadelphia, PA", text:"Wildflower bouquets fit brunch vibes."},
- {city:"Langhorne, PA", text:"Lilies + roses make perfect home décor."}
+  {city: "New York, NY", text: "Order before noon for same-day delivery."},
+  {city: "Los Angeles, CA", text: "Go for tall arrangements for big rooms."},
+  {city: "Chicago, IL", text: "Red tulips are a top local pick."},
+  {city: "Houston, TX", text: "Add lilies for fragrance and fullness."},
+  {city: "Phoenix, AZ", text: "Bright pastel bouquets work best."},
+  {city: "Philadelphia, PA", text: "Wildflower bouquets fit brunch vibes."},
+  {city: "Langhorne, PA", text: "Lilies + roses make perfect home décor."}
 ];
 
-function renderCities(){
- const container = document.getElementById("city-container");
+function renderCities() {
+  const container = document.getElementById("city-container");
 
- CITY_TIPS.forEach(c=>{
-  const div = document.createElement("div");
-  div.className="city-tip";
+  CITY_TIPS.forEach(c => {
+    const div = document.createElement("div");
+    div.className = "city-tip";
 
-  div.innerHTML = `
-    <a href="${LINK}">
-      <strong>${c.city}</strong><br>
-      ${c.text}
-    </a>
-  `;
+    div.innerHTML = `
+      <a href="${LINK}">
+        <strong>${c.city}</strong><br>
+        ${c.text}
+      </a>
+    `;
 
-  container.appendChild(div);
- });
+    container.appendChild(div);
+  });
 }
 
 renderCities();
-
 </script>
 
 </body>
