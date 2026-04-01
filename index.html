@@ -73,9 +73,9 @@
 
         /* HEADER */
         header {
-            position: fixed; top: 60px; left: 0; right: 0; z-index: 9999;
+            position: fixed; top: 50px; left: 0; right: 0; z-index: 9999;
             background: rgba(255,255,255,0.98); backdrop-filter: blur(20px);
-            padding: 10px 0; box-shadow: 0 6px 30px rgba(0,0,0,0.13);
+            padding: 8px 0 6px; box-shadow: 0 6px 30px rgba(0,0,0,0.13);
         }
         .header-content {
             max-width: 1400px; margin: 0 auto; padding: 0 30px; display: flex;
@@ -86,95 +86,50 @@
             background: linear-gradient(135deg, var(--primary), var(--mint));
             -webkit-background-clip: text; background-clip: text; color: transparent;
             text-decoration: none; cursor: pointer;
+            position: relative; top: 4px; /* “drops” slightly */
         }
         .header-cta {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white; padding: 11px 30px; border-radius: 38px; font-weight: 900;
-            text-decoration: none; font-size: 0.92rem; box-shadow: var(--shadow);
+            color: white; padding: 9px 28px; border-radius: 35px; font-weight: 900;
+            text-decoration: none; font-size: 0.9rem; box-shadow: var(--shadow);
             transition: all 0.3s; cursor: pointer;
+            position: relative; top: 4px; /* “drops” slightly */
         }
         .header-cta:hover { transform: translateY(-3px); box-shadow: 0 22px 60px rgba(220,38,38,0.6); }
 
-        /* HERO */
+        /* HERO (headline moved back up, under header) */
         .hero {
-            padding: 40px 30px 70px;  /* push hero section down so date sits between it and “Why” */
-            text-align: center; 
+            padding: 60px 30px 20px; text-align: center; 
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             position: relative; cursor: pointer;
         }
-
         .hero h1 {
-            margin-top: -0.3rem;
+            margin-top: -0.3rem; margin-bottom: 10px;
             font-size: clamp(2.2rem, 4.2vw, 3.4rem); font-weight: 900; color: var(--dark);
-            margin-bottom: 12px; letter-spacing: -0.5px; cursor: pointer;
-            text-shadow: 1.5px 1.5px 4px rgba(0,0,0,0.13); transition: all 0.3s;
+            letter-spacing: -0.5px; text-shadow: 1.5px 1.5px 4px rgba(0,0,0,0.13); transition: all 0.3s;
         }
-        .hero h1:hover { color: var(--primary); transform: scale(1.01); }
-        .hero-subtitle {
-            margin-top: -0.3rem;
-            font-size: 1.05rem; color: var(--gray); margin-bottom: 22px;
-            max-width: 580px; margin-left: auto; margin-right: auto;
-            font-weight: 500; cursor: pointer;
-        }
-        .hero-cta {
-            display: inline-block; background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white; padding: 16px 42px; font-size: 1.15rem; font-weight: 900;
-            border-radius: 42px; text-decoration: none; box-shadow: var(--shadow);
-            animation: bounce 2.2s infinite; cursor: pointer;
-            letter-spacing: 0.7px; text-transform: uppercase; position: relative;
-            overflow: hidden;
-            border: 2px solid rgba(255,255,255,0.3);
-        }
-        .hero-cta::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
-            transition: left 0.6s;
-        }
-        .hero-cta:hover {
-            transform: translateY(-5px) scale(1.035); box-shadow: 0 30px 80px rgba(220,38,38,0.65);
-        }
-        .hero-cta:hover::before { left: 100%; }
+        .hero h1:hover { color: var(--primary); }
 
-        /* DATE ROW BETWEEN WHY FLORIST ONE AND HEADLINE */
+        /* DATE BELOW HEADLINE */
         .date-row {
-            margin-top: -10px; margin-bottom: 10px; font-size: 0.9rem; color: var(--primary); font-weight: 700;
+            margin: 8px 0 16px; font-size: 0.95rem; color: var(--primary); font-weight: 700;
             text-align: center;
         }
 
         /* CONTAINER */
         .container { max-width: 1400px; margin: 0 auto; padding: 0 30px; }
 
-        /* WHY SECTION - MOVED UP TWO LINES, CLOSER TO HEADLINE */
-        .section:nth-child(1) {
-            margin: 4px 0 !important;   /* 2 lines up vs before */
-            text-align: center;
+        /* FASTER DELIVERY / FRESH FLOWERS / BEST PRICES - ZOOM IN OUT ATTRACTION */
+        .features-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 14px; margin-bottom: 30px;
         }
-        .why-clickable {
-            position: relative; display: block;
-        }
-        .why-clickable::after {
-            content: '';
-            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            z-index: 2; cursor: pointer;
-        }
-        .why-card {
-            background: white; border-radius: 11px; padding: 23px; text-align: center;
-            box-shadow: 0 7px 22px rgba(0,0,0,0.1);
-            cursor: pointer; transition: all 0.3s;
-            border-left: 3.5px solid var(--primary); position: relative; z-index: 1;
-        }
-        .why-card:hover { transform: translateY(-4.5px); box-shadow: 0 16px 36px rgba(220,38,38,0.18); }
-        .why-icon { font-size: 2.1rem; display: block; margin-bottom: 11px; }
-        .why-card p { font-size: 0.93rem; color: var(--gray); }
-
-        /* FEATURES */
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
         .feature-card {
             background: white; border-radius: 9.5px; padding: 18px 14px; text-align: center;
             box-shadow: 0 5px 18px rgba(0,0,0,0.08); transition: all 0.3s;
             border-top: 2.8px solid var(--primary); cursor: pointer;
+            animation: zoom-pulse 5s ease-in-out infinite alternate;
         }
-        .feature-card:hover { transform: translateY(-3.5px); box-shadow: 0 14px 32px rgba(220,38,38,0.14); }
         .feature-icon {
             width: 46px; height: 46px; margin: 0 auto 9px; background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 9px; display: flex; align-items: center; justify-content: center;
@@ -182,6 +137,11 @@
         }
         .feature-card h3 { font-size: 1.07rem; font-weight: 700; margin-bottom: 5.5px; }
         .feature-card p { font-size: 0.83rem; color: var(--gray); }
+
+        @keyframes zoom-pulse {
+            0% { transform: scale(0.98); }
+            100% { transform: scale(1.03); }
+        }
 
         /* STATS */
         .stats-grid {
@@ -219,7 +179,6 @@
             position: relative; border-left: 2.5px solid var(--primary); cursor: pointer;
             transition: all 0.3s;
         }
-        .testimonial:hover { transform: translateY(-2.5px); }
         .testimonial::before {
             content: '"'; position: absolute; top: -4px; left: 14px; background: var(--primary);
             color: white; width: 26px; height: 26px; border-radius: 50%; display: flex;
@@ -230,9 +189,6 @@
 
         /* PRICING */
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 11px; }
-        .pricing-card {
-            background: white; border-radius: 11px; padding: 18px 14px; box-shadow: 0 7px 22px rgba(0,0,0,0.12);
-            position: relative; transition: all 
         .pricing-card {
             background: white; border-radius: 11px; padding: 18px 14px; box-shadow: 0 7px 22px rgba(0,0,0,0.12);
             position: relative; transition: all 0.3s; border: 1.8px solid transparent; cursor: pointer;
@@ -283,329 +239,4 @@
         .tip-of-day {
             max-width: 680px; margin: 20px auto; background: white; 
             border-radius: 10px; padding: 18px; box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-            text-align: center; font-size: 0.95rem; color: var(--dark);
-        }
-        .tip-of-day h3 { font-size: 1.15rem; margin-bottom: 8px; color: var(--primary); }
-        .tip-of-day p { font-style: italic; }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            html { font-size: 13px; }
-            .urgency-bar { font-size: 0.88rem; padding: 10px 0; }
-            .hero { padding: 100px 18px 70px; }
-            .section:nth-child(1) { margin: 4px 0 !important; }
-            .date-row { font-size: 0.84rem; margin-top: -8px; margin-bottom: 8px; }
-            .tip-of-day { font-size: 0.88rem; padding: 15px; }
-        }
-    </style>
-</head>
-<body>
-    <!-- LIVE COUNTDOWN (updates every 10 seconds) -->
-    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-       class="urgency-bar" onclick="orderNow()">
-        🚨 <strong id="holiday-name">EASTER</strong> COUNTDOWN LIVE! 
-        <span class="countdown-container">
-            <span class="countdown-item">
-                <span class="countdown-number" id="days">04</span>
-                <span class="countdown-label">DAYS</span>
-            </span>
-            <span class="countdown-item">
-                <span class="countdown-number" id="hours">18</span>
-                <span class="countdown-label">HRS</span>
-            </span>
-            <span class="countdown-item">
-                <span class="countdown-number" id="minutes">32</span>
-                <span class="countdown-label">MINS</span>
-            </span>
-            <span class="countdown-item">
-                <span class="countdown-number" id="seconds">47</span>
-                <span class="countdown-label">SEC</span>
-            </span>
-        </span>
-        <strong>25% OFF BOUTIQUE BLOOMS & BASKET FLOWER ARRANGEMENTS!</strong>
-    </a>
-
-    <!-- HEADER -->
-    <header>
-        <div class="header-content">
-            <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-               class="logo" onclick="orderNow()">🌸 FLORIST ONE</a>
-            <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-               class="header-cta" onclick="orderNow()">ORDER NOW</a>
-        </div>
-    </header>
-
-    <!-- WHY FLORIST ONE -->
-    <section class="section" onclick="orderNow()">
-        <h2>WHY FLORIST ONE?</h2>
-        <div class="why-clickable" onclick="orderNow()">
-            <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-               class="why-clickable" onclick="orderNow(); return false;">
-                <div class="why-card">
-                    <span class="why-icon">🌟</span>
-                    <h3>Faster Delivery</h3>
-                    <p>Local florists deliver same‑day; fresh bouquet & flower arrangements arrive faster than big box services.</p>
-                </div>
-            </a>
-            <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-               class="why-clickable" onclick="orderNow(); return false;">
-                <div class="why-card">
-                    <span class="why-icon">💐</span>
-                    <h3>Fresher Flowers</h3>
-                    <p>Hand‑made bouquet & flower arrangements daily, never warehouse‑kept or wilted.</p>
-                </div>
-            </a>
-            <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-               class="why-clickable" onclick="orderNow(); return false;">
-                <div class="why-card">
-                    <span class="why-icon">💰</span>
-                    <h3>Best Prices</h3>
-                    <p>Direct from local florists saves you 20–30% on boutique flower arrangements and holiday bouquets.</p>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <!-- CURRENT DATE + YEAR ROW -->
-    <div class="date-row" onclick="orderNow()">
-        <span id="current-date">Tuesday, March 31, 2026</span>
-    </div>
-
-    <!-- HERO -->
-    <section class="hero" onclick="orderNow()">
-        <h1 id="hero-title">🌷 EASTER BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP</h1>
-        <p class="hero-subtitle" onclick="orderNow()">
-            Fresh Easter bouquet, bridal bouquet, and sympathy flower arrangements.<br>
-            LIVE COUNTDOWN • LOCAL FLORISTS • 42K+ ZIPS • BEATS 1800FLOWERS
-        </p>
-        <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-           class="hero-cta" onclick="orderNow()">ORDER YOUR FLOWER ARRANGEMENTS NOW →</a>
-    </section>
-
-    <div class="container">
-        <!-- ALL OCCASIONS -->
-        <section class="section" onclick="orderNow()">
-            <h2>BOUQUETS & FLOWER ARRANGEMENTS FOR ALL OCCASIONS</h2>
-            <div class="occasions-grid">
-                <div class="occasion-tag">🌷 Easter bouquet</div>
-                <div class="occasion-tag">🌹 Mother's Day bouquet</div>
-                <div class="occasion-tag">🎖️ Memorial Day flower arrangements</div>
-                <div class="occasion-tag">💐 Funeral bouquet</div>
-                <div class="occasion-tag">🎂 Birthday bouquet</div>
-                <div class="occasion-tag">💍 Wedding flower arrangements</div>
-                <div class="occasion-tag">❤️ Valentine's bouquet</div>
-                <div class="occasion-tag">🎓 Graduation flower arrangements</div>
-            </div>
-            <p style="margin-top: 18px; font-size: 0.92rem; color: var(--gray); text-align: center;">
-                Elegant bouquet and hand‑arranged flower arrangements for every holiday, home, and heart.
-            </p>
-        </section>
-
-        <!-- FEATURES -->
-        <section class="section" onclick="orderNow()">
-            <h2>OUR BOUTIQUE SERVICES</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Same‑Day Bouquet Delivery</h3>
-                    <p>95% delivered same afternoon in your ZIP — perfect for last‑minute bouquet and flower arrangements.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌺</div>
-                    <h3>Fresh Daily Flower Arrangements</h3>
-                    <p>Each bouquet and centerpiece flower arrangement crafted fresh by local florists.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📍</div>
-                    <h3>42K+ Zips Covered</h3>
-                    <p>Same‑day bouquet and flower arrangements delivery across the US and Canada.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⭐</div>
-                    <h3>4.9 Stars</h3>
-                    <p>50K+ customers trust our bouquet and flower arrangements for every special moment.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ZIP EXAMPLES -->
-        <div class="section zip-examples" onclick="orderNow()">
-            <h3>BOUQUET & FLOWER ARRANGEMENTS DELIVERY SAMPLE ZIPS</h3>
-            <p style="font-size: 0.9rem; color: var(--gray); margin-bottom: 8px;">
-                Same‑day chic bouquet and elegant flower arrangements to homes and businesses nationwide.
-            </p>
-            <h4 style="font-size: 1.05rem; margin: 6px 0;">E.g.: 19047 Langhorne • 90210 Beverly Hills • 10001 NYC • M5V Toronto • H3B Montreal</h4>
-            <div class="zip-list">
-                60601 Chicago • 33101 Miami • 77002 Houston • V6B Vancouver • 19103 Philly
-            </div>
-        </div>
-
-        <!-- STATS -->
-        <div class="stats-grid" onclick="orderNow()">
-            <div class="stat">
-                <span class="stat-number">42K+</span>
-                <span class="stat-label">ZIPS</span>
-            </div>
-            <div class="stat">
-                <span class="stat-number">99.9%</span>
-                <span class="stat-label">SUCCESS</span>
-            </div>
-            <div class="stat">
-                <span class="stat-number">50K+</span>
-                <span class="stat-label">CUSTOMERS</span>
-            </div>
-            <div class="stat">
-                <span class="stat-number">24/7</span>
-                <span class="stat-label">SUPPORT</span>
-            </div>
-        </div>
-
-        <!-- TESTIMONIALS -->
-        <section class="section testimonials" onclick="orderNow()">
-            <h2>WHAT THEY SAY</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial">
-                    <p>"Easter lilies bouquet arrived same‑day and looked stunning. Exactly what I wanted!"</p>
-                    <div class="testimonial-author">Sarah • 19047</div>
-                </div>
-                <div class="testimonial">
-                    <p>"Ramo Pascua bouquet came fast and fresh. Perfect for our Easter table centerpiece."</p>
-                    <div class="testimonial-author">Maria • Miami</div>
-                </div>
-                <div class="testimonial">
-                    <p>"Fleurs jour même flower arrangements were elegant and affordable. Great for a last‑minute order."</p>
-                    <div class="testimonial-author">Pierre • QC</div>
-                </div>
-                <div class="testimonial">
-                    <p>"Birthday bouquet and flower arrangement centerpiece brightened the whole room!"</p>
-                    <div class="testimonial-author">John • NYC</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PRICING -->
-        <section class="section" onclick="orderNow()">
-            <h2>BOUTIQUE BLOOMS TO START FROM</h2>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Basic Bouquet</h3>
-                    <div class="price">$39</div>
-                    <p>Budget‑friendly bouquet with fresh seasonal flowers.</p>
-                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-                       class="pricing-btn" onclick="orderNow()">BUY</a>
-                </div>
-                <div class="pricing-card featured">
-                    <h3>Premium Flower Arrangements</h3>
-                    <div class="price">$59</div>
-                    <p>25% OFF special; elegant bouquet & mixed flower arrangements.</p>
-                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-                       class="pricing-btn" onclick="orderNow()">HOT DEAL</a>
-                </div>
-                <div class="pricing-card">
-                    <h3>Large Event Bouquet & Arrangements</h3>
-                    <div class="price">$199</div>
-                    <p>Wedding, funeral, or corporate bouquet & centerpiece flower arrangements.</p>
-                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-                       class="pricing-btn" onclick="orderNow()">EVENTS</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ -->
-        <section class="section">
-            <h2 onclick="orderNow()">BOUQUET & FLOWER ARRANGEMENTS FAQ</h2>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Same‑day bouquet delivery cutoff?
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Order by 2PM local time for same‑day bouquet and flower arrangement delivery. Guaranteed.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Does my
-const TIPS_BY_CITY = [
-    { city: 'New York', text: '...' },
-    { city: 'Los Angeles', text: '...' },
-    // ... your existing tips
-    { city: 'Miami', text: 'In Miami, choose a bright, tropical‑style bouquet for summer boating events and beachfront homes.' },
-    { city: 'Orlando', text: 'In Orlando, a compact Easter bouquet works well for theme‑park resorts and hotel deliveries.' },
-    // ... add as many as you want
-];
-    // ... previous tips ...
-
-    { city: 'Miami', text: 'In Miami, choose a bright, tropical‑style bouquet with orchids and birds of paradise for summer boating events and beachfront homes.' },
-    { city: 'Orlando', text: 'In Orlando, a compact Easter bouquet works well for theme‑park resorts and hotel deliveries with tight lobbies and small spaces.' },
-    { city: 'San Bernardino', text: 'San Bernardino customers love budget‑friendly mixed bouquets that look large but stay under a tight gift limit.' },
-    { city: 'Stockton', text: 'For Stockton, a wide, low‑profile flower arrangement fits perfectly on dining tables for family dinners.' },
-    { city: 'Modesto', text: 'In Modesto, spring bouquets with fresh daffodils and tulips feel right for valley‑style gift‑giving.' },
-    { city: 'North Las Vegas', text: 'North Las Vegas clients often order bright‑bouquet starters for new‑home‑decor setups.' },
-    { city: 'Fremont', text: 'Fremont florists recommend pairing a small bouquet with a succulent arrangement for tech‑worker housewarming gifts.' },
-    { city: 'Irving', text: 'In Irving, a compact, high‑impact bouquet works well for office‑desk décor in suburban‑sprawl environments.' },
-    { city: 'Glendale', text: 'Glendale homeowners love a neutral‑toned bouquet that pairs with modern‑gray living‑room palettes.' },
-    { city: 'Vallejo', text: 'Vallejo customers often pick eucalyptus‑heavy bouquets for a spa‑style, calming feel in the home.' },
-    { city: 'Concord', text: 'In Concord, a medium‑sized bouquet fits nicely on a kitchen island without taking up too much counter space.' },
-    { city: 'Santa Rosa', text: 'Santa Rosa wine‑country homes pair well with rustic‑texture bouquets using dried‑stem accents.' },
-    { city: 'Berkley', text: 'For Berkley, a small, modern‑style bouquet suits minimal‑decor apartments and small balconies.' },
-    { city: 'Lancaster', text: 'Lancaster customers often choose a simple, classic white‑rose bouquet for church and family‑home visits.' },
-    { city: 'Palmdale', text: 'In Palmdale, a low‑maintenance, green‑heavy arrangement works well for dry‑climate indoor‑space styling.' },
-    { city: 'Corona', text: 'Corona residents love compact rose‑and‑tulip bouquets for front‑porch‑centerpiece vibes.' },
-    { city: 'Escondido', text: 'Escondido florists suggest light‑green bouquets that match the city’s garden‑style residential look.' },
-    { city: 'Salinas', text: 'For Salinas, a mixed‑pastel bouquet complements farmhouse and bungalow‑style homes.' },
-    { city: 'Perth Amboy', text: 'Perth Amboy customers often pick large‑stem bouquets to make a cozy‑apartment‑floor feel more festive.' },
-    { city: 'Waterbury', text: 'In Waterbury, a compact, all‑white bouquet works beautifully for formal dinners and small‑space table centers.' },
-    { city: 'Visalia', text: 'Visalia residents love a wide, low‑profile arrangement for farm‑style living‑room tables.' },
-    { city: 'Springfield, MO', text: 'Springfield MO customers often choose a soft‑pink bouquet to brighten small living‑room layouts.' },
-    { city: 'New Britain, CT', text: 'New Britain clients like practical, long‑lasting arrangements that pair well with active family‑lifestyle homes.' },
-    { city: 'El Monte', text: 'El Monte residents often pick compact bouquets that fit nicely on narrow hallway tables and entryways.' },
-    { city: 'Chula Vista', text: 'In Chula Vista, a coastal‑style bouquet with plenty of greens feels natural next to ocean‑view homes.' },
-    { city: 'Torrance', text: 'Torrance florists recommend low‑maintenance, mixed‑bloom arrangements for busy‑family households.' },
-    { city: 'West Valley City', text: 'West Valley City couples love a medium‑sized wedding‑style bouquet for at‑home celebrations.' },
-    { city: 'New Rochelle', text: 'For New Rochelle, a compact, elegant bouquet suits town‑house entry‑tables and small dining areas.' },
-    { city: 'Tallahassee', text: 'Tallahassee residents often pick natural‑tone bouquets that match the city’s green, shaded‑yard aesthetic.' },
-    { city: 'Englewood, NJ', text: 'Englewood households like compact, office‑style bouquets for condo tables and small living‑room layouts.' },
-    { city: 'Mason, OH', text: 'In Mason, a compact, mid‑width bouquet fits nicely on a suburban‑dining‑room table without feeling crowded.' },
-    { city: 'High Point, NC', text: 'High Point florists often pair small bouquets with green potted herbs for a fresh, home‑style touch.' },
-    { city: 'Chickasaw, AL', text: 'Chickasaw residents like simple, budget‑friendly bouquets that still feel festive for everyday decor.' },
-    { city: 'Norman, OK', text: 'Norman customers often choose a bright‑sunflower bouquet for university‑town‑style home‑and‑dorm‑gifts.' },
-    { city: 'Skokie, IL', text: 'In Skokie, a compact, multicolor bouquet works well for multicultural‑neighborhood gift‑giving.' },
-    { city: 'Miramar, FL', text: 'Miramar residents like high‑impact, tall bouquets that look big in photos and selfies with guests.' },
-    { city: 'Tinley Park, IL', text: 'Tinley Park customers often pick wide, low‑profile arrangements that fit perfectly in suburban‑family‑dining layouts.' },
-    { city: 'Broken Arrow, OK', text: 'Broken Arrow florists recommend a mix of soft‑pinks and light‑oranges for a warm‑family‑gathering style.' },
-    { city: 'Norwalk, CT', text: 'Norwalk residents love a compact, elegant bouquet that fits nicely in small‑apartment‑entryway tables.' },
-    { city: 'Centennial, CO', text: 'In Centennial, a low‑maintenance, green‑heavy arrangement suits active‑lifestyle homes with lots of outdoor time.' },
-    { city: 'Bloomington, IL', text: 'Bloomington florists suggest simple, classic‑style bouquets for university‑town professionals.' },
-    { city: 'Victorville, CA', text: 'Victorville residents often pick compact bouquets that don’t require too much watering in desert‑style homes.' },
-    { city: 'Evansville, IN', text: 'In Evansville, a budget‑style mixed‑bloom bouquet feels right for everyday‑table‑centerpiece use.' },
-    { city: 'Avondale, AZ', text: 'Avondale customers love practical, mid‑size bouquets that look great on kitchen‑countertop backs.' },
-    { city: 'Beaumont, CA', text: 'Beaumont residents often pick low‑maintenance, green‑focused arrangements for desert‑style living‑rooms.' },
-    { city: 'Fullerton, CA', text: 'In Fullerton, a compact, window‑sill‑style bouquet fits nicely by the kitchen for a bright morning‑mood boost.' },
-    { city: 'Oceanside, CA', text: 'Oceanside florists recommend coastal‑style bouquets with plenty of eucalyptus for a relaxed, ocean‑vibe look.' },
-    { city: 'Garden Grove, CA', text: 'Garden Grove customers like compact, family‑style bouquets that feel festive but not too formal.' },
-    { city: 'Cape Coral, FL', text: 'In Cape Coral, a light‑green and pastel‑style bouquet fits perfectly with boat‑dock and patio‑living vibes.' },
-    { city: 'Sunnyvale, CA', text: 'Sunnyvale residents often pick compact, modern‑style bouquets for tech‑worker condos and small‑space layouts.' },
-    { city: 'Wilmington, NC', text: 'Wilmington florists recommend coastal‑style arrangements that match the city’s marina and waterfront homes.' },
-    { city: 'Henderson, NV', text: 'In Henderson, a compact, colorful bouquet works well for busy‑family homes with lots of outdoor time.' },
-    { city: 'Springfield, IL', text: 'Springfield IL residents love a classic‑style white‑and‑pink bouquet for formal‑dinner and office‑style gifts.' },
-    { city: 'Charleston, SC', text: 'For Charleston, a soft‑pastel, garden‑style bouquet feels right for historic‑district homes and porch‑sitting events.' },
-    { city: 'Laredo, TX', text: 'Laredo florists often recommend compact, bright‑bouquets that look festive in small‑front‑porch decor.' },
-    { city: 'Port St. Lucie, FL', text: 'Port St. Lucie residents like easy‑maintenance arrangements that can sit for days during busy‑retiree lifestyles.' },
-    { city: 'Winston‑Salem, NC', text: 'In Winston‑Salem, a compact, classic‑style bouquet works well for small‑study and dining‑room layouts.' },
-    { city: 'Chesapeake, VA', text: 'Chesapeake customers love wide, low‑profile arrangements that fit nicely on family‑dining‑room tables.' },
-    { city: 'Garland, TX', text: 'Garland residents often pick medium‑sized bouquets that look big in photos but fit well in small homes.' },
-    { city: 'Scottsdale, AZ', text: 'Scottsdale florists recommend bright, modern‑style bouquets that pair well with contemporary desert‑architecture homes.' },
-    { city: 'Hialeah, FL', text: 'In Hialeah, a compact, colorful bouquet fits nicely in close‑knit, multigenerational‑family‑home layouts.' },
-    { city: 'Frisco, TX', text: 'Frisco residents often pick medium‑sized bouquets that feel festive but not overwhelming in family‑living‑rooms.' },
-    { city: 'Richmond, VA', text: 'Richmond florists recommend soft‑pastel bouquets for historic‑style homes and porch‑decor settings.' },
-    { city: 'Ann Arbor, MI', text: 'In Ann Arbor, a compact, academic‑style bouquet feels right for campus‑adjacent apartments and study spaces.' },
-    { city: 'Madison, WI', text: 'Madison residents love simple, green‑heavy arrangements that feel natural next to lakeside‑style decor.' },
-    { city: 'Aurora, CO', text: 'Aurora customers often pick bright, colorful bouquets that add cheer to larger‑family‑living‑rooms.' },
-    { city: 'Nashville, TN', text: 'For Nashville, a soft‑pink, country‑style bouquet pairs nicely with music‑themed, cozy‑home decor.' },
-    { city: 'Boise, ID', text: 'Boise florists recommend green‑and‑white arrangements that fit the city’s river‑walk and mountain‑style aesthetics.' },
-    { city: 'Rochester, NY', text: 'In Rochester, a compact, classic‑style bouquet works well for small‑apartment‑and‑house‑dinners.' },
-    { city: 'North Charleston, SC', text: 'North Charleston residents love coastal‑style arrangements that feel relaxed and welcoming on front porches.' },
-    { city: 'Tacoma, WA', text: 'Tacoma customers often pick green‑heavy arrangements that match the city’s rainy‑season, nature‑style vibes.' },
-    { city: 'Provo, UT', text: 'Provo florists recommend simple, family‑style bouquets that feel warm and welcoming in large‑family homes.
+            text-align: center; font-size: 0.95rem; color:
