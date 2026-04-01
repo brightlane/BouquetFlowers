@@ -3,14 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌸 Same-Day Flower Delivery - 25% OFF</title>
+<title>🌸 Bloom Express - Same-Day Flower Delivery</title>
 
 <style>
+/* GENERAL STYLING */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   margin: 0;
-  padding-top: 120px;
-  background: #fff7ed;
+  padding-top: 140px;
+  background: #fff7f0;
+  color: #333;
   text-align: center;
 }
 
@@ -19,88 +21,122 @@ a {
   color: inherit; 
 }
 
+/* URGENCY BAR */
 .urgency-bar {
   position: fixed;
   top: 0;
   width: 100%;
-  background: #dc2626;
+  background: #e11d48;
   color: white;
-  padding: 12px;
+  padding: 14px;
   font-weight: bold;
   z-index: 9999;
+  font-size: 16px;
 }
 
+/* HEADER */
 header {
   position: fixed;
   top: 50px;
   width: 100%;
-  background: white;
-  padding: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 9998;
   font-weight: bold;
+  font-size: 18px;
 }
 
+/* HERO SECTION */
 .hero { 
-  padding: 30px 20px; 
+  padding: 60px 20px 40px 20px; 
+  background: url('https://images.unsplash.com/photo-1524777311-7e7b5a7c49b0?auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
 }
 
-.cta {
-  background: #dc2626;
+.hero h1 {
+  font-size: 48px;
+  margin: 10px 0;
+}
+
+.hero .cta {
+  background: #e11d48;
   color: white;
-  padding: 15px 30px;
+  padding: 18px 36px;
   border-radius: 30px;
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 30px;
   font-weight: bold;
+  font-size: 20px;
+  transition: background 0.3s;
 }
 
+.hero .cta:hover {
+  background: #be123c;
+}
+
+/* SECTIONS */
 .section { 
-  margin: 40px 20px; 
+  margin: 60px 20px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#clock {
-  font-size: 18px;
-  margin-top: 10px;
-  font-weight: bold;
+.section h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #e11d48;
 }
 
+/* CITY TIPS */
 .city-tip {
-  background: white;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+  background: #fff;
+  padding: 18px;
+  margin: 15px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .city-tip:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
 .city-tip a {
   color: #333;
   font-weight: bold;
-  text-decoration: none;
 }
 
 .city-tip a:hover {
+  color: #e11d48;
   text-decoration: underline;
 }
 
+/* CLOCK AND DATE */
+#clock, #current-date {
+  font-size: 18px;
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
-  .hero {
-    padding: 20px 10px;
+  .hero h1 {
+    font-size: 32px;
   }
 
-  .cta {
-    padding: 12px 20px;
-    font-size: 14px;
+  .hero .cta {
+    padding: 14px 24px;
+    font-size: 16px;
   }
 
   .urgency-bar {
-    padding: 8px;
     font-size: 14px;
+    padding: 10px;
   }
 }
 </style>
@@ -108,64 +144,54 @@ header {
 
 <body>
 
-<!-- URGENCY -->
+<!-- URGENCY BAR -->
 <a href="#" onclick="go()">
-<div class="urgency-bar">
-🚨 <span id="holiday-name">MOTHER’S DAY</span> DEAL ENDS IN:
-<span id="days">00</span>d :
-<span id="hours">00</span>h :
-<span id="minutes">00</span>m :
-<span id="seconds">00</span>s
-</div>
+  <div class="urgency-bar">
+    🚨 <span id="holiday-name">MOTHER’S DAY</span> DEAL ENDS IN:
+    <span id="days">00</span>d :
+    <span id="hours">00</span>h :
+    <span id="minutes">00</span>m :
+    <span id="seconds">00</span>s
+  </div>
 </a>
 
 <header>
-<a href="#" onclick="go()">🌸 SAME DAY FLOWERS – ORDER NOW</a>
+  <a href="#" onclick="go()">🌸 Bloom Express – SAME DAY FLOWERS</a>
 </header>
 
+<!-- HERO -->
 <div class="hero">
-<a href="#" onclick="go()">
-<div id="small-headline">MOTHER’S DAY FLOWERS</div>
-<h1 id="hero-title">🌷 SAME DAY DELIVERY</h1>
-</a>
-
-<div id="current-date"></div>
-<div id="clock"></div>
-
-<a href="#" onclick="go()" class="cta">
-🌸 Check Same-Day Delivery Availability
-</a>
+  <div id="small-headline">MOTHER’S DAY SPECIAL</div>
+  <h1>🌷 Fresh Flowers, Delivered Today</h1>
+  <div id="current-date"></div>
+  <div id="clock"></div>
+  <a href="#" onclick="go()" class="cta">🌸 Check Same-Day Delivery</a>
 </div>
 
+<!-- FEATURES -->
 <div class="section">
-<h2>Fresh Flowers Delivered Fast</h2>
-<p>Same-day delivery available in most ZIP codes.</p>
+  <h2>Why Choose Bloom Express?</h2>
+  <p>We deliver fresh, hand-picked flowers to your loved ones on the same day. Available in most cities and ZIP codes.</p>
 </div>
 
+<!-- CITY TIPS -->
 <div class="section">
-<h2>🌎 Daily City Flower Tips</h2>
-<div id="city-container"></div>
+  <h2>🌎 Local Flower Tips</h2>
+  <div id="city-container"></div>
 </div>
 
 <script>
-// ================= AFFILIATE =================
-const LINK = "http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799";
-
-function go() {
-  window.location.href = LINK;
-}
+// ================= AFFILIATE LINK =================
+const LINK = "http://www.floristone.com/main.cfm?occ=ea&source_id=aff&AffiliateID=2013017799";
+function go() { window.location.href = LINK; }
 
 // ================= DATE + CLOCK =================
 function updateClock() {
   const now = new Date();
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
   document.getElementById("current-date").innerText =
-      now.toLocaleDateString('en-US', options); // Use specific locale if needed
-
-  document.getElementById("clock").innerText =
-      now.toLocaleTimeString('en-US');
+      now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  document.getElementById("clock").innerText = now.toLocaleTimeString('en-US');
 }
-
 setInterval(updateClock, 1000);
 updateClock();
 
@@ -179,47 +205,30 @@ const HOLIDAYS = [
 ];
 
 let hIndex = 0;
-
-function rotateHoliday() {
-  hIndex = (hIndex + 1) % HOLIDAYS.length;
-}
-
+function rotateHoliday() { hIndex = (hIndex + 1) % HOLIDAYS.length; }
 setInterval(rotateHoliday, 10000);
 
-// countdown
 function updateCountdown() {
   const now = new Date();
   let target = HOLIDAYS[hIndex].date;
-
-  if (target < now) {
-    rotateHoliday();
-    target = HOLIDAYS[hIndex].date;
-  }
-
+  if (target < now) { rotateHoliday(); target = HOLIDAYS[hIndex].date; }
   const diff = target - now;
 
   document.getElementById('holiday-name').innerText = HOLIDAYS[hIndex].name;
-
-  const days = Math.floor(diff / 86400000);
-  const hours = Math.floor(diff / 3600000) % 24;
-  const minutes = Math.floor(diff / 60000) % 60;
-  const seconds = Math.floor(diff / 1000) % 60;
-
-  document.getElementById('days').innerText = days < 10 ? '0' + days : days;
-  document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
-  document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
-  document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+  document.getElementById('days').innerText = String(Math.floor(diff / 86400000)).padStart(2,'0');
+  document.getElementById('hours').innerText = String(Math.floor(diff / 3600000) % 24).padStart(2,'0');
+  document.getElementById('minutes').innerText = String(Math.floor(diff / 60000) % 60).padStart(2,'0');
+  document.getElementById('seconds').innerText = String(Math.floor(diff / 1000) % 60).padStart(2,'0');
 }
-
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
 // ================= CITY TIPS =================
 const CITY_TIPS = [
   {city: "New York, NY", text: "Order before noon for same-day delivery."},
-  {city: "Los Angeles, CA", text: "Go for tall arrangements for big rooms."},
-  {city: "Chicago, IL", text: "Red tulips are a top local pick."},
-  {city: "Houston, TX", text: "Add lilies for fragrance and fullness."},
+  {city: "Los Angeles, CA", text: "Tall arrangements brighten big rooms."},
+  {city: "Chicago, IL", text: "Red tulips are a local favorite."},
+  {city: "Houston, TX", text: "Lilies add fragrance and fullness."},
   {city: "Phoenix, AZ", text: "Bright pastel bouquets work best."},
   {city: "Philadelphia, PA", text: "Wildflower bouquets fit brunch vibes."},
   {city: "Langhorne, PA", text: "Lilies + roses make perfect home décor."}
@@ -227,22 +236,13 @@ const CITY_TIPS = [
 
 function renderCities() {
   const container = document.getElementById("city-container");
-
   CITY_TIPS.forEach(c => {
     const div = document.createElement("div");
     div.className = "city-tip";
-
-    div.innerHTML = `
-      <a href="${LINK}">
-        <strong>${c.city}</strong><br>
-        ${c.text}
-      </a>
-    `;
-
+    div.innerHTML = `<a href="${LINK}"><strong>${c.city}</strong><br>${c.text}</a>`;
     container.appendChild(div);
   });
 }
-
 renderCities();
 </script>
 
