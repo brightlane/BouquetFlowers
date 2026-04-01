@@ -1878,3 +1878,73 @@ Because each tip is tied to a real‑world spot—patio, porch, dining table, en
 
 For an ever‑growing guide like this, the easiest way to get the most out of it is to bookmark this page and revisit it whenever you’re planning a celebration, sending a gift, or simply brightening up your space.
 👉 Browse beautiful bouquets and fresh floral gifts at FloristOne
+<div class="flowers-near-me-bottom">
+    <h3>Bouquets & Flower Arrangements Delivered to Your ZIP Code</h3>
+    <p>
+        Whether you’re looking for flowers in <strong>Philadelphia, 19138</strong> or any city in the USA and Canada, you can order bouquets and flower arrangements online with delivery to almost any ZIP code or postal code. Our partner network includes local florists ready to deliver fresh flowers fast.
+    </p>
+    <p>
+        To see if we deliver to your area, try entering your ZIP or postal code below:
+    </p>
+
+    <!-- ZIP / postal code lookup box -->
+    <div class="zip-lookup-widget">
+        <input
+            type="text"
+            id="flowersZipSearch"
+            maxlength="10"
+            placeholder="Enter ZIP or postal code (e.g. 19138 or M5V 3L9)"
+            aria-label="Enter your ZIP or postal code"
+        >
+        <button type="button" onclick="checkFlowerDelivery()">Check delivery</button>
+        <div id="zipCoverageMessage" class="zip-message"></div>
+    </div>
+
+    <p class="zip-cta">
+        Need flowers in Philadelphia, 19138, New York, Los Angeles, or anywhere in the USA or Canada?
+        <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" rel="sponsored">
+            Send bouquets and flower arrangements online now →
+        </a>
+    </p>
+
+    <!-- Meta‑style ZIP hint for SEO (no spammy list of all ZIPs) -->
+    <div class="zip-coverage-hint" style="display:none;">
+        We deliver bouquets and flower arrangements to all ZIP codes in the United States and all postal codes in Canada. Coverage includes major cities like Philadelphia, PA 19138, 19139, 19140, New York, Los Angeles, Chicago, Toronto, and Vancouver, as well as surrounding suburbs and rural areas.
+    </div>
+</div>
+
+<script>
+// Example sample ZIPs (you can hook this to JSON or API later)
+const supportedZips = [
+    "19138", "19104", "19106", "19123",
+    "10001", "19047", "90210", "60601",
+    "V6B1A1", "M5V3L9", "H3A1A1"
+];
+
+function checkFlowerDelivery() {
+    const input = document.getElementById("flowersZipSearch").value.trim().toUpperCase();
+    const msg = document.getElementById("zipCoverageMessage");
+
+    if (!input) {
+        msg.textContent = "Please enter a ZIP or postal code.";
+        return;
+    }
+
+    // Basic match (you can improve later)
+    const found = supportedZips.some(zip => {
+        const plain = zip.toUpperCase().replace(/[^0-9A-Z]/g, "");
+        const userPlain = input.replace(/[^0-9A-Z]/g, "");
+        return plain === userPlain;
+    });
+
+    if (found) {
+        msg.innerHTML =
+            "Yes! We deliver bouquets and flower arrangements to ZIP <strong>" +
+            input +
+            "</strong>. " +
+            '<a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" rel="sponsored">Order now →</a>';
+    } else {
+        msg.textContent = "ZIP " + input + " is not in the current sample, but we deliver to most ZIP codes in the USA and Canada. Try a nearby city.";
+    }
+}
+</script>
