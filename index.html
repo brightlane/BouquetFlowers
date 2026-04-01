@@ -549,3 +549,135 @@
     </div>
 
     <!-- FOOT
+        <!-- FOOTER -->
+        <footer onclick="orderNow()">
+            <div class="container">
+                <h2>🌸 YOUR BOUTIQUE BLOOMS STORE</h2>
+                <p style="font-size: 0.95rem; margin: 8px 0; color: #e5e7eb;">
+                    Trusted bouquet & flower arrangement delivery for every occasion.
+                </p>
+                <div class="trust-badges">
+                    <div class="badge">🔒 SECURE</div>
+                    <div class="badge">⭐ 4.9/5</div>
+                    <div class="badge">⚡ SAME DAY</div>
+                    <div class="badge">💳 ALL CARDS</div>
+                </div>
+                <p style="margin-top: 11px; opacity: 0.85; font-size: 0.75rem;">
+                    Affiliate link. Same premium bouquet and flower arrangement service.
+                </p>
+            </div>
+        </footer>
+
+        <!-- TIP OF THE DAY BY CITY (rotates every 10 seconds) -->
+        <div class="tip-of-day" onclick="orderNow()">
+            <h3 id="tip-city">★★★ New York ★★★</h3>
+            <p id="tip-text">In New York, order your bouquet by noon for same‑day delivery to Manhattan offices and homes.</p>
+        </div>
+    </div>
+
+    <script>
+        // 2026 HOLIDAY DATES
+        const HOLIDAYS = {
+            easter: new Date(2026, 3, 5, 23, 59, 59),      // Easter
+            mothersday: new Date(2026, 4, 10, 23, 59, 59), // Mother’s Day
+            memorialday: new Date(2026, 4, 25, 23, 59, 59) // Memorial Day
+        };
+
+        let currentHoliday = 'easter';
+
+        // HOLIDAY ROTATION: every 10 seconds
+        const holidayKeys = ['easter', 'mothersday', 'memorialday'];
+        let holidayIndex = 0;
+        const holidayInterval = setInterval(() => {
+            holidayIndex = (holidayIndex + 1) % holidayKeys.length;
+            currentHoliday = holidayKeys[holidayIndex];
+        }, 10 * 1000); // 10 seconds
+
+        // LIVE COUNTDOWN EVERY SECOND
+        function updateLiveCountdown() {
+            const now = new Date();
+            const holidayDate = HOLIDAYS[currentHoliday];
+            let diff = holidayDate - now;
+            
+            if (diff <= 0) {
+                holidayIndex = (holidayIndex + 1) % holidayKeys.length;
+                currentHoliday = holidayKeys[holidayIndex];
+                diff = HOLIDAYS[currentHoliday] - now;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            document.getElementById('holiday-name').textContent = currentHoliday.toUpperCase();
+            document.getElementById('hero-title').innerHTML = 
+                `🌷 ${currentHoliday.toUpperCase().replace('DAY', 'Day').replace('EASTER', 'BOUTIQUE BLOOMS & BOUTIQUE BOUQUET')}<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP`;
+        }
+
+        // START IMMEDIATELY - UPDATE EVERY SECOND
+        updateLiveCountdown();
+        setInterval(updateLiveCountdown, 1000);
+
+        // TIP OF THE DAY BY CITY (rotates every 10 seconds)
+        const TIPS_BY_CITY = [
+            { city: 'New York', text: 'In New York, order your bouquet by noon for same‑day delivery to Manhattan offices and homes.' },
+            { city: 'Los Angeles', text: 'For Los Angeles, choose a tall standing flower arrangement for living‑room centerpiece impact.' },
+            { city: 'Chicago', text: 'Chicago clients love a rich red‑tulip bouquet for anniversary gifts.' },
+            { city: 'Houston', text: 'Houston florists recommend adding fresh lilies to bridal bouquets for volume and fragrance.' },
+            { city: 'Phoenix', text: 'In Phoenix, a bright, pastel‑pastel bouquet works well for spring garden parties.' },
+            { city: 'Philadelphia', text: 'For Philadelphia, a mixed‑wildflower bouquet feels perfect for Mother’s Day brunch.' },
+            { city: 'San Antonio', text: 'San Antonio customers often pair a bouquet with a small succulent arrangement for long‑lasting style.' },
+            { city: 'San Diego', text: 'In San Diego, a coastal‑style bouquet with eucalyptus and light greens looks stunning.' },
+            { city: 'Dallas', text: 'Dallas brides love a lush all‑white bouquet for a modern wedding look.' },
+            { city: 'San Jose', text: 'For San Jose, consider a compact, high‑impact bouquet for tech‑office celebrations.' },
+            { city: 'Austin', text: 'Austin gardeners love a wild‑flower bouquet mixed with local foliage styles.' },
+            { city: 'Jacksonville', text: 'In Jacksonville, a mixed‑orange and yellow bouquet adds warmth to humid‑season decor.' },
+            { city: 'Fort Worth', text: 'Fort Worth ranch‑style homes pair well with rustic‑barn floral arrangements for events.' },
+            { city: 'Columbus', text: 'Columbus families often choose a large sympathy bouquet for cemetery visits.' },
+            { city: 'Charlotte', text: 'Charlotte balcony owners love compact flower arrangements that fit small spaces.' },
+            { city: 'San Francisco', text: 'For San Francisco, a minimalist, green‑focused bouquet works beautifully in city apartments.' },
+            { city: 'Toronto', text: 'Toronto clients often select white‑and‑gold bouquets for upscale evening events.' },
+            { city: 'Montreal', text: 'Montreal florists recommend small, chic bouquet centerpieces for round‑table dinners.' },
+            { city: 'Vancouver', text: 'In Vancouver, a green‑heavy floral arrangement balances wet‑season indoors.' },
+            { city: 'Calgary', text: 'Calgary customers love bright‑yellow bouquets for winter‑lull mood‑boosting gifts.' },
+            { city: 'Langhorne', text: 'For Langhorne, a medium‑sized bouquet with lilies and roses works perfectly for Easter table decor.' }
+        ];
+
+        let tipIndex = 0;
+
+        function updateTipOfTheDay() {
+            const tip = TIPS_BY_CITY[tipIndex];
+            document.getElementById('tip-city').textContent = `★★★ ${tip.city} ★★★`;
+            document.getElementById('tip-text').textContent = tip.text;
+            tipIndex = (tipIndex + 1) % TIPS_BY_CITY.length;
+        }
+
+        // INITIAL TIP + ROTATE EVERY 10 SECONDS
+        updateTipOfTheDay();
+        setInterval(updateTipOfTheDay, 10 * 1000);
+
+        // Order click (to affiliate)
+        function orderNow() {
+            console.log('🌸 CLICKED - Affiliate: 2013017799 - Holiday: ' + currentHoliday + ' - City Tip: ' + TIPS_BY_CITY[tipIndex].city);
+            window.open('http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799', '_blank');
+        }
+
+        // FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', (e) => {
+                e.stopPropagation();
+                q.parentElement.classList.toggle('active');
+            });
+        });
+
+        // Hero click
+        document.querySelector('.hero').addEventListener('click', orderNow);
+    </script>
+</body>
+</html>
