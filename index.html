@@ -1,202 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌸 Bloom Express - Same-Day Flower Delivery</title>
+<div id="hero-title"></div> <!-- This will update with the rotating holiday titles -->
+<div id="small-headline"></div> <!-- Subheadline, dynamic updates every 20s -->
+<div id="holiday-name"></div> <!-- Current holiday name -->
 
-<style>
-/* GENERAL STYLING */
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding-top: 140px;
-  background: #fff7f0;
-  color: #333;
-  text-align: center;
-}
-
-a { 
-  text-decoration: none; 
-  color: inherit; 
-}
-
-/* URGENCY BAR */
-.urgency-bar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: #e11d48;
-  color: white;
-  padding: 14px;
-  font-weight: bold;
-  z-index: 9999;
-  font-size: 16px;
-}
-
-/* DATE STYLE - DARKER */
-#current-date {
-  color: #4B1F1F; /* Darker tone */
-  font-weight: bold;
-  margin-top: 8px;
-  font-size: 22px;
-}
-
-/* HERO SECTION */
-.hero { 
-  padding: 60px 20px 40px 20px; 
-  background: url('https://images.unsplash.com/photo-1524777311-7e7b5a7c49b0?auto=format&fit=crop&w=1350&q=80') no-repeat center center;
-  background-size: cover;
-  color: #fff;
-  text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
-}
-
-/* CITY TIPS */
-.city-tip {
-  background: #fff;
-  padding: 18px;
-  margin: 15px 0;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.city-tip:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
-
-/* TIP OF THE DAY */
-#tip-of-the-day {
-  font-size: 16px;
-  font-weight: bold;
-  color: #7ec8e3;
-  margin-top: 10px;
-  font-style: italic;
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- URGENCY BAR -->
-<a href="#" onclick="go()">
-  <div class="urgency-bar">
-    🚨 <span id="holiday-name">MOTHER’S DAY</span> DEAL ENDS IN:
+<!-- Countdown Timer Section -->
+<div id="countdown">
     <span id="days">00</span>d :
     <span id="hours">00</span>h :
     <span id="minutes">00</span>m :
     <span id="seconds">00</span>s
-  </div>
-</a>
-
-<header>
-  <a href="#" onclick="go()">🌸 Bloom Express – SAME DAY FLOWERS</a>
-</header>
-
-<!-- HERO -->
-<div class="hero">
-  <div id="small-headline">MOTHER’S DAY SPECIAL</div>
-  <a href="#" onclick="go()" id="hero-link">
-    <h1 id="hero-title">🌷 Fresh Flowers, Delivered Today</h1>
-  </a>
-  <div id="current-date"></div>
-  <div id="clock"></div>
-  <a href="#" onclick="go()" class="cta">🌸 Check Same-Day Delivery</a>
 </div>
 
-<!-- FEATURES -->
-<div class="section">
-  <h2>Why Choose Bloom Express?</h2>
-  <p>We deliver fresh, hand-picked flowers to your loved ones on the same day. Available in most cities and ZIP codes.</p>
-</div>
+<!-- Current Date Section -->
+<div id="current-date"></div> <!-- Dynamic date -->
 
-<!-- CITY TIPS -->
-<div class="section">
-  <h2>🌎 Local Flower Tips</h2>
-  <div id="city-container"></div>
-</div>
+<!-- City Tips -->
+<div id="city-container"></div> <!-- Dynamic tips based on cities -->
 
 <script>
-// ================= AFFILIATE LINK =================
-const LINK = "http://www.floristone.com/main.cfm?occ=ea&source_id=aff&AffiliateID=2013017799";
-function go() { window.location.href = LINK; }
-
-// ================= HOLIDAY TITLE ROTATION =================
-const HEADER_TITLES = [
-  '🌷 MOTHER’S DAY BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
-  '🌷 LABOR DAY BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
-  '🌷 MEMORIAL DAY BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
-  '🌷 EASTER BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
-  '🌷 VALENTINE’S BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
-  '🌷 CHRISTMAS BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
-  '🌷 THANKSGIVING BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
-];
-
-let currentHoliday = 'mothersday';
-const holidayKeys = ['mothersday', 'laborday', 'memorialday', 'easter', 'valentinesday', 'christmas', 'thanksgiving'];
-let rotationIndex = 0;
-
-const headlineInterval = setInterval(() => {
-  rotationIndex = (rotationIndex + 1) % holidayKeys.length;
-  currentHoliday = holidayKeys[rotationIndex];
-  document.getElementById('small-headline').textContent = `Happy ${currentHoliday.toUpperCase()}!`;
-  document.getElementById('hero-title').innerHTML = HEADER_TITLES[rotationIndex];
-  document.getElementById('holiday-name').textContent = currentHoliday.toUpperCase();
-}, 20 * 1000); // Rotate every 20 seconds
-
-// ================= DATE + CLOCK =================
-function updateClock() {
-  const now = new Date();
-  document.getElementById("current-date").innerText =
-      now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-  document.getElementById("clock").innerText = now.toLocaleTimeString('en-US');
-}
-setInterval(updateClock, 1000);
-updateClock();
-
-// ================= COUNTDOWN =================
-function updateCountdown() {
-  const now = new Date();
-  let target = new Date(`${HOLIDAYS[currentHoliday].month} ${HOLIDAYS[currentHoliday].day}, ${HOLIDAYS[currentHoliday].year}`);
-  if (target < now) { rotationIndex = (rotationIndex + 1) % holidayKeys.length; target = new Date(`${HOLIDAYS[currentHoliday].month} ${HOLIDAYS[currentHoliday].day}, ${HOLIDAYS[currentHoliday].year}`); }
-  const diff = target - now;
-
-  document.getElementById('days').innerText = String(Math.floor(diff / 86400000)).padStart(2,'0');
-  document.getElementById('hours').innerText = String(Math.floor(diff / 3600000) % 24).padStart(2,'0');
-  document.getElementById('minutes').innerText = String(Math.floor(diff / 60000) % 60).padStart(2,'0');
-  document.getElementById('seconds').innerText = String(Math.floor(diff / 1000) % 60).padStart(2,'0');
-}
-setInterval(updateCountdown, 1000);
-updateCountdown();
-
-// ================= CITY TIPS WITH DAILY TIP =================
-const TIPS_BY_CITY = [
-  { city: 'New York, NY', text: 'Order before noon for same-day delivery to Manhattan offices and homes.', dailyTip: 'Today: Try a bouquet with tulips and roses for a lively, spring look.' },
-  { city: 'Los Angeles, CA', text: 'Choose a tall standing flower arrangement for a living-room centerpiece.', dailyTip: 'Today: Incorporate eucalyptus for a fresh, green touch.' },
-  { city: 'Chicago, IL', text: 'Red tulips are a local favorite for romantic gifts.', dailyTip: 'Today: A mixed bouquet of roses and lilies is perfect for anniversaries.' },
-  { city: 'Houston, TX', text: 'Add fresh lilies for volume and fragrance in bridal bouquets.', dailyTip: 'Today: A bright yellow bouquet works wonders for sunny days.' },
-  { city: 'Phoenix, AZ', text: 'Pastel bouquets are perfect for outdoor garden parties.', dailyTip: 'Today: Try a mix of lavender and white roses for a calming vibe.' },
-  // Add more city tips here...
-];
-
-function renderCityTips() {
-  const container = document.getElementById("city-container");
-  TIPS_BY_CITY.forEach(tip => {
-    const div = document.createElement("div");
-    div.className = "city-tip";
-    div.innerHTML = `
-      <strong>${tip.city}</strong><br>
-      ${tip.text}
-      <div id="tip-of-the-day">${tip.dailyTip}</div>
-    `;
-    container.appendChild(div);
-  });
-}
-renderCityTips();
-
+// Use the above JavaScript code to populate the countdown, holiday, and tips dynamically
 </script>
-
-</body>
-</html>
