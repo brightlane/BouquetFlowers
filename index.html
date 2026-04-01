@@ -47,7 +47,7 @@
             66% { transform: translateY(-8px) rotate(240deg); }
         }
 
-        /* URGENCY COUNTDOWN BAR - TIGHTER */
+        /* URGENCY COUNTDOWN BAR */
         .urgency-bar {
             position: fixed; top: 0; left: 0; right: 0; z-index: 10000;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
@@ -71,7 +71,7 @@
         .countdown-number { font-size: 1.25rem; font-weight: 900; display: block; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
         .countdown-label { font-size: 0.5rem; text-transform: uppercase; opacity: 0.9; letter-spacing: 0.5px; }
 
-        /* HEADER - MOVED UP */
+        /* HEADER */
         header {
             position: fixed; top: 60px; left: 0; right: 0; z-index: 9999;
             background: rgba(255,255,255,0.98); backdrop-filter: blur(20px);
@@ -95,14 +95,14 @@
         }
         .header-cta:hover { transform: translateY(-3px); box-shadow: 0 22px 60px rgba(220,38,38,0.6); }
 
-        /* HERO - MOVED UP */
+        /* HERO */
         .hero {
             padding: 110px 30px 80px; text-align: center; min-height: 80vh;
             display: flex; flex-direction: column; justify-content: center;
             position: relative; cursor: pointer;
         }
         .hero h1 {
-            margin-top: -0.3rem; /* headline up one line */
+            margin-top: -0.3rem;
             font-size: clamp(2.2rem, 4.2vw, 3.4rem); font-weight: 900; color: var(--dark);
             margin-bottom: 12px; letter-spacing: -0.5px; cursor: pointer;
             text-shadow: 1.5px 1.5px 4px rgba(0,0,0,0.13); transition: all 0.3s;
@@ -136,44 +136,51 @@
         /* CONTAINER */
         .container { max-width: 1400px; margin: 0 auto; padding: 0 30px; }
 
-        /* SECTIONS - MOVED UP 2 LINES, HEADLINES UP 1 LINE */
+        /* SECTION HEADINGS UP ONE LINE, ALL SECTIONS UP TWO LINES */
         .section {
             padding: 24px 0;
             background: rgba(255,255,255,0.92); 
             border-radius: 12px;
-            margin: 8px 0 !important;   /* 2 lines up */
+            margin: 8px 0 !important;
             box-shadow: 0 7px 22px rgba(0,0,0,0.12);
+            position: relative;
         }
         .section h2 {
-            margin-top: -0.5rem;         /* 1 line up */
-            margin-bottom: 14px;         /* keep some breathing room */
+            margin-top: -0.5rem;
+            margin-bottom: 14px;
             font-size: clamp(1.35rem, 2.4vw, 1.85rem);
             text-align: center;
-            font-weight: 800;
-            color: var(--dark);
-            cursor: pointer;
+            font-weight: 800; color: var(--dark);
         }
         .section h2:hover { color: var(--primary); }
         .section h3 { font-size: 1.08rem; margin-bottom: 6px; }
 
-        /* WHY SECTION - MOVED UP 2 LINES */
-        .container > .section:nth-child(2) {
-            margin-top: 6px !important; /* WHY moved up 2 lines */
+        /* WHY SECTION: MOVED UP TWO LINES; ALL BOXES IN THIS SECTION CLICKABLE TO AFFILIATE */
+        .why-section-wrapper {
+            margin-top: 6px !important; /* 2 lines up */
         }
         .why-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); 
-            gap: 18px; margin: 20px 0;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; margin: 20px 0;
+        }
+        .why-clickable {
+            position: relative; display: block;
+        }
+        .why-clickable::after {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 2; cursor: pointer;
         }
         .why-card {
             background: white; border-radius: 11px; padding: 23px; text-align: center;
-            box-shadow: 0 7px 22px rgba(0,0,0,0.1); cursor: pointer; transition: all 0.3s;
-            border-left: 3.5px solid var(--primary);
+            box-shadow: 0 7px 22px rgba(0,0,0,0.1);
+            cursor: pointer; transition: all 0.3s;
+            border-left: 3.5px solid var(--primary); position: relative; z-index: 1;
         }
         .why-card:hover { transform: translateY(-4.5px); box-shadow: 0 16px 36px rgba(220,38,38,0.18); }
         .why-icon { font-size: 2.1rem; display: block; margin-bottom: 11px; }
         .why-card p { font-size: 0.93rem; color: var(--gray); }
 
-        /* FEATURES - COMPACT */
+        /* FEATURES */
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
         .feature-card {
             background: white; border-radius: 9.5px; padding: 18px 14px; text-align: center;
@@ -189,7 +196,7 @@
         .feature-card h3 { font-size: 1.07rem; font-weight: 700; margin-bottom: 5.5px; }
         .feature-card p { font-size: 0.83rem; color: var(--gray); }
 
-        /* STATS - COMPACT */
+        /* STATS */
         .stats-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
             gap: 11px; text-align: center; margin: 18px 0;
@@ -202,7 +209,7 @@
         .stat-number { font-size: 1.8rem; font-weight: 900; display: block; }
         .stat-label { font-size: 0.78rem; font-weight: 600; opacity: 0.93; }
 
-        /* ALL OCCASIONS - NEW */
+        /* OCCASIONS */
         .occasions-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
             gap: 11px; margin: 18px 0; text-align: center;
@@ -217,7 +224,7 @@
             box-shadow: 0 10px 26px rgba(220,38,38,0.22);
         }
 
-        /* TESTIMONIALS - COMPACT */
+        /* TESTIMONIALS */
         .testimonials { background: white; border-radius: 11px; padding: 23px; box-shadow: 0 10px 32px rgba(0,0,0,0.1); }
         .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 13px; }
         .testimonial {
@@ -234,7 +241,7 @@
         .testimonial p { font-size: 0.88rem; font-style: italic; color: var(--dark); margin-bottom: 11px; }
         .testimonial-author { font-weight: 700; color: var(--primary); font-size: 0.83rem; }
 
-        /* PRICING - COMPACT */
+        /* PRICING */
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 11px; }
         .pricing-card {
             background: white; border-radius: 11px; padding: 18px 14px; box-shadow: 0 7px 22px rgba(0,0,0,0.12);
@@ -245,366 +252,5 @@
         .price { font-size: 1.8rem; font-weight: 900; color: var(--primary); margin: 9px 0; }
         .price sub { font-size: 0.78rem; color: var(--gray); }
         .pricing-btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary)); color:
-        .pricing-btn {
             background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white;
-            padding: 9px 22px; border-radius: 23px; text-decoration: none; font-weight: 800;
-            font-size: 0.83rem; display: inline-block; margin-top: 11px; cursor: pointer;
-        }
-
-        /* FAQ - TIGHTER, MOVED UP */
-        .faq-list { max-width: 630px; margin: 12px auto; display: grid; gap: 9px; }
-        .faq-item { background: white; border-radius: 9.5px; overflow: hidden; box-shadow: 0 5px 18px rgba(0,0,0,0.12); }
-        .faq-question {
-            padding: 12.5px 16px; background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-            cursor: pointer; font-weight: 700; font-size: 0.92rem; display: flex;
-            justify-content: space-between; align-items: center;
-        }
-        .faq-answer { padding: 0 16px 16px; max-height: 0; overflow: hidden; transition: all 0.4s; }
-        .faq-item.active .faq-answer { max-height: 95px; padding: 12px 16px 16px; }
-        .faq-icon { font-size: 0.92rem; transition: transform 0.3s; }
-        .faq-item.active .faq-icon { transform: rotate(45deg); }
-
-        /* ZIP EXAMPLES - NEW */
-        .zip-examples {
-            background: rgba(255,255,255,0.82); border-radius: 11.5px; padding: 16px;
-            text-align: center; margin: 16px 0; box-shadow: 0 7px 22px rgba(0,0,0,0.12);
-        }
-        .zip-list {
-            font-size: 0.88rem; font-weight: 700; color: var(--primary);
-            margin: 8px 0; line-height: 1.5;
-        }
-
-        /* FOOTER - COMPACT */
-        footer { background: var(--dark); color: white; padding: 20px 0 10px; text-align: center; }
-        .trust-badges { display: flex; justify-content: center; gap: 11px; flex-wrap: wrap; margin: 12px 0; }
-        .badge {
-            background: rgba(255,255,255,0.15); padding: 9px 14px; border-radius: 7.5px;
-            font-weight: 700; font-size: 0.78rem; border: 1.8px solid rgba(255,255,255,0.3);
-            cursor: pointer;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            html { font-size: 13px; }
-            .urgency-bar { font-size: 0.88rem; padding: 10px 0; }
-            .hero { padding: 100px 18px 70px; }
-            .section { margin: 6px 0 !important; padding: 20px 0; }
-            .section h2 { margin-top: -0.4rem; margin-bottom: 14px; }
-        }
-    </style>
-</head>
-<body>
-    <!-- LIVE COUNTDOWN -->
-    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-       class="urgency-bar" onclick="orderNow()">
-        🚨 <strong id="holiday-name">EASTER</strong> COUNTDOWN LIVE! 
-        <span class="countdown-container">
-            <span class="countdown-item">
-                <span class="countdown-number" id="days">04</span>
-                <span class="countdown-label">DAYS</span>
-            </span>
-            <span class="countdown-item">
-                <span class="countdown-number" id="hours">18</span>
-                <span class="countdown-label">HRS</span>
-            </span>
-            <span class="countdown-item">
-                <span class="countdown-number" id="minutes">32</span>
-                <span class="countdown-label">MINS</span>
-            </span>
-            <span class="countdown-item">
-                <span class="countdown-number" id="seconds">47</span>
-                <span class="countdown-label">SEC</span>
-            </span>
-        </span>
-        <strong>25% OFF BOUTIQUE BLOOMS & BASKET FLOWER ARRANGEMENTS!</strong>
-    </a>
-
-    <!-- HEADER -->
-    <header>
-        <div class="header-content">
-            <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-               class="logo" onclick="orderNow()">🌸 FLORIST ONE</a>
-            <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-               class="header-cta" onclick="orderNow()">ORDER NOW</a>
-        </div>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero" onclick="orderNow()">
-        <h1 id="hero-title">🌷 EASTER LILIES & BOUTIQUE BLOOM BASKET BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP</h1>
-        <p class="hero-subtitle" onclick="orderNow()">
-            Fresh Easter bouquet, bridal bouquet, and sympathy flower arrangements.<br>
-            LIVE COUNTDOWN • LOCAL FLORISTS • 42K+ ZIPS • BEATS 1800FLOWERS
-        </p>
-        <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-           class="hero-cta" onclick="orderNow()">ORDER YOUR FLOWER ARRANGEMENTS NOW →</a>
-    </section>
-
-    <div class="container">
-        <!-- NEW WHY SECTION (MOVED UP 2 LINES) -->
-        <section class="section" onclick="orderNow()">
-            <h2>WHY FLORIST ONE?</h2>
-            <div class="why-grid">
-                <div class="why-card">
-                    <span class="why-icon">🌟</span>
-                    <h3>Faster Delivery</h3>
-                    <p>Local florists deliver same‑day; fresh bouquet & flower arrangements arrive faster than big box services.</p>
-                </div>
-                <div class="why-card">
-                    <span class="why-icon">💐</span>
-                    <h3>Fresher Flowers</h3>
-                    <p>Hand‑made bouquet & flower arrangements daily, never warehouse‑kept or wilted.</p>
-                </div>
-                <div class="why-card">
-                    <span class="why-icon">💰</span>
-                    <h3>Best Prices</h3>
-                    <p>Direct from local florists saves you 20–30% on boutique flower arrangements and holiday bouquets.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW OCCASIONS -->
-        <section class="section">
-            <h2 onclick="orderNow()">BOUQUETS & FLOWER ARRANGEMENTS FOR ALL OCCASIONS</h2>
-            <div class="occasions-grid">
-                <div class="occasion-tag">🌷 Easter bouquet</div>
-                <div class="occasion-tag">🌹 Mother's Day bouquet</div>
-                <div class="occasion-tag">🎖️ Memorial Day flower arrangements</div>
-                <div class="occasion-tag">💐 Funeral bouquet</div>
-                <div class="occasion-tag">🎂 Birthday bouquet</div>
-                <div class="occasion-tag">💍 Wedding flower arrangements</div>
-                <div class="occasion-tag">❤️ Valentine's bouquet</div>
-                <div class="occasion-tag">🎓 Graduation flower arrangements</div>
-            </div>
-            <p style="margin-top: 18px; font-size: 0.92rem; color: var(--gray); text-align: center;">
-                Elegant bouquet and hand‑arranged flower arrangements for every holiday, home, and heart.
-            </p>
-        </section>
-
-        <!-- FEATURES -->
-        <section class="section" onclick="orderNow()">
-            <h2>OUR BOUTIQUE SERVICES</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Same‑Day Bouquet Delivery</h3>
-                    <p>95% delivered same afternoon in your ZIP — perfect for last‑minute bouquet and flower arrangements.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌺</div>
-                    <h3>Fresh Daily Flower Arrangements</h3>
-                    <p>Each bouquet and centerpiece flower arrangement crafted fresh by local florists.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📍</div>
-                    <h3>42K+ Zips Covered</h3>
-                    <p>Same‑day bouquet and flower arrangements delivery across the US and Canada.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⭐</div>
-                    <h3>4.9 Stars</h3>
-                    <p>50K+ customers trust our bouquet and flower arrangements for every special moment.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW ZIP EXAMPLES -->
-        <div class="section zip-examples" onclick="orderNow()">
-            <h3>BOUQUET & FLOWER ARRANGEMENTS DELIVERY SAMPLE ZIPS</h3>
-            <p style="font-size: 0.9rem; color: var(--gray); margin-bottom: 8px;">
-                Same‑day chic bouquet and elegant flower arrangements to homes and businesses nationwide.
-            </p>
-            <h4 style="font-size: 1.05rem; margin: 6px 0;">E.g.: 19047 Langhorne • 90210 Beverly Hills • 10001 NYC • M5V Toronto • H3B Montreal</h4>
-            <div class="zip-list">
-                60601 Chicago • 33101 Miami • 77002 Houston • V6B Vancouver • 19103 Philly
-            </div>
-        </div>
-
-        <!-- STATS -->
-        <div class="stats-grid" onclick="orderNow()">
-            <div class="stat">
-                <span class="stat-number">42K+</span>
-                <span class="stat-label">ZIPS</span>
-            </div>
-            <div class="stat">
-                <span class="stat-number">99.9%</span>
-                <span class="stat-label">SUCCESS</span>
-            </div>
-            <div class="stat">
-                <span class="stat-number">50K+</span>
-                <span class="stat-label">CUSTOMERS</span>
-            </div>
-            <div class="stat">
-                <span class="stat-number">24/7</span>
-                <span class="stat-label">SUPPORT</span>
-            </div>
-        </div>
-
-        <!-- TESTIMONIALS -->
-        <section class="section testimonials" onclick="orderNow()">
-            <h2>WHAT THEY SAY</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial">
-                    <p>"Easter lilies bouquet arrived same‑day and looked stunning. Exactly what I wanted!"</p>
-                    <div class="testimonial-author">Sarah • 19047</div>
-                </div>
-                <div class="testimonial">
-                    <p>"Ramo Pascua bouquet came fast and fresh. Perfect for our Easter table centerpiece."</p>
-                    <div class="testimonial-author">Maria • Miami</div>
-                </div>
-                <div class="testimonial">
-                    <p>"Fleurs jour même flower arrangements were elegant and affordable. Great for a last‑minute order."</p>
-                    <div class="testimonial-author">Pierre • QC</div>
-                </div>
-                <div class="testimonial">
-                    <p>"Birthday bouquet and flower arrangement centerpiece brightened the whole room!"</p>
-                    <div class="testimonial-author">John • NYC</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PRICING -->
-        <section class="section" onclick="orderNow()">
-            <h2>BOUTIQUE BLOOMS TO START FROM</h2>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Basic Bouquet</h3>
-                    <div class="price">$39</div>
-                    <p>Budget‑friendly bouquet with fresh seasonal flowers.</p>
-                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-                       class="pricing-btn" onclick="orderNow()">BUY</a>
-                </div>
-                <div class="pricing-card featured">
-                    <h3>Premium Flower Arrangements</h3>
-                    <div class="price">$59</div>
-                    <p>25% OFF special; elegant bouquet & mixed flower arrangements.</p>
-                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-                       class="pricing-btn" onclick="orderNow()">HOT DEAL</a>
-                </div>
-                <div class="pricing-card">
-                    <h3>Large Event Bouquet & Arrangements</h3>
-                    <div class="price">$199</div>
-                    <p>Wedding, funeral, or corporate bouquet & centerpiece flower arrangements.</p>
-                    <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" 
-                       class="pricing-btn" onclick="orderNow()">EVENTS</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ -->
-        <section class="section">
-            <h2 onclick="orderNow()">BOUQUET & FLOWER ARRANGEMENTS FAQ</h2>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Same‑day bouquet delivery cutoff?
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Order by 2PM local time for same‑day bouquet and flower arrangement delivery. Guaranteed.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Does my ZIP code get boutique bouquet & arrangements?
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Over 42K US ZIP codes plus all major Canadian cities get same‑day bouquet and flower arrangement deliveries.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Fresh bouquet & flower arrangement guarantee?
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We double‑guarantee freshness. If your bouquet or flower arrangement arrives wilted, we’ll send a fresh replacement.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- FOOTER -->
-    <footer onclick="orderNow()">
-        <div class="container">
-            <h2>🌸 YOUR BOUTIQUE BLOOMS STORE</h2>
-            <p style="font-size: 0.95rem; margin: 8px 0; color: #e5e7eb;">
-                Trusted bouquet & flower arrangement delivery for every occasion.
-            </p>
-            <div class="trust-badges">
-                <div class="badge">🔒 SECURE</div>
-                <div class="badge">⭐ 4.9/5</div>
-                <div class="badge">⚡ SAME DAY</div>
-                <div class="badge">💳 ALL CARDS</div>
-            </div>
-            <p style="margin-top: 11px; opacity: 0.85; font-size: 0.75rem;">
-                Affiliate link. Same premium bouquet and flower arrangement service.
-            </p>
-        </div>
-    </footer>
-
-    <script>
-        // 2026 HOLIDAY DATES
-        const HOLIDAYS = {
-            easter: new Date(2026, 3, 5, 23, 59, 59),      // April 5
-            mothersday: new Date(2026, 4, 10, 23, 59, 59), // May 10
-            memorialday: new Date(2026, 4, 25, 23, 59, 59) // May 25
-        };
-
-        let currentHoliday = 'easter';
-
-        // LIVE COUNTDOWN EVERY SECOND
-        function updateLiveCountdown() {
-            const now = new Date();
-            const holidayDate = HOLIDAYS[currentHoliday];
-            let diff = holidayDate - now;
-            
-            if (diff <= 0) {
-                if (currentHoliday === 'easter') currentHoliday = 'mothersday';
-                else if (currentHoliday === 'mothersday') currentHoliday = 'memorialday';
-                else currentHoliday = 'easter'; // Loop
-                diff = HOLIDAYS[currentHoliday] - now;
-            }
-                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-        
-        document.getElementById('days').textContent = days.toString().padStart(2, '0');
-        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-        
-        document.getElementById('holiday-name').textContent = currentHoliday.toUpperCase();
-        document.getElementById('hero-title').innerHTML = 
-            `🌷 ${currentHoliday.toUpperCase().replace('DAY', 'Day')} BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME-DAY FLOWER ARRANGEMENTS EVERY ZIP`;
-    }
-
-    // START IMMEDIATELY - UPDATE EVERY SECOND
-    updateLiveCountdown();
-    setInterval(updateLiveCountdown, 1000);
-
-    // Order click
-    function orderNow() {
-        console.log('🌸 CLICKED - Affiliate: 2013017799 - Holiday: ' + currentHoliday);
-        window.open('http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799', '_blank');
-    }
-
-    // FAQ toggle
-    document.querySelectorAll('.faq-question').forEach(q => {
-        q.addEventListener('click', (e) => {
-            e.stopPropagation();
-            q.parentElement.classList.toggle('active');
-        });
-    });
-
-    // Hero click
-    document.querySelector('.hero').addEventListener('click', orderNow);
-})();
-</script>
-</body>
-</html>
-            const days = Math.floor(diff / (1000 * 60
+            padding
