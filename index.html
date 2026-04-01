@@ -14,6 +14,8 @@ body {
   text-align:center;
 }
 
+a { text-decoration:none; color:inherit; }
+
 .urgency-bar {
   position:fixed;
   top:0;
@@ -23,7 +25,6 @@ body {
   padding:12px;
   font-weight:bold;
   z-index:9999;
-  cursor:pointer;
 }
 
 header {
@@ -34,12 +35,10 @@ header {
   padding:15px;
   box-shadow:0 4px 10px rgba(0,0,0,0.1);
   z-index:9998;
-  cursor:pointer;
+  font-weight:bold;
 }
 
-.hero {
-  padding:30px 20px;
-}
+.hero { padding:30px 20px; }
 
 .cta {
   background:#dc2626;
@@ -48,77 +47,58 @@ header {
   border-radius:30px;
   display:inline-block;
   margin-top:20px;
-  cursor:pointer;
   font-weight:bold;
 }
 
-.section {
-  margin:40px 20px;
+.section { margin:40px 20px; }
+
+#clock {
+  font-size:18px;
+  margin-top:10px;
+  font-weight:bold;
 }
 
-.faq-item {
+.city-tip {
   background:white;
+  padding:15px;
   margin:10px;
   border-radius:10px;
 }
 
-.faq-question {
-  padding:15px;
-  background:#eee;
-  cursor:pointer;
-}
-
-.faq-answer {
-  max-height:0;
-  overflow:hidden;
-  transition:0.3s;
-  padding:0 15px;
-}
-
-.faq-item.active .faq-answer {
-  max-height:100px;
-  padding:15px;
-}
-
-/* SOCIAL POPUP */
-#popup {
-  position:fixed;
-  bottom:20px;
-  left:20px;
-  background:white;
-  padding:12px 18px;
-  border-radius:10px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.2);
-  font-size:14px;
-  display:none;
-  z-index:9999;
-}
 </style>
 </head>
 
 <body>
 
 <!-- URGENCY -->
-<div class="urgency-bar" onclick="orderNow()">
-🚨 <span id="holiday-name">MOTHER’S DAY</span> ENDS IN:
+<a href="#" onclick="go()">
+<div class="urgency-bar">
+🚨 <span id="holiday-name">MOTHER’S DAY</span> DEAL ENDS IN:
 <span id="days">00</span>d :
 <span id="hours">00</span>h :
 <span id="minutes">00</span>m :
 <span id="seconds">00</span>s
 </div>
+</a>
 
-<header onclick="orderNow()">🌸 SAME DAY FLOWERS</header>
+<header>
+<a href="#" onclick="go()">🌸 SAME DAY FLOWERS – ORDER NOW</a>
+</header>
 
 <div class="hero">
-<div id="small-headline">MOTHER’S DAY FLOWERS</div>
 
+<a href="#" onclick="go()">
+<div id="small-headline">MOTHER’S DAY FLOWERS</div>
 <h1 id="hero-title">🌷 SAME DAY DELIVERY</h1>
+</a>
 
 <div id="current-date"></div>
+<div id="clock"></div>
 
-<div class="cta" onclick="orderNow()">
+<a href="#" onclick="go()" class="cta">
 🌸 Check Same-Day Delivery Availability
-</div>
+</a>
+
 </div>
 
 <div class="section">
@@ -127,82 +107,63 @@ header {
 </div>
 
 <div class="section">
-<h2>FAQ</h2>
-
-<div class="faq-item">
-<div class="faq-question">Same-day delivery?</div>
-<div class="faq-answer">Order before 2PM local time.</div>
+<h2>🌎 Daily City Flower Tips</h2>
+<div id="city-container"></div>
 </div>
-
-<div class="faq-item">
-<div class="faq-question">Nationwide?</div>
-<div class="faq-answer">Yes, most ZIP codes supported.</div>
-</div>
-
-</div>
-
-<div id="popup"></div>
 
 <script>
 
-// ================= CONFIG =================
-const OFFERS = [
- "http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799"
-];
+// ================= AFFILIATE =================
+const LINK = "http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799";
 
-function getOffer() {
- return OFFERS[Math.floor(Math.random()*OFFERS.length)];
+function go(){
+ window.location.href = LINK;
 }
 
-function orderNow() {
- window.location.href = getOffer();
+// ================= DATE + CLOCK =================
+function updateClock(){
+ const now = new Date();
+
+ document.getElementById("current-date").innerText =
+  now.toLocaleDateString(undefined, {year:'numeric', month:'long', day:'numeric'});
+
+ document.getElementById("clock").innerText =
+  now.toLocaleTimeString();
 }
+
+setInterval(updateClock,1000);
+updateClock();
 
 // ================= HOLIDAYS =================
-const HOLIDAYS = {
- mothersday: new Date('May 10, 2026'),
- memorialday: new Date('May 25, 2026'),
- laborday: new Date('September 7, 2026'),
- easter: new Date('April 5, 2026'),
- valentines: new Date('February 14, 2026'),
- christmas: new Date('December 25, 2026'),
- thanksgiving: new Date('November 26, 2026')
-};
-
-const HEADLINES = [
- "MOTHER’S DAY FLOWERS",
- "LABOR DAY FLOWERS",
- "MEMORIAL DAY FLOWERS",
- "EASTER FLOWERS",
- "VALENTINE’S ROSES",
- "CHRISTMAS FLOWERS",
- "THANKSGIVING FLOWERS"
+const HOLIDAYS = [
+ {name:"MOTHER’S DAY", date:new Date('May 10, 2026')},
+ {name:"MEMORIAL DAY", date:new Date('May 25, 2026')},
+ {name:"LABOR DAY", date:new Date('September 7, 2026')},
+ {name:"THANKSGIVING", date:new Date('November 26, 2026')},
+ {name:"CHRISTMAS", date:new Date('December 25, 2026')}
 ];
 
-let keys = Object.keys(HOLIDAYS);
-let index = 0;
-let currentHoliday = keys[0];
+let hIndex = 0;
 
-// ROTATION
-setInterval(() => {
- index = (index + 1) % keys.length;
- currentHoliday = keys[index];
+function rotateHoliday(){
+ hIndex = (hIndex + 1) % HOLIDAYS.length;
+}
 
- document.getElementById('small-headline').innerText = HEADLINES[index];
- document.getElementById('hero-title').innerText = HEADLINES[index];
- document.getElementById('holiday-name').innerText = currentHoliday.toUpperCase();
+setInterval(rotateHoliday,10000);
 
-}, 20000);
+// countdown
+function updateCountdown(){
+ const now = new Date();
+ let target = HOLIDAYS[hIndex].date;
 
-// COUNTDOWN
-function updateCountdown() {
- let diff = HOLIDAYS[currentHoliday] - new Date();
-
- if (diff <= 0) {
-  index = (index + 1) % keys.length;
-  currentHoliday = keys[index];
-  diff = HOLIDAYS[currentHoliday] - new Date();
+ if(target < now){
+  rotateHoliday();
+  target = HOLIDAYS[hIndex].date;
  }
+
+ const diff = target - now;
+
+ document.getElementById('holiday-name').innerText = HOLIDAYS[hIndex].name;
 
  document.getElementById('days').innerText = Math.floor(diff/86400000);
  document.getElementById('hours').innerText = Math.floor(diff/3600000)%24;
@@ -213,489 +174,38 @@ function updateCountdown() {
 setInterval(updateCountdown,1000);
 updateCountdown();
 
-// DATE
-document.getElementById('current-date').innerText =
- new Date().toLocaleDateString();
+// ================= CITY TIPS =================
+const CITY_TIPS = [
+ {city:"New York, NY", text:"Order before noon for same-day delivery."},
+ {city:"Los Angeles, CA", text:"Go for tall arrangements for big rooms."},
+ {city:"Chicago, IL", text:"Red tulips are a top local pick."},
+ {city:"Houston, TX", text:"Add lilies for fragrance and fullness."},
+ {city:"Phoenix, AZ", text:"Bright pastel bouquets work best."},
+ {city:"Philadelphia, PA", text:"Wildflower bouquets fit brunch vibes."},
+ {city:"Langhorne, PA", text:"Lilies + roses make perfect home décor."}
+];
 
-// FAQ
-document.querySelectorAll('.faq-question').forEach(q=>{
- q.addEventListener('click',()=>{
-  q.parentElement.classList.toggle('active');
+function renderCities(){
+ const container = document.getElementById("city-container");
+
+ CITY_TIPS.forEach(c=>{
+  const div = document.createElement("div");
+  div.className="city-tip";
+
+  div.innerHTML = `
+    <a href="${LINK}">
+      <strong>${c.city}</strong><br>
+      ${c.text}
+    </a>
+  `;
+
+  container.appendChild(div);
  });
-});
+}
 
-// ================= 1 CLICK FUNNEL =================
-document.body.addEventListener('click', function(e){
- if (
-  e.target.closest('.cta') ||
-  e.target.closest('.faq-question')
- ) return;
-
- orderNow();
-});
-
-// ================= EXIT INTENT =================
-let exitShown=false;
-document.addEventListener('mouseleave',function(e){
- if(e.clientY<10 && !exitShown){
-  exitShown=true;
-  orderNow();
- }
-});
-
-// ================= AUTO REDIRECT =================
-setTimeout(orderNow,45000);
-
-// ================= GEO =================
-fetch('https://ipapi.co/json/')
-.then(res=>res.json())
-.then(data=>{
- document.getElementById('small-headline').innerText =
-  `Same-Day Flowers in ${data.city}`;
-});
-
-// ================= URGENCY =================
-setInterval(()=>{
- let spots = Math.floor(Math.random()*10)+3;
- document.querySelector('.urgency-bar').innerText =
-  `🚨 ${spots} DELIVERY SLOTS LEFT TODAY – ORDER NOW`;
-},8000);
-
-// ================= SOCIAL PROOF =================
-const names=["Sarah","Mike","Jessica","David","Emily"];
-const cities=["NY","Chicago","Miami","Dallas","Phoenix"];
-
-setInterval(()=>{
- const popup=document.getElementById('popup');
- popup.innerText =
-  `${names[Math.floor(Math.random()*names.length)]} from ${cities[Math.floor(Math.random()*cities.length)]} just ordered 🌸`;
-
- popup.style.display="block";
-
- setTimeout(()=>popup.style.display="none",4000);
-
-},9000);
+renderCities();
 
 </script>
 
 </body>
 </html>
-        { city: 'Seattle, WA', text: 'Seattle residents love green‑heavy arrangements that match the city’s rainy‑season, forest‑style aesthetic.' },
-        { city: 'Denver, CO', text: 'For Denver, a compact, bright‑bouquet works well for mountain‑town‑style home and office décor.' },
-        { city: 'El Paso, TX', text: 'El Paso florists recommend compact, fiery‑toned bouquets that match the city’s sun‑baked desert style.' },
-        { city: 'Detroit, MI', text: 'Detroit customers love budget‑friendly, mixed‑bloom bouquets that still feel big and festive.' },
-        { city: 'Washington, DC', text: 'Washington DC florists recommend compact, classy‑looking arrangements suitable for government offices and condos.' },
-        { city: 'Boston, MA', text: 'Boston residents often choose classic‑style white‑and‑pink bouquets for formal dinners and small‑space tables.' },
-        { city: 'Nashville, TN', text: 'Nashville florists like warm‑toned, rustic bouquets that feel cozy for music‑themed, laid‑back homes.' },
-        { city: 'Portland, OR', text: 'Portland customers often pick simple, garden‑style arrangements that feel natural and un‑fussy.' },
-        { city: 'Oklahoma City, OK', text: 'Oklahoma City florists recommend compact, mid‑sized bouquets that fit nicely in suburban‑home dining rooms.' },
-        { city: 'Las Vegas, NV', text: 'Las Vegas residents like bright‑color, high‑impact bouquets that look great in photos and hotel‑suite setups.' },
-        { city: 'Baltimore, MD', text: 'Baltimore households love reasonably priced bouquets that look large but still fit in row‑house‑style layouts.' },
-        { city: 'Louisville, KY', text: 'Louisville residents often choose soft‑pastel bouquets that feel right for Southern‑style porch‑sitting events.' },
-        { city: 'Milwaukee, WI', text: 'Milwaukee florists recommend compact, green‑heavy arrangements that feel cozy for lakeside‑style homes.' },
-        { city: 'Albuquerque, NM', text: 'In Albuquerque, desert‑style green‑heavy arrangements feel right for warm‑climate indoor‑living spaces.' },
-        { city: 'Tucson, AZ', text: 'Tucson residents love low‑maintenance, desert‑adapted floral arrangements that don’t require too much watering.' },
-        { city: 'Fresno, CA', text: 'Fresno customers love compact, colorful bouquets that brighten small dining‑room tables in valley‑style homes.' },
-        { city: 'Sacramento, CA', text: 'Sacramento florists recommend wide, low‑profile arrangements that fit nicely on farm‑style dining‑room tables.' },
-        { city: 'Kansas City, MO', text: 'Kansas City residents like practical, mixed‑bloom bouquets that feel festive but not too formal.' },
-        { city: 'Long Beach, CA', text: 'In Long Beach, coastal‑style arrangements with plenty of greens feel right for seaside homes and patios.' },
-        { city: 'Mesa, AZ', text: 'Mesa residents often pick low‑maintenance, green‑focused arrangements for dry‑climate décor.' },
-        { city: 'Atlanta, GA', text: 'Atlanta florists recommend compact, colorful bouquets that fit well in town‑home and condo‑entry‑tables.' },
-        { city: 'Colorado Springs, CO', text: 'Colorado Springs residents like green‑heavy arrangements that match the city’s mountain‑style scenery.' },
-        { city: 'Virginia Beach, VA', text: 'Virginia Beach florists suggest coastal‑style bouquets that feel relaxed and welcoming on ocean‑view porches.' },
-        { city: 'Raleigh, NC', text: 'Raleigh residents love modern‑style bouquets that feel right for tech‑town and new‑construction‑style homes.' },
-        { city: 'Omaha, NE', text: 'Omaha florists recommend compact, mid‑sized bouquets that fit nicely in suburban‑family‑dining layouts.' },
-        { city: 'Miami, Florida', text: 'In Miami, tropical‑style bouquets with orchids and bright colors feel right for beachfront and poolside décor.' },
-        { city: 'Oakland, CA', text: 'Oakland residents love simple, modern‑style bouquets that pair well with urban‑vibe apartments and small spaces.' },
-        { city: 'Minneapolis, MN', text: 'Minneapolis florists recommend compact, green‑heavy arrangements that feel cozy for winter‑heavy lifestyles.' },
-        { city: 'Tulsa, OK', text: 'Tulsa residents often choose budget‑friendly mixed‑bloom bouquets that still feel festive and full.' },
-        { city: 'Wichita, Kansas', text: 'In Wichita, a simple, compact bouquet fits nicely in smaller‑dining‑area homes without feeling crowded.' },
-        { city: 'New Orleans, Louisiana', text: 'New Orleans florists like colorful, compact arrangements that feel festive for courtyard and patio gatherings.' },
-        { city: 'Arlington, TX', text: 'Arlington residents love mid‑sized bouquets that look big in photos but still fit in small‑home layouts.' },
-        { city: 'Tampa, FL', text: 'Tampa florists recommend compact, bright‑bouquets for patio and poolside style‑home décor.' },
-        { city: 'Anaheim, CA', text: 'Anaheim residents often choose compact, cheerful‑bouquets for suburban‑family‑dining‑room tables.' },
-        { city: 'Honolulu, HI', text: 'Honolulu florists recommend tropical‑style bouquets with plenty of orchids and greens for island‑vibe homes.' },
-        { city: 'Pittsburgh, PA', text: 'Pittsburgh residents love small, classic‑style bouquets that feel cozy for basin‑style and row‑home‑style layouts.' },
-        { city: 'Cincinnati, OH', text: 'Cincinnati florists recommend simple, green‑style bouquets that feel right for older, compact‑home layouts.' },
-        { city: 'Bakersfield, California', text: 'In Bakersfield, low‑maintenance, desert‑adapted arrangements work well for hot‑climate outdoor‑view homes.' },
-        { city: 'Orlando, Florida', text: 'Orlando residents often pick compact, celebratory‑style bouquets for theme‑park‑style and vacation‑style décor.' },
-        { city: 'Reno, NV', text: 'Reno florists recommend compact, colorful bouquets that feel right for casino‑style and event‑focused lifestyles.' },
-        { city: 'Santa Ana, CA', text: 'Santa Ana residents like family‑style bouquets that feel festive but not too formal for home use.' },
-        { city: 'Lexington, KY', text: 'Lexington florists suggest soft‑pastel bouquets that feel right for Southern‑style porch‑gatherings and dinner tables.' },
-        { city: 'Topeka, KS', text: 'Topeka residents often pick compact, budget‑style bouquets that still feel festive for everyday décor.' },
-        { city: 'Salem, OR', text: 'Salem florists recommend compact, green‑focus arrangements that feel natural for river‑walk‑style homes.' },
-        { city: 'Boise, Idaho', text: 'Boise residents like simple, green‑and‑white arrangements that feel right for river‑walk and mountain‑style décor.' },
-        { city: 'Denton, TX', text: 'Denton florists recommend compact, budget‑friendly bouquets that feel right for campus‑area homes and studios.' },
-        { city: 'Amarillo, TX', text: 'Amarillo customers love practical, low‑maintenance arrangements that feel right for ranch‑style and suburban‑layouts.' },
-        { city: 'Lakewood, CO', text: 'Lakewood residents love small, modern‑style bouquets that feel cozy for mid‑sized suburban‑home layouts.' },
-        { city: 'McKinney, TX', text: 'McKinney florists recommend compact, mid‑sized bouquets that feel right for new‑subdivision‑style homes.' },
-        { city: 'Plano, TX', text: 'Plano residents often choose compact, mid‑sized bouquets that fit nicely in family‑dining‑room tables.' },
-        { city: 'Murfreesboro, TN', text: 'Murfreesboro florists recommend practical, mixed‑bloom bouquets for active‑family‑style homes.' },
-        { city: 'Inglewood, California', text: 'Inglewood residents like compact, bright‑bouquets that feel festive for small‑apartment‑entry‑tables.' },
-        { city: 'Toronto, Ontario', text: 'Toronto florists often recommend compact, elegant‑style bouquets that feel right for condo and downtown‑style décor.' },
-        { city: 'Montreal, Quebec', text: 'Montreal residents love small, chic‑style bouquets that feel cozy for narrow‑town‑home layouts.' },
-        { city: 'Vancouver, British Columbia', text: 'Vancouver florists recommend green‑heavy arrangements that feel natural for rainy‑season interior‑home décor.' },
-        { city: 'Calgary, Alberta', text: 'Calgary residents love compact, bright‑bouquets that feel right for mountain‑view‑style homes.' },
-        { city: 'Edmonton, Alberta', text: 'Edmonton customers often pick green‑heavy arrangements that feel cozy for long‑winter‑heavy lifestyles.' },
-        { city: 'Ottawa, Ontario', text: 'Ottawa florists recommend compact, classic‑style bouquets that feel right for government‑area condos and homes.' },
-        { city: 'Winnipeg, Manitoba', text: 'Winnipeg residents love small, green‑style bouquets that feel cozy for cold‑climate‑style interiors.' },
-        { city: 'Mississauga, Ontario', text: 'Mississauga florists recommend compact, elegant‑style bouquets for apartment and town‑house layouts.' },
-        { city: 'Brampton, Ontario', text: 'Brampton residents often pick budget‑friendly, mixed‑blạt‑style bouquets that still feel festive.' },
-        { city: 'Hamilton, Ontario', text: 'Hamilton florists recommend compact, green‑style arrangements that feel natural for lakeside‑style homes.' },
-        { city: 'London, Ontario', text: 'London residents love small, classic‑style bouquets that feel cozy for suburban‑family layouts.' },
-        { city: 'Markham, Ontario', text: 'Markham florists recommend compact, modern‑style bouquets for new‑subdivision‑style homes.' },
-        { city: 'Quebec City, Quebec', text: 'Quebec City residents often choose compact, classic‑style bouquets that feel cozy for historic‑style town homes.' },
-        { city: 'Halifax, Nova Scotia', text: 'Halifax florists recommend compact, green‑style arrangements that feel cozy for coastal‑style homes.' },
-        { city: 'Victoria, British Columbia', text: 'Victoria residents love small, garden‑style bouquets that feel right for garden‑style homes and porches.' },
-        { city: 'Windsor, Ontario', text: 'Windsor florists recommend compact, budget‑friendly bouquets for family‑style dining‑room tables.' },
-        { city: 'Regina, Saskatchewan', text: 'Regina residents love small, green‑style arrangements that feel cozy for prairie‑style homes.' },
-        { city: 'Saskatoon, Saskatchewan', text: 'Saskatoon florists recommend compact, green‑heavy bouquets that feel cozy for cold‑climate interiors.' },
-        { city: 'Langhorne, Pennsylvania', text: 'For Langhorne, a medium‑sized bouquet with lilies and roses works perfectly for Easter table decor and Sunday brunch.' },
-        { city: 'Pensacola, Florida', text: 'Pensacola florists recommend compact, coastal‑style bouquets for waterfront and patio‑style homes.' },
-        { city: 'Jackson, Mississippi', text: 'Jackson residents often choose soft‑pastel bouquets that feel cozy for Southern‑style porch‑sitting gatherings.' },
-        { city: 'Cleveland, Ohio', text: 'Cleveland florists recommend compact, classic‑style bouquets for older, compact‑home layouts.' },
-        { city: 'Virginia Beach, Virginia', text: 'Virginia Beach residents love coastal‑style arrangements that feel relaxed and welcoming on ocean‑view porches.' },
-        { city: 'Lexington, Kentucky', text: 'Lexington florists recommend soft‑pastel bouquets that feel cozy for Southern‑style porch‑sitting and dinner tables.' },
-        { city: 'Durham, North Carolina', text: 'Durham florists often choose compact, modern‑style bouquets for campus‑adjacent‑style apartments.' },
-        { city: 'Boise, Idaho', text: 'Boise residents love compact, green‑and‑white arrangements that feel natural for river‑walk and mountain‑style décor.' },
-        { city: 'Richmond, Virginia', text: 'Richmond florists recommend soft‑pastel bouquets that feel cozy for historic‑style homes and porches.' },
-        // Keep adding more cities here if you want, using the same {city: "Name, ST", text: "..."} pattern[
-    { city: 'New York, NY', text: 'In New York, order your bouquet by noon for same‑day delivery to Manhattan offices and homes.' },
-    { city: 'Los Angeles, CA', text: 'In Los Angeles, choose a tall standing flower arrangement for a living‑room centerpiece with impact.' },
-    { city: 'Chicago, IL', text: 'Chicago clients love a rich red‑tulip bouquet for anniversary and romantic gifts.' },
-    { city: 'Houston, TX', text: 'Houston florists recommend adding fresh lilies to bridal bouquets for volume and fragrance.' },
-    { city: 'Phoenix, AZ', text: 'In Phoenix, a bright, pastel‑pastel bouquet works well for spring outdoor garden parties.' },
-    { city: 'Philadelphia, PA', text: 'For Philadelphia, a mixed‑wildflower bouquet feels perfect for a Mother’s Day brunch at home.' },
-    { city: 'San Antonio, TX', text: 'San Antonio customers often pair a bouquet with a small succulent arrangement for a long‑lasting, stylish combo.' },
-    { city: 'San Diego, CA', text: 'In San Diego, a coastal‑style bouquet with eucalyptus and light greens looks stunning and fresh.' },
-    { city: 'Dallas, TX', text: 'Dallas brides love a lush all‑white bouquet for a modern, elegant wedding look.' },
-    { city: 'San Jose, CA', text: 'For San Jose, consider a compact, high‑impact bouquet for tech‑office celebrations and small spaces.' },
-    { city: 'Austin, TX', text: 'Austin gardeners love a wild‑flower bouquet mixed with local foliage styles for a natural look.' },
-    { city: 'Jacksonville, FL', text: 'In Jacksonville, a mixed‑orange and yellow bouquet adds warmth to humid‑season decor and outdoor events.' },
-    { city: 'Fort Worth, TX', text: 'Fort Worth ranch‑style homes pair well with rustic‑barn floral arrangements for events and dinners.' },
-    { city: 'Columbus, OH', text: 'Columbus families often choose a large sympathy bouquet for cemetery visits and condolence deliveries.' },
-    { city: 'Charlotte, NC', text: 'Charlotte balcony owners love compact flower arrangements that fit on small tables and still make a big impact.' },
-    { city: 'San Francisco, CA', text: 'For San Francisco, a minimalist, green‑focused bouquet works beautifully in sleek city apartments.' },
-    { city: 'Seattle, WA', text: 'Seattle residents love green‑heavy arrangements that match the city’s rainy‑season, forest‑style aesthetic.' },
-    { city: 'Denver, CO', text: 'Denver florists recommend compact, bright‑bouquets for mountain‑style town and city‑home décor.' },
-    { city: 'El Paso, TX', text: 'El Paso florists suggest compact, fiery‑toned bouquets that match the city’s desert‑sunset style.' },
-    { city: 'Detroit, MI', text: 'Detroit customers love budget‑friendly, mixed‑bloom bouquets that still feel big and festive.' },
-    { city: 'Baltimore, MD', text: 'Baltimore households love reasonably priced bouquets that look large but still fit in row‑house layouts.' },
-    { city: 'Louisville, KY', text: 'Louisville residents often choose soft‑pastel bouquets that feel cozy for Southern‑style porch‑sitting gatherings.' },
-    { city: 'Milwaukee, WI', text: 'Milwaukee florists recommend compact, green‑heavy arrangements for lakeside‑style homes.' },
-    { city: 'Albuquerque, NM', text: 'In Albuquerque, desert‑style green‑heavy arrangements feel right for warm‑climate indoor‑living spaces.' },
-    { city: 'Tucson, AZ', text: 'Tucson residents love low‑maintenance, desert‑adapted floral arrangements that don’t need much watering.' },
-    { city: 'Fresno, CA', text: 'Fresno customers love compact, colorful bouquets that brighten small dining‑room tables in valley‑style homes.' },
-    { city: 'Sacramento, CA', text: 'Sacramento florists recommend wide, low‑profile arrangements that fit nicely on farm‑style dining‑room tables.' },
-    { city: 'Mesa, AZ', text: 'Mesa residents often pick low‑maintenance, green‑focused arrangements for dry‑climate décor.' },
-    { city: 'Atlanta, GA', text: 'Atlanta florists recommend compact, colorful bouquets that fit well in town‑home and condo‑entry‑tables.' },
-    { city: 'Kansas City, MO', text: 'Kansas City residents like practical, mixed‑bloom bouquets that feel festive but not too formal.' },
-    { city: 'Colorado Springs, CO', text: 'Colorado Springs residents like green‑heavy arrangements that match the city’s mountain‑style scenery.' },
-    { city: 'Miami, FL', text: 'In Miami, tropical‑style bouquets with orchids and bright colors feel right for beachfront and poolside décor.' },
-    { city: 'Oakland, CA', text: 'Oakland residents love simple, modern‑style bouquets that pair well with urban‑vibe apartments and small spaces.' },
-    { city: 'Minneapolis, MN', text: 'Minneapolis florists recommend compact, green‑heavy arrangements that feel cozy for winter‑heavy lifestyles.' },
-    { city: 'Tulsa, OK', text: 'Tulsa residents often choose budget‑friendly mixed‑bloom bouquets that still feel festive and full.' },
-    { city: 'Wichita, KS', text: 'In Wichita, a simple, compact bouquet fits nicely in smaller‑dining‑area homes without feeling crowded.' },
-    { city: 'New Orleans, LA', text: 'New Orleans florists like colorful, compact arrangements for courtyard and patio gatherings.' },
-    { city: 'Portland, OR', text: 'Portland customers often pick simple, garden‑style arrangements that feel natural and un‑fussy.' },
-    { city: 'Oklahoma City, OK', text: 'Oklahoma City residents love compact, mid‑sized bouquets that fit nicely in suburban‑home dining rooms.' },
-    { city: 'Las Vegas, NV', text: 'Las Vegas residents like bright‑color, high‑impact bouquets for photos and hotel‑suite setups.' },
-    { city: 'Washington, DC', text: 'Washington DC florists recommend compact, classy arrangements for government offices and condos.' },
-    { city: 'Boston, MA', text: 'Boston residents often choose classic‑style white‑and‑pink bouquets for formal dinners and small‑space tables.' },
-    { city: 'Nashville, TN', text: 'Nashville florists like warm‑toned, rustic bouquets for music‑themed, laid‑back homes.' },
-    { city: 'Baton Rouge, LA', text: 'Baton Rouge florists recommend compact, colorful arrangements that feel festive for Southern‑style gatherings.' },
-    { city: 'Rochester, NY', text: 'Rochester residents love small, classic bouquets for older, compact‑home layouts.' },
-    { city: 'Grand Rapids, MI', text: 'Grand Rapids florists recommend compact, green‑style arrangements that feel cozy for lakeside homes.' },
-    { city: 'Worcester, MA', text: 'Worcester residents often choose simple, green‑style bouquets for smaller‑sized home tables.' },
-    { city: 'Oxnard, CA', text: 'Oxnard florists like compact, bright‑bouquets for suburban‑family‑dining‑room tables.' },
-    { city: 'Carlsbad, CA', text: 'Carlsbad residents love coastal‑style bouquets for waterfront and patio‑style homes.' },
-    { city: 'Burbank, CA', text: 'Burbank florists recommend compact, chic‑style bouquets for entertainment‑area‑style homes.' },
-    { city: 'Irvine, CA', text: 'Irvine residents often choose compact, mixed‑bloom bouquets that feel festive but not too formal.' },
-    { city: 'Henderson, NV', text: 'Henderson florists suggest compact, colorful bouquets that feel right for busy‑family‑style homes.' },
-    { city: 'Chula Vista, CA', text: 'Chula Vista customers love coastal‑style arrangements that feel relaxing for ocean‑view homes.' },
-    { city: 'Tampa, FL', text: 'Tampa florists recommend compact, bright‑bouquets for patio and poolside style‑home décor.' },
-    { city: 'Anaheim, CA', text: 'Anaheim residents often choose compact, cheerful bouquets for suburban‑family‑dining‑room tables.' },
-    { city: 'Honolulu, HI', text: 'Honolulu florists recommend tropical‑style bouquets with plenty of orchids for island‑vibe homes.' },
-    { city: 'Pittsburgh, PA', text: 'Pittsburgh residents love small, classic‑style bouquets for compact‑home and row‑home‑style layouts.' },
-    { city: 'Cincinnati, OH', text: 'Cincinnati florists recommend simple, green‑style bouquets for older, compact home layouts.' },
-    { city: 'Bakersfield, CA', text: 'In Bakersfield, low‑maintenance, desert‑adapted arrangements work well for hot‑climate outdoor‑view homes.' },
-    { city: 'Raleigh, NC', text: 'Raleigh florists recommend compact, modern bouquets for new‑construction‑style condos and homes.' },
-    { city: 'Laredo, TX', text: 'Laredo florists love compact, bright‑bouquets that feel festive for small‑front‑porch designs.' },
-    { city: 'Aurora, CO', text: 'Aurora residents love colorful, mixed‑bloom bouquets for large‑family‑living‑room tables.' },
-    { city: 'Port St. Lucie, FL', text: 'Port St. Lucie residents like easy‑maintenance arrangements for busy‑retiree lifestyles.' },
-    { city: 'Henderson, NV', text: 'Henderson residents love compact, colorful bouquets for busy‑family‑style homes.' },
-    { city: 'Arlington, TX', text: 'Arlington residents love mid‑sized bouquets that look big in photos but still fit in small homes.' },
-    { city: 'Riverside, CA', text: 'Riverside florists recommend compact, vibrant bouquets for suburban‑home‑style dining tables.' },
-    { city: 'Boise, ID', text: 'Boise florists like compact, green‑and‑white arrangements for river‑walk and mountain‑style homes.' },
-    { city: 'Rochester, MN', text: 'Rochester residents love compact, classic bouquets for medical‑town‑style home décor.' },
-    { city: 'Richmond, CA', text: 'Richmond residents like practical, compact arrangements for suburban‑home dining‑room tables.' },
-    { city: 'Santa Clarita, CA', text: 'Santa Clarita florists recommend compact, bright‑bouquets for suburban‑home‑style décor.' },
-    { city: 'Vancouver, WA', text: 'Vancouver residents love compact, garden‑style arrangements for river‑walk‑style homes.' },
-    { city: 'Modesto, CA', text: 'Modesto florists recommend compact, spring‑style bouquets for valley‑style gift‑giving.' },
-    { city: 'Fremont, CA', text: 'Fremont florists like pairing small bouquets with succulent arrangements for tech‑worker homes.' },
-    { city: 'Stockton, CA', text: 'Stockton florists love wide, low‑profile arrangements for farm‑style dining‑room tables.' },
-    { city: 'Huntsville, AL', text: 'Huntsville residents love compact, tech‑town‑style bouquets for suburban‑home décor.' },
-    { city: 'Tacoma, WA', text: 'Tacoma customers like green‑heavy arrangements that match the city’s rainy‑season nature‑style aesthetics.' },
-    { city: 'Provo, UT', text: 'Provo residents love compact, family‑style bouquets that feel cozy for large‑family homes.' },
-    { city: 'Spokane, WA', text: 'Spokane florists like green‑focused bouquets for mountain‑style homes and spaces.' },
-    { city: 'Greensboro, NC', text: 'Greensboro florists recommend compact, classic‑style bouquets for older‑style homes.' },
-    { city: 'Lexington, KY', text: 'Lexington residents like soft‑pastel bouquets for Southern‑style porch‑sitting events.' },
-    { city: 'Orlando, FL', text: 'Orlando residents often pick compact, celebratory bouquets for theme‑park‑style homes and vacations.' },
-    { city: 'Reno, NV', text: 'Reno florists love compact, colorful bouquets for casino‑style and event‑focused lifestyles.' },
-    { city: 'Santa Ana, CA', text: 'Santa Ana florists like compact, family‑style bouquets that feel festive but not too formal.' },
-    { city: 'Amarillo, TX', text: 'Amarillo customers love practical, low‑maintenance arrangements for ranch‑style layouts.' },
-    { city: 'Lakewood, CO', text: 'Lakewood residents love compact, modern bouquets for new‑subdivision‑style homes.' },
-    { city: 'McKinney, TX', text: 'McKinney florists love compact, mid‑sized bouquets for new‑subdivision‑style homes.' },
-    { city: 'Plano, TX', text: 'Plano residents love compact, mid‑sized bouquets for suburban‑home dining‑room tables.' },
-    { city: 'Denton, TX', text: 'Denton florists love compact, budget‑friendly bouquets for campus‑area homes and studios.' },
-    { city: 'Inglewood, CA', text: 'Inglewood residents like compact, bright bouquets for small‑apartment‑entry‑tables.' },
-    { city: 'Whittier, CA', text: 'Whittier florists recommend compact, classic‑style bouquets for older‑style residents.' },
-    { city: 'Ogden, UT', text: 'Ogden residents love compact, green‑style arrangements for mountain‑style homes.' },
-    { city: 'Compton, CA', text: 'Compton florists recommend compact, bright‑bouquets for small‑apartment‑and‑house layouts.' },
-    { city: 'Simi Valley, CA', text: 'Simi Valley florists like compact, garden‑style bouquets for valley‑style home décor.' },
-    { city: 'Tyler, TX', text: 'Tyler florists love compact, soft‑pastel bouquets for Southern‑style homes.' },
-    { city: 'Charleston, SC', text: 'Charleston residents like soft‑pastel, garden‑style bouquets for historic‑style homes and porches.' },
-    { city: 'Henderson, KY', text: 'Henderson florists recommend compact, Southern‑style arrangements for small‑city homes.' },
-    { city: 'Bentonville, AR', text: 'Bentonville florists love compact, modern bouquets for tech‑town‑style homes.' },
-    { city: 'Grand Junction, CO', text: 'Grand Junction residents love compact, green‑heavy arrangements for mountain‑style homes.' },
-    { city: 'Lowell, MA', text: 'Lowell florists like compact, classic‑style bouquets for historic‑style homes.' },
-    { city: 'Santa Rosa, CA', text: 'Santa Rosa wine‑country homes like rustic‑texture bouquets with dried‑stem accents.' },
-    { city: 'Wichita Falls, TX', text: 'Wichita Falls residents like compact, budget‑friendly bouquets for older‑style homes.' },
-    { city: 'West Valley City, UT', text: 'West Valley City residents love medium‑sized wedding‑style bouquets for at‑home celebrations.' },
-    { city: 'Wilmington, NC', text: 'Wilmington florists recommend coastal‑style arrangements for marina‑style homes.' },
-    { city: 'Pasadena, CA', text: 'Pasadena residents like compact, classic‑style bouquets for older‑style, garden‑home décor.' },
-    { city: 'Murrieta, CA', text: 'Murrieta florists love compact, bright‑bouquets for suburban‑home décor.' },
-    { city: 'Elmhurst, IL', text: 'Elmhurst residents like compact, classic bouquets for older‑style homes.' },
-    { city: 'Bothell, WA', text: 'Bothell florists love compact, green‑style arrangements for lakeside‑style homes.' },
-    { city: 'Garland, TX', text: 'Garland residents love compact, medium‑sized bouquets that look big in photos but fit in small homes.' },
-    { city: 'Cape Coral, FL', text: 'Cape Coral residents like light‑green and pastel‑style bouquets for dock‑and‑patio‑style décor.' },
-    { city: 'Midland, TX', text: 'Midland florists recommend compact, budget‑friendly bouquets for older‑style homes.' },
-    { city: 'Billings, MT', text: 'Billings residents like compact, green‑style bouquets for mountain‑style homes.' },
-    { city: 'Carrollton, TX', text: 'Carrollton florists love compact, modern bouquets for new‑subdivision‑style homes.' },
-    { city: 'Pensacola, FL', text: 'Pensacola florists recommend compact, coastal‑style bouquets for waterfront homes.' },
-    { city: 'Tuscaloosa, AL', text: 'Tuscaloosa residents like compact, Southern‑style bouquets for classic‑style homes.' },
-    { city: 'Kent, WA', text: 'Kent florists recommend compact, green‑style arrangements for suburban‑home décor.' },
-    { city: 'Roseville, CA', text: 'Roseville residents like compact, garden‑style bouquets for newer‑style homes.' },
-    { city: 'Nampa, ID', text: 'Nampa florists like compact, green‑style bouquets for suburban‑style home décor.' },
-    { city: 'Athens[
-    { city: 'New York, NY', text: 'In New York, a compact bouquet works nicely on the dining table to brighten the space.' },
-    { city: 'Los Angeles, CA', text: 'In Los Angeles, a modern bouquet works nicely on the porch for a relaxed evening.' },
-    { city: 'Chicago, IL', text: 'In Chicago, a cozy bouquet works nicely on the coffee nook to welcome guests.' },
-    { city: 'Houston, TX', text: 'In Houston, a vibrant bouquet works nicely on the living room to add warmth.' },
-    { city: 'Phoenix, AZ', text: 'In Phoenix, a minimalist bouquet works nicely on the patio to refresh the room.' },
-    { city: 'Philadelphia, PA', text: 'In Philadelphia, a garden‑style bouquet works nicely on the window sill for a cozy vibe.' },
-    { city: 'San Antonio, TX', text: 'In San Antonio, a rustic bouquet works nicely on the dining table to celebrate an occasion.' },
-    { city: 'San Diego, CA', text: 'In San Diego, a chic bouquet works nicely on the balcony to brighten the space.' },
-    { city: 'Dallas, TX', text: 'In Dallas, a vintage bouquet works nicely on the office desk for a cheerful note.' },
-    { city: 'San Jose, CA', text: 'In San Jose, a bohemian bouquet works nicely on the coffee table to create a romantic mood.' },
-    { city: 'Austin, TX', text: 'In Austin, a serene bouquet works nicely on the living room side table for a relaxed evening.' },
-    { city: 'Jacksonville, FL', text: 'In Jacksonville, a tropical bouquet works nicely on the sunroom to match your style.' },
-    { city: 'Fort Worth, TX', text: 'In Fort Worth, a evergreen bouquet works nicely on the entryway table to set a festive tone.' },
-    { city: 'Columbus, OH', text: 'In Columbus, a snug bouquet works nicely on the workspace for a special announcement.' },
-    { city: 'Charlotte, NC', text: 'In Charlotte, a fresh bouquet works nicely on the patio for a seasonal touch.' },
-    { city: 'San Francisco, CA', text: 'In San Francisco, a inviting bouquet works nicely on the bedside table to honor a loved one.' },
-    { city: 'Indianapolis, IN', text: 'In Indianapolis, a compact bouquet works nicely on the laundry room to brighten the space.' },
-    { city: 'Seattle, WA', text: 'In Seattle, a vintage bouquet works nicely on the kitchen island for a cozy vibe.' },
-    { city: 'Denver, CO', text: 'In Denver, a cozy bouquet works nicely on the coffee bar for a relaxed evening.' },
-    { city: 'Washington, DC', text: 'In Washington, a fresh bouquet works nicely on the patio to welcome guests.' },
-    { city: 'Boston, MA', text: 'In Boston, a bohemian bouquet works nicely on the window sill for a cheerful note.' },
-    { city: 'Nashville, TN', text: 'In Nashville, a serene bouquet works nicely on the living room for a cozy vibe.' },
-    { city: 'El Paso, TX', text: 'In El Paso, a compact bouquet works nicely on the front foyer to match your style.' },
-    { city: 'Detroit, MI', text: 'In Detroit, a chic bouquet works nicely on the dining nook to add warmth.' },
-    { city: 'Baltimore, MD', text: 'In Baltimore, a cozy bouquet works nicely on the bathroom counter to refresh the room.' },
-    { city: 'Portland, OR', text: 'In Portland, a cozy bouquet works nicely on the patio to create a romantic mood.' },
-    { city: 'Oklahoma City, OK', text: 'In Oklahoma City, a bohemian bouquet works nicely on the porch to honor a loved one.' },
-    { city: 'Las Vegas, NV', text: 'In Las Vegas, a vibrant bouquet works nicely on the sunroom to set a festive tone.' },
-    { city: 'Louisville, KY', text: 'In Louisville, a vintage bouquet works nicely on the workspace for a special announcement.' },
-    { city: 'Milwaukee, WI', text: 'In Milwaukee, a tropical bouquet works nicely on the bedroom for a seasonal touch.' },
-    { city: 'Albuquerque, NM', text: 'In Albuquerque, a cozy bouquet works nicely on the coffee table for a relaxed evening.' },
-    { city: 'Tucson, AZ', text: 'In Tucson, a cozy bouquet works nicely on the patio to brighten the space.' },
-    { city: 'Fresno, CA', text: 'In Fresno, a fresh bouquet works nicely on the dining table to welcome guests.' },
-    { city: 'Sacramento, CA', text: 'In Sacramento, a bohemian bouquet works nicely on the patio to match your style.' },
-    { city: 'Mesa, AZ', text: 'In Mesa, a cozy bouquet works nicely on the balcony to honor a loved one.' },
-    { city: 'Atlanta, GA', text: 'In Atlanta, a cozy bouquet works nicely on the sunroom to celebrate an occasion.' },
-    { city: 'Kansas City, MO', text: 'In Kansas City, a tropical bouquet works nicely on the patio for a seasonal touch.' },
-    { city: 'Colorado Springs, CO', text: 'In Colorado Springs, a cozy bouquet works nicely on the patio to brighten the space.' },
-    { city: 'Miami, FL', text: 'In Miami, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Oakland, CA', text: 'In Oakland, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Tulsa, OK', text: 'In Tulsa, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Arlington, TX', text: 'In Arlington, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Tampa, FL', text: 'In Tampa, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Anaheim, CA', text: 'In Anaheim, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Honolulu, HI', text: 'In Honolulu, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Pittsburgh, PA', text: 'In Pittsburgh, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Cincinnati, OH', text: 'In Cincinnati, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Bakersfield, CA', text: 'In Bakersfield, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Raleigh, NC', text: 'In Raleigh, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Omaha, NE', text: 'In Omaha, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Minneapolis, MN', text: 'In Minneapolis, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Laredo, TX', text: 'In Laredo, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Aurora, CO', text: 'In Aurora, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Riverside, CA', text: 'In Riverside, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Boise, ID', text: 'In Boise, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'New York, NY', text: 'In New York, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Los Angeles, CA', text: 'In Los Angeles, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Chicago, IL', text: 'In Chicago, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Houston, TX', text: 'In Houston, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Phoenix, AZ', text: 'In Phoenix, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Philadelphia, PA', text: 'In Philadelphia, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'San Antonio, TX', text: 'In San Antonio, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'San Diego, CA', text: 'In San Diego, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Dallas, TX', text: 'In Dallas, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'San Jose, CA', text: 'In San Jose, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Austin, TX', text: 'In Austin, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Jacksonville, FL', text: 'In Jacksonville, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Fort Worth, TX', text: 'In Fort Worth, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Columbus, OH', text: 'In Columbus, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Charlotte, NC', text: 'In Charlotte, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'San Francisco, CA', text: 'In San Francisco, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Indianapolis, IN', text: 'In Indianapolis, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Seattle, WA', text: 'In Seattle, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Denver, CO', text: 'In Denver, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Washington, DC', text: 'In Washington, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Boston, MA', text: 'In Boston, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Nashville, TN', text: 'In Nashville, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'El Paso, TX', text: 'In El Paso, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Detroit, MI', text: 'In Detroit, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Baltimore, MD', text: 'In Baltimore, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Portland, OR', text: 'In Portland, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Oklahoma City, OK', text: 'In Oklahoma City, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Las Vegas, NV', text: 'In Las Vegas, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Louisville, KY', text: 'In Louisville, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Milwaukee, WI', text: 'In Milwaukee, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Albuquerque, NM', text: 'In Albuquerque, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Tucson, AZ', text: 'In Tucson, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Fresno, CA', text: 'In Fresno, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Sacramento, CA', text: 'In Sacramento, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Mesa, AZ', text: 'In Mesa, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Atlanta, GA', text: 'In Atlanta, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Kansas City, MO', text: 'In Kansas City, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Colorado Springs, CO', text: 'In Colorado Springs, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Miami, FL', text: 'In Miami, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Oakland, CA', text: 'In Oakland, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Tulsa, OK', text: 'In Tulsa, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Arlington, TX', text: 'In Arlington, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Tampa, FL', text: 'In Tampa, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Anaheim, CA', text: 'In Anaheim, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Honolulu, HI', text: 'In Honolulu, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Pittsburgh, PA', text: 'In Pittsburgh, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Cincinnati, OH', text: 'In Cincinnati, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Bakersfield, CA', text: 'In Bakersfield, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Raleigh, NC', text: 'In Raleigh, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Omaha, NE', text: 'In Omaha, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Minneapolis, MN', text: 'In Minneapolis, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Laredo, TX', text: 'In Laredo, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Aurora, CO', text: 'In Aurora, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Riverside, CA', text: 'In Riverside, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Boise, ID', text: 'In Boise, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'New York, NY', text: 'In New York, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Los Angeles, CA', text: 'In Los Angeles, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Chicago, IL', text: 'In Chicago, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Houston, TX', text: 'In Houston, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Phoenix, AZ', text: 'In Phoenix, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Philadelphia, PA', text: 'In Philadelphia, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'San Antonio, TX', text: 'In San Antonio, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'San Diego, CA', text: 'In San Diego, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Dallas, TX', text: 'In Dallas, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'San Jose, CA', text: 'In San Jose, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Austin, TX', text: 'In Austin, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Jacksonville, FL', text: 'In Jacksonville, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Fort Worth, TX', text: 'In Fort Worth, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Columbus, OH', text: 'In Columbus, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Charlotte, NC', text: 'In Charlotte, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'San Francisco, CA', text: 'In San Francisco, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Indianapolis, IN', text: 'In Indianapolis, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Seattle, WA', text: 'In Seattle, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Denver, CO', text: 'In Denver, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Washington, DC', text: 'In Washington, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Boston, MA', text: 'In Boston, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'Nashville, TN', text: 'In Nashville, a cozy bouquet works nicely on the patio to match your style.' },
-    { city: 'El Paso, TX', text: 'In El    { city: 'Jackson, MS', text: 'In Jackson, a soft‑pastel bouquet works nicely on the porch for Southern‑style family gatherings.' },
-    { city: 'Bridgeport, CT', text: 'In Bridgeport, a compact bouquet works nicely on the entryway table to welcome guests.' },
-    { city: 'New Haven, CT', text: 'In New Haven, a classic bouquet works nicely on the dining table for cozy evenings.' },
-    { city: 'Des Moines, IA', text: 'In Des Moines, a green‑heavy bouquet works nicely on the porch for a relaxed vibe.' },
-    { city: 'Little Rock, AR', text: 'In Little Rock, a compact bouquet works nicely on the patio for outdoor entertaining.' },
-    { city: 'Savannah, GA', text: 'In Savannah, a garden‑style bouquet works nicely on the sun porch for a Southern charm touch.' },
-    { city: 'Knoxville, TN', text: 'In Knoxville, a rustic bouquet works nicely on the mantel for a cozy cottage feel.' },
-    { city: 'Grand Rapids, MI', text: 'In Grand Rapids, a green‑heavy bouquet works nicely on the coffee table for a natural look.' },
-    { city: 'Fort Lauderdale, FL', text: 'In Fort Lauderdale, a tropical bouquet works nicely on the patio for a beach‑style aesthetic.' },
-    { city: 'Greensboro, NC', text: 'In Greensboro, a compact bouquet works nicely on the dining table for family dinners.' },
-    { city: 'Huntsville, AL', text: 'In Huntsville, a modern bouquet works nicely on the office desk for a fresh look.' },
-    { city: 'Spokane, WA', text: 'In Spokane, a green‑style bouquet works nicely on the porch for a mountain‑style touch.' },
-    { city: 'Montgomery, AL', text: 'In Montgomery, a Southern‑style bouquet works nicely on the front porch for a traditional look.' },
-    { city: 'Reno, NV', text: 'In Reno, a colorful bouquet works nicely on the patio for a festive casino‑town vibe.' },
-    { city: 'Stockton, CA', text: 'In Stockton, a wide bouquet works nicely on the dining table for family gatherings.' },
-    { city: 'Provo, UT', text: 'In Provo, a fresh bouquet works nicely on the porch for a family‑style touch.' },
-    { city: 'Columbus, GA', text: 'In Columbus, a compact bouquet works nicely on the front porch for a Southern hospitality feel.' },
-    { city: 'Wilmington, NC', text: 'In Wilmington, a coastal bouquet works nicely on the patio for a beach‑style look.' },
-    { city: 'South Bend, IN', text: 'In South Bend, a green bouquet works nicely on the coffee table for a cozy vibe.' },
-    { city: 'Cape Coral, FL', text: 'In Cape Coral, a tropical bouquet works nicely on the patio for a waterfront feel.' },
-    { city: 'Akron, OH', text: 'In Akron, a classic bouquet works nicely on the dining table for family dinners.' },
-    { city: 'Topeka, KS', text: 'In Topeka, a compact bouquet works nicely on the porch for a cozy town feel.' },
-    { city: 'Fayetteville, AR', text: 'In Fayetteville, a rustic bouquet works nicely on the porch for a cozy college‑town vibe.' },
-    { city: 'Springfield, MA', text: 'In Springfield, a compact bouquet works nicely on the dining table for a cozy home feel.' },
-    { city: 'Springfield, MO', text: 'In Springfield, a colorful bouquet works nicely on the porch for a friendly town feel.' },
-    { city: 'Biloxi, MS', text: 'In Biloxi, a coastal bouquet works nicely on the patio for a beachfront look.' },
-    { city: 'Cedar Rapids, IA', text: 'In Cedar Rapids, a compact bouquet works nicely on the dining table for family gatherings.' },
-    { city: 'Winter Haven, FL', text: 'In Winter Haven, a tropical bouquet works nicely on the patio for a relaxed lake‑town vibe.' },
-    { city: 'Olathe, KS', text: 'In Olathe, a modern bouquet works nicely on the entryway table for a fresh look.' },
-    { city: 'Greeley, CO', text: 'In Greeley, a green‑style bouquet works nicely on the porch for a mountain‑town feel.' },
-    { city: 'Tyler, TX', text: 'In Tyler, a compact bouquet works nicely on the porch for a cozy Southern‑style feel.' },
-    { city: 'Peoria, IL', text: 'In Peoria, a cozy bouquet works nicely on the dining table for family dinners.' },
-    { city: 'Hattiesburg, MS', text: 'In Hattiesburg, a Southern bouquet works nicely on the porch for a traditional feel.' },
-    { city: 'Rockford, IL', text: 'In Rockford, a compact bouquet works nicely on the dining table for family gatherings.' },
-    { city: 'Columbia, SC', text: 'In Columbia, a Southern bouquet works nicely on the patio for a cozy college‑town feel.' },
-    { city: 'Duluth, MN', text: 'In Duluth, a green bouquet works nicely on the porch for a lakeside‑style feel.' },
-    { city: 'Kalamazoo, MI', text: 'In Kalamazoo, a compact bouquet works nicely on the dining table for family dinners.' },
-    { city: 'Florence, SC', text: 'In Florence, a Southern bouquet works nicely on the porch for a cozy town feel.' },
-    { city: 'Cumberland, MD', text: 'In Cumberland, a compact bouquet works nicely on the dining table for family gatherings.' },
-    { city: 'Jackson, TN', text: 'In Jackson, a compact bouquet works nicely on the porch for a cozy Southern‑style feel.' },
-    { city: 'Goldsboro, NC', text: 'In Goldsboro, a Southern bouquet works nicely on the porch for a traditional feel.' },
-    { city: 'Dubuque, IA', text: 'In Dubuque, a compact bouquet works nicely on the dining table for family gatherings.' },
-    { city: 'Wichita Falls, TX', text: 'In Wichita Falls, a compact bouquet works nicely on the porch for a cozy town feel.' },
-    { city: 'Green Bay, WI', text: 'In Green Bay, a compact bouquet works nicely on the dining table for family gatherings.' },
-    { city: 'Wilkes‑Barre, PA', text: 'In Wilkes‑Barre, a compact bouquet works nicely on the porch for a cozy town feel.' },
-    { city: 'Asheville, NC', text: 'In Asheville, a mountain‑style bouquet works nicely on the porch for a nature‑inspired feel.' },
-    { city: 'Biloxi, MS', text: 'In Biloxi, a coastal bouquet works nicely on the patio for a beachfront look.' },
-    { city: 'Meridian, MS', text: 'In Meridian, a compact bouquet works nicely on the porch for a cozy Southern‑style feel.' },
-    { city: 'Danville, KY', text: 'In Danville, a Southern bouquet works nicely on the porch for a traditional feel.' },
-    { city: 'Corpus Christi, TX', text: 'In Corpus Christi, a coastal bouquet works nicely on the patio for a beach‑style look.' },
-    { city: 'Pine Bluff, AR', text: 'In Pine Bluff, a compact bouquet works nicely on the porch for a cozy Southern‑style feel.' },
-    { city: 'Houma, LA', text: 'In Houma, a coastal bouquet works nicely on the patio for a bayou‑style feel.' },
-    { city: 'Blytheville, AR', text: 'In Blytheville, a compact bouquet works nicely on the porch for a cozy Southern‑style feel.' },
-    { city: 'Farmington, NM', text: 'In Farmington, a Southwest‑style bouquet works nicely on the porch for a desert‑style feel.' },
-    { city: 'Jackson, WY', text: 'In Jackson, a mountain‑style bouquet works nicely on the porch for a nature‑inspired feel.' },
-    { city: 'Helena, MT', text: 'In Helena, a compact bouquet works nicely on the porch for a cozy mountain‑town feel.' },
-    { city: 'Idaho Falls, ID', text: 'In Idaho Falls, a green‑style bouquet works nicely on the porch for a mountain‑town feel.' },
-    { city: 'Kennewick, WA', text: 'In Kennewick, a compact bouquet works nicely on the dining table for family gatherings.' },
-    { city: 'Casper, WY', text: 'In Casper, a compact bouquet works nicely on the porch for a cozy town feel.' },
-    { city: 'Cheyenne, WY', text: 'In Cheyenne, a compact bouquet works nicely on the porch for a cozy town feel.' },
-    { city: 'Columbia, MS', text: 'In Columbia, a compact bouquet works nicely on the porch for a cozy Southern‑style feel.' },
-    { city: 'Gulfport, MS', text: 'In Gulfport, a coastal bouquet works nicely on the patio for a beachfront look.' },
-    { city: 'St. Cloud, MN', text: 'In St. Cloud, a green bouquet works nicely on the porch for a lakeside‑style feel.' },
-    { city: 'Pocatello, ID', text: 'In Pocatello, a green bouquet works nicely on the porch for a mountain‑style feel.' },
-    { city: 'Meridian, ID', text: 'In Meridian, a compact bouquet works nicely on the patio for a cozy town feel.' },
-    { city: 'Farmington, UT', text: 'In Farmington, a compact bouquet works nicely on the patio for a cozy town feel.' },
-    { city: 'West Jordan, UT', text: 'In West Jordan, a compact bouquet works nicely on the patio for a cozy town feel.' },
-    { city: 'Ontario, CA', text: 'In Ontario, a compact bouquet works nicely on the patio for a cozy suburban feel.' },
-    { city: 'Perris, CA', text: 'In Perris, a compact bouquet works nicely on the patio for a cozy town feel.' },
-    { city: 'Victorville, CA', text: 'In Victorville, a compact bouquet works nicely on the patio for a cozy town feel.' },
-    { city: 'San Bernardino, CA', text: 'In San Bernardino, a compact bouquet works nicely on the patio for a cozy town feel.' },
-    { city: 'High Point, NC', text: 'In High Point, a compact bouquet works nicely on the patio for a cozy town feel.' },
-    { city: 'Pine Bluff, AR', text: 'In Pine Bluff, a compact bouquet works nicely on the patio for a cozy town feel.' },
-    { city: 'Meridian, MS', text: 'In Meridian, a compact bouquet works nicely on the patio for a cozy town feel.' },
-    { city: 'Gulfport, MS', text: 'In Gulfport, a coastal bouquet works nicely on the patio for a beachfront look.' },
-    { city: 'Pensacola, FL', text: 'In Pensacola, a coastal bouquet works nicely on the patio for a beachfront look.' },
-    { city: 'Corpus Christi, TX', text: 'In Corpus Christi, a coastal bouquet works nicely on the patio for a beachfront look.' },
-    { city: 'Gulfport, MS', text: 'In Gulfport, a coastal bouquet works nicely on the patio for a beachfront look.' },
-    { city: 'Pine Bluff, AR', text: 'In Pine Bluff, a compact bouquet works nicely on the patio for a cozy town feel.' },
-    { city: 'Meridian, MS', text: 'In Meridian, a compact bouquet works nicely on the patio for a cozy town feel.' },
-    { city: 'Farmington, NM', text: 'In Farmington, a Southwest‑style bouquet works nicely on the patio for a desert‑style feel.' },
-    { city: 'Jackson, MS', text: 'In Jackson, a Southern bouquet works nicely on the patio for a cozy town feel.' },
-    { city: 'Pine Bluff, AR', text: 'In Pine Bluff, a compact bouquet works nicely on the patio for a cozy town feel.' },
-    { city: 'Meridian, MS', text: 'In Meridian, a compact bouquet works nicely on the patio for a cozy town feel.' },
-    { city: 'Pine Bluff, AR', text: 'In Pine Bluff, a compact bouquet works nicely on the patio for a cozy town feel.' },
-    { city: 'Meridian, MS', text: 'In Meridian, a compact bouquet works nicely on the patio for a cozy town feel.' },
-    { city: 'Pine Bluff, AR', text: 'In Pine Bluff, a compact bouquet works nicely on the patio for a cozy town feel.' },
-    { city: 'Meridian, MS', text: 'In Meridian, a compact bouquet works nicely on the patio for a cozy town feel.' },
-]
