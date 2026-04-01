@@ -2142,3 +2142,191 @@ function checkAreaCodeCoverage() {
         </a>
     </p>
 </div>
+<!-- How to use this page -->
+<p class="use-this-page">
+    Use this page to find bouquet ideas for your city, then check ZIP code or area‑code delivery. When you’re ready, click the link to order bouquets and flower arrangements online from our nationwide delivery network.
+</p>
+
+<!-- Main coverage block -->
+<div class="flowers-coverage-bottom">
+    <h3>Bouquets & Flower Arrangements Across the USA and Canada</h3>
+    <p>
+        Whether you're looking for flowers in <strong>Philadelphia, 19138</strong> or any city in the USA and Canada, you can order bouquets and flower arrangements online with delivery to almost any ZIP code or postal code. Our partner network covers major cities, suburbs, and many smaller towns nationwide.
+    </p>
+
+    <!-- ZIP / postal code lookup -->
+    <div class="zip-lookup-widget">
+        <p>
+            Enter your ZIP or postal code to see if we deliver to that area:
+        </p>
+        <input
+            type="text"
+            id="flowersZipSearch"
+            maxlength="10"
+            placeholder="Enter ZIP or postal code (e.g. 19138 or M5V 3L9)"
+            aria-label="Enter your ZIP or postal code"
+        >
+        <button type="button" onclick="checkFlowerDelivery()">Check delivery</button>
+        <div id="zipCoverageMessage" class="zip-message"></div>
+    </div>
+
+    <!-- Area code lookup -->
+    <div class="area-code-lookup-widget">
+        <p>
+            Or try your area code (e.g. 215 for Philadelphia, 212 for New York):
+        </p>
+        <input
+            type="text"
+            id="areaCodeSearch"
+            maxlength="4"
+            placeholder="Area code (e.g. 215)"
+            aria-label="Enter your area code"
+        >
+        <button type="button" onclick="checkAreaCodeCoverage()">Check</button>
+        <div id="areaCodeMessage"></div>
+    </div>
+
+    <!-- City lookup -->
+    <div class="city-lookup-widget">
+        <p>
+            Or try a city to see if we deliver to that area:
+        </p>
+        <input
+            type="text"
+            id="citySearch"
+            placeholder="City name (e.g. Philadelphia, New York, Los Angeles)"
+            aria-label="Enter a city name"
+        >
+        <button type="button" onclick="checkCityCoverage()">Check</button>
+        <div id="cityMessage"></div>
+    </div>
+
+    <!-- Common questions -->
+    <div class="faq-light">
+        <h4>Common questions</h4>
+        <p><strong>Can I get same‑day delivery?</strong> Yes, many ZIP codes in the USA and Canada are eligible for same‑day or next‑day flower delivery depending on the time of day you order.</p>
+        <p><strong>Do you deliver to small towns?</strong> Yes. We use a nationwide network of local florists, so even smaller towns and suburbs are often covered via nearby ZIP codes.</p>
+    </div>
+
+    <p class="coverage-cta">
+        Need flowers in Philadelphia (215), New York (212), Los Angeles (310/424), Chicago (312), or any city in the USA or Canada?
+        <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" rel="sponsored">
+            Send bouquets and flower arrangements online now →
+        </a>
+    </p>
+
+    <!-- Hidden SEO hints (no spammy lists) -->
+    <div style="display:none;">
+        We deliver bouquets and flower arrangements to all ZIP codes in the United States and all postal codes in Canada, including cities such as Philadelphia (215), New York (212), Los Angeles (310/424), Chicago (312), Toronto (416), Vancouver (604), Houston (713/832), Atlanta (404), and many surrounding suburbs and towns.
+    </div>
+</div>
+
+<!-- Light “Trust / Network” line -->
+<p class="trust-line">
+    Partnered with a nationwide network of local florists, we help you send bouquets and flower arrangements to homes, offices, and events across the USA and Canada.
+</p>
+
+<!-- All-in-one script for ZIP, area code, and city checks -->
+<script>
+// ZIP / postal code lookup
+const supportedZips = [
+    "19138", "19104", "19106", "19123",
+    "10001", "19047", "90210", "60601",
+    "V6B1A1", "M5V3L9", "H3A1A1"
+];
+
+function checkFlowerDelivery() {
+    const input = document.getElementById("flowersZipSearch").value.trim().toUpperCase();
+    const msg = document.getElementById("zipCoverageMessage");
+
+    if (!input) {
+        msg.textContent = "Please enter a ZIP or postal code.";
+        return;
+    }
+
+    const found = supportedZips.some(zip => {
+        const plain = zip.toUpperCase().replace(/[^0-9A-Z]/g, "");
+        const userPlain = input.replace(/[^0-9A-Z]/g, "");
+        return plain === userPlain;
+    });
+
+    if (found) {
+        msg.innerHTML =
+            "Yes! We deliver bouquets and flower arrangements to ZIP <strong>" +
+            input +
+            "</strong>. " +
+            '<a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" rel="sponsored">Order now →</a>';
+    } else {
+        msg.textContent =
+            "ZIP " + input + " is not in the current sample, but we deliver to most ZIP codes in the USA and Canada. Try a nearby city.";
+    }
+}
+
+// Area code lookup
+const supportedAreaCodes = [
+    "215", "267", "610", "412",
+    "212", "646", "347", "917",
+    "310", "424", "312", "814"
+];
+
+function checkAreaCodeCoverage() {
+    const input = document.getElementById("areaCodeSearch").value.trim();
+    const msg = document.getElementById("areaCodeMessage");
+
+    if (!input) {
+        msg.textContent = "Please enter an area code.";
+        return;
+    }
+
+    const found = supportedAreaCodes.some(code => code === input);
+
+    if (found) {
+        msg.innerHTML =
+            "Yes! We deliver flowers in the <strong>" + input + "</strong> area. " +
+            '<a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" rel="sponsored">Order now →</a>';
+    } else {
+        msg.textContent =
+            "Area code " + input + " is not in the current sample, but we deliver to many cities and area codes across the USA and Canada. Try a nearby city.";
+    }
+}
+
+// City lookup
+const supportedCities = [
+    "Philadelphia", "New York", "Los Angeles",
+    "Chicago", "Houston", "Phoenix", "San Diego",
+    "Dallas", "Toronto", "Vancouver", "Montreal"
+];
+
+function checkCityCoverage() {
+    const input = document.getElementById("citySearch").value.trim().toLowerCase();
+    const msg = document.getElementById("cityMessage");
+
+    if (!input) {
+        msg.textContent = "Please enter a city name.";
+        return;
+    }
+
+    const found = supportedCities.some(city => city.toLowerCase() === input);
+
+    if (found) {
+        msg.innerHTML =
+            "Yes! We deliver bouquets and flower arrangements in <strong>" +
+            input.charAt(0).toUpperCase() + input.slice(1) +
+            "</strong>. " +
+            '<a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" rel="sponsored">Order now →</a>';
+    } else {
+        msg.textContent =
+            "City \"" + input + "\" is not in the current sample, but we deliver to many cities and towns across the USA and Canada. Try a nearby city.";
+    }
+}
+</script>
+
+<!-- Footer CTA -->
+<footer class="site-footer">
+    <p>
+        For fresh bouquets and flower arrangements delivered to your ZIP code or postal code, 
+        <a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" rel="sponsored">
+            order from our nationwide flower delivery network
+        </a>.
+    </p>
+</footer>
