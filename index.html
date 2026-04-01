@@ -1948,3 +1948,31 @@ function checkFlowerDelivery() {
     }
 }
 </script>
+<script>
+const supportedAreaCodes = [
+    "215", "267", "610", "412",
+    "212", "646", "347", "917",
+    "310", "424", "312", "814"
+];
+
+function checkAreaCodeCoverage() {
+    const input = document.getElementById("areaCodeSearch").value.trim();
+    const msg = document.getElementById("areaCodeMessage");
+
+    if (!input) {
+        msg.textContent = "Please enter an area code.";
+        return;
+    }
+
+    const found = supportedAreaCodes.some(code => code === input);
+
+    if (found) {
+        msg.innerHTML =
+            "Yes! We deliver flowers in the <strong>" + input + "</strong> area. " +
+            '<a href="http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799" rel="sponsored">Send bouquets now →</a>';
+    } else {
+        msg.textContent =
+            "Area code " + input + " is not in the current sample, but we cover many cities and area codes across the USA and Canada. Try a nearby city.";
+    }
+}
+</script>
