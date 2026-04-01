@@ -56,11 +56,27 @@ header {
   text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
 }
 
-.hero h1 {
-  font-size: 48px;
-  margin: 10px 0;
+.hero #small-headline {
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
+/* CLICKABLE DARK BLUE HERO TITLE */
+#hero-link h1 {
+  color: #0b3d91; /* Dark blue */
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 48px;
+  margin: 10px 0;
+  transition: color 0.3s;
+}
+
+#hero-link h1:hover {
+  color: #062f6c; /* Slightly darker blue */
+}
+
+/* HERO CTA */
 .hero .cta {
   background: #e11d48;
   color: white;
@@ -125,7 +141,7 @@ header {
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .hero h1 {
+  .hero #hero-link h1 {
     font-size: 32px;
   }
 
@@ -162,7 +178,9 @@ header {
 <!-- HERO -->
 <div class="hero">
   <div id="small-headline">MOTHER’S DAY SPECIAL</div>
-  <h1>🌷 Fresh Flowers, Delivered Today</h1>
+  <a href="#" onclick="go()" id="hero-link">
+    <h1>🌷 Fresh Flowers, Delivered Today</h1>
+  </a>
   <div id="current-date"></div>
   <div id="clock"></div>
   <a href="#" onclick="go()" class="cta">🌸 Check Same-Day Delivery</a>
