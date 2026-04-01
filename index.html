@@ -1242,3 +1242,75 @@ const TIPS_BY_CITY = [
     { city: 'Wilmington, NC', text: 'Wilmington florists recommend coastal‑style arrangements that match the city’s marina and waterfront homes.' },
     { city: 'Henderson, NV', text: 'In Henderson, a compact, colorful bouquet works well for busy‑family homes with lots of outdoor time.' },
     { city: 'Springfield, IL', text: 'Springfield IL residents love a classic‑style white‑and‑pink bouquet for formal‑dinner and office
+{ city: 'Ann Arbor, MI', text: 'In Ann Arbor, a compact, academic‑style bouquet feels right for campus‑adjacent apartments and study spaces.' },
+{ city: 'Madison, WI', text: 'Madison residents love simple, green‑heavy arrangements that feel natural next to lakeside‑style decor.' },
+{ city: 'Aurora, CO', text: 'Aurora customers often pick bright, colorful bouquets that add cheer to larger‑family‑living‑rooms.' },
+{ city: 'Nashville, TN', text: 'For Nashville, a soft‑pink, country‑style bouquet pairs nicely with music‑themed, cozy‑home decor.' },
+{ city: 'Boise, ID', text: 'Boise florists recommend green‑and‑white arrangements that fit the city’s river‑walk and mountain‑style aesthetics.' },
+{ city: 'Rochester, NY', text: 'In Rochester, a compact, classic‑style bouquet works well for small‑apartment‑and‑house‑dinners.' },
+{ city: 'North Charleston, SC', text: 'North Charleston residents love coastal‑style arrangements that feel relaxed and welcoming on front porches.' },
+{ city: 'Tacoma, WA', text: 'Tacoma customers often pick green‑heavy arrangements that match the city’s rainy‑season, nature‑style vibes.' },
+{ city: 'Provo, UT', text: 'Provo florists recommend simple, family‑style bouquets that feel warm and welcoming in large‑family homes.' },
+{ city: 'Wichita, KS', text: 'In Wichita, a compact, budget‑style bouquet fits nicely in small‑dining‑area homes.' },
+{ city: 'Bakersfield, CA', text: 'Bakersfield residents like bright, low‑maintenance arrangements that stand out in dry‑climatelandscapes.' },
+{ city: 'Spokane, WA', text: 'Spokane florists often recommend green‑focused bouquets that feel natural next to mountain‑style decor.' },
+{ city: 'Akron, OH', text: 'In Akron, a compact, classic‑style bouquet works well for small‑dining‑room‑table setups.' },
+{ city: 'Huntington, WV', text: 'Huntington residents love simple, practical‑style arrangements that are easy to maintain in busy‑households.' },
+{ city: 'Newark, NJ', text: 'Newark florists recommend compact, urban‑style bouquets that fit nicely in small‑apartment living‑rooms and entryways.' },
+{ city: 'Jackson, MS', text: 'In Jackson, a soft‑pastel bouquet feels right for relaxed, porch‑sitting‑style Southern‑home decor.' },
+{ city: 'Bridgeport, CT', text: 'Bridgeport residents often pick compact, classic‑style bouquets suitable for small‑apartment‑tables and cozy houses.' },
+{ city: 'New Haven, CT', text: 'New Haven florists recommend compact bouquets that feel academic‑elegant for small‑study and dining‑room layouts.' },
+{ city: 'Des Moines, IA', text: 'Des Moines residents love simple, green‑heavy arrangements that feel natural and calming in everyday homes.' },
+// Add as many more cities as you like following the same pattern
+];
+
+// PICK CITY‑TIP BY DAY OF YEAR (so it changes once per day)
+function getDailyTipIndex(date) {
+    const yearStart = new Date(date.getFullYear(), 0, 0);
+    const dayOfYear = Math.floor((date - yearStart) / 86400000);
+    return dayOfYear % TIPS_BY_CITY.length;
+}
+
+function updateTipOfTheDay() {
+    const today = new Date();
+    const index = getDailyTipIndex(today);
+    const tip = TIPS_BY_CITY[index];
+    document.getElementById('tip-city').textContent = `★★★ ${tip.city} ★★★`;
+    document.getElementById('tip-text').textContent = tip.text;
+}
+
+// INITIAL TIP
+updateTipOfTheDay();
+
+// Optional: refresh every hour to keep “daily” aligned with calendar change
+setInterval(updateTipOfTheDay, 60 * 60 * 1000);
+
+// ZOOM‑IN‑OUT ON FOUR BOXES (attraction effect)
+document.querySelectorAll('.feature-card').forEach(box => {
+    box.addEventListener('click', () => {
+        orderNow();
+    });
+});
+
+// MAKE HEADLINES / DATE / CLOCK / LOGO / CTA CLICKABLE
+document.querySelector('.hero').addEventListener('click', orderNow);
+document.getElementById('small-headline').addEventListener('click', orderNow);
+document.getElementById('hero-title').addEventListener('click', orderNow);
+document.getElementById('current-date').addEventListener('click', orderNow);
+
+// ORDER CLICK (to affiliate)
+function orderNow() {
+    console.log('🌸 CLICKED - Affiliate: 2013017799 - Holiday: ' + currentHoliday + ' - City Tip: ' + TIPS_BY_CITY[getDailyTipIndex(new Date())].city);
+    window.open('http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799', '_blank');
+}
+
+// FAQ toggle
+document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', (e) => {
+        e.stopPropagation();
+        q.parentElement.classList.toggle('active');
+    });
+});
+</script>
+</body>
+</html>
