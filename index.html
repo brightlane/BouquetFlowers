@@ -281,3 +281,51 @@ renderCities();
 
 </body>
 </html>
+const HEADER_TITLES = [
+    '🌷 MOTHER’S DAY BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+    '🌷 LABOR DAY BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+    '🌷 MEMORIAL DAY BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+    '🌷 EASTER BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+    '🌷 VALENTINE’S BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+    '🌷 CHRISTMAS BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+    '🌷 THANKSGIVING BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+];
+
+let currentHoliday = 'mothersday'; // Default holiday
+const holidayKeys = ['mothersday', 'laborday', 'memorialday', 'easter', 'valentinesday', 'christmas', 'thanksgiving']; // Keys for holiday rotation
+
+let rotationIndex = 0;
+const headlineInterval = setInterval(() => {
+    rotationIndex = (rotationIndex + 1) % holidayKeys.length;
+    currentHoliday = holidayKeys[rotationIndex];
+    document.getElementById('small-headline').textContent = SMALL_HEADLINE_TITLES[rotationIndex % SMALL_HEADLINE_TITLES.length];
+    document.getElementById('hero-title').innerHTML = HEADER_TITLES[rotationIndex % HEADER_TITLES.length];
+    document.getElementById('holiday-name').textContent = currentHoliday.toUpperCase();
+}, 20 * 1000); // Rotate every 20 seconds
+
+// Clock ticking every 10 seconds
+function updateLiveCountdown() {
+    const now = new Date();
+    const holidayDate = HOLIDAYS[currentHoliday];
+    let diff = holidayDate - now;
+
+    if (diff <= 0) {
+        // If the holiday is past, immediately move to the next one
+        rotationIndex = (rotationIndex + 1) % holidayKeys.length;
+        currentHoliday = holidayKeys[rotationIndex];
+        diff = HOLIDAYS[currentHoliday] - now;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('days').textContent = days.toString().padStart(2, '0');
+    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+}
+
+updateLiveCountdown();
+setInterval(updateLiveCountdown, 10 * 1000); // Update countdown every 10 seconds
