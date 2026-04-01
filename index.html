@@ -1076,3 +1076,169 @@
             border-radius: 7.5px;
             font-weight: 700;
             font-size:
+const HOLIDAYS = {
+    mothersday: new Date('2026-05-10T23:59:59'), // example date
+    laborday:   new Date('2026-09-07T23:59:59'),
+    easter:     new Date('2026-03-31T23:59:59'),
+    memorialday: new Date('2026-05-25T23:59:59'),
+    valentines: new Date('2026-02-14T23:59:59'),
+    christmas:  new Date('2026-12-25T23:59:59'),
+    thanksgiving: new Date('2026-11-26T23:59:59')
+};
+
+const SMALL_HEADLINE_TITLES = [
+    "MOTHER’S DAY FLORAL BOUTIQUE BLOOMS & BASKET FLOWER ARRANGEMENTS",
+    "LABOR DAY BOUTIQUE BLOOMS & BASKET BLOOMS SAME‑DAY EVERY ZIP",
+    "MEMORIAL DAY BOUTIQUE BLOOMS & FLOWER ARRANGEMENTS NATIONWIDE",
+    "EASTER BOUTIQUE BLOOMS & BASKET BLOOMS FOR HOMES AND ALTARS",
+    "VALENTINE’S BOUTIQUE BLOOMS & BASKET BLOOMS FOR EVERY COUPLE",
+    "CHRISTMAS BOUTIQUE BLOOMS & BASKET BLOOMS FOR FESTIVE HOMES",
+    "THANKSGIVING BOUTIQUE BLOOMS & BASKET BLOOMS FOR FAMILY CENTERS"
+];
+
+const HEADER_TITLES = [
+    '🌷 MOTHER’S DAY BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+    '🌷 LABOR DAY BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+    '🌷 MEMORIAL DAY BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+    '🌷 EASTER BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+    '🌷 VALENTINE’S BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+    '🌷 CHRISTMAS BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+    '🌷 THANKSGIVING BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP'
+];
+
+let currentHoliday = 'mothersday'; // start with Mothers Day
+
+// 20‑SECOND HOLIDAY & TEXT ROTATION
+const holidayKeys = Object.keys(HOLIDAYS); // ['mothersday', 'laborday', ...]
+let rotationIndex = 0;
+const headlineInterval = setInterval(() => {
+    rotationIndex = (rotationIndex + 1) % holidayKeys.length;
+    currentHoliday = holidayKeys[rotationIndex];
+
+    document.getElementById('small-headline').textContent =
+        SMALL_HEADLINE_TITLES[rotationIndex % SMALL_HEADLINE_TITLES.length];
+
+    document.getElementById('hero-title').innerHTML =
+        HEADER_TITLES[rotationIndex % HEADER_TITLES.length];
+
+    document.getElementById('holiday-name').textContent =
+        currentHoliday.toUpperCase().replace('S', '’s');
+
+}, 20 * 1000); // 20 seconds
+
+
+// CLOCK TICKS EVERY 10 SECONDS (URGENCY COUNTDOWN)
+function updateLiveCountdown() {
+    const now = new Date();
+    const holidayDate = HOLIDAYS[currentHoliday];
+    let diff = holidayDate - now;
+
+    if (diff <= 0) {
+        // if holiday is past, move to next one immediately
+        rotationIndex = (rotationIndex + 1) % holidayKeys.length;
+        currentHoliday = holidayKeys[rotationIndex];
+        diff = HOLIDAYS[currentHoliday] - now;
+    }
+
+    const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('days').textContent    = days.toString().padStart(2, '0');
+    document.getElementById('hours').textContent   = hours.toString().padStart(2, '0');
+    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+}
+
+// start countdown immediately
+updateLiveCountdown();
+setInterval(updateLiveCountdown, 10 * 1000); // 10 seconds
+
+
+// CURRENT DATE BELOW HEADLINE
+function updateCurrentDate() {
+    const date = new Date();
+    const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+    document.getElementById('current-date').textContent =
+        date.toLocaleDateString('en-US', options);
+}
+updateCurrentDate();
+
+
+// CITY‑TIP ARRAY WITH STATE‑INITIALS LOGIC
+const TIPS_BY_CITY = [
+    { city: 'New York, NY', text: 'In New York, order your bouquet by noon for same‑day delivery to Manhattan offices and homes.' },
+    { city: 'Los Angeles, CA', text: 'In Los Angeles, choose a tall standing flower arrangement for a living‑room centerpiece with impact.' },
+    { city: 'Chicago, IL', text: 'Chicago clients love a rich red‑tulip bouquet for anniversary and romantic gifts.' },
+    { city: 'Houston, TX', text: 'Houston florists recommend adding fresh lilies to bridal bouquets for volume and fragrance.' },
+    { city: 'Phoenix, AZ', text: 'In Phoenix, a bright, pastel‑pastel bouquet works well for spring outdoor garden parties.' },
+    { city: 'Philadelphia, PA', text: 'For Philly, a mixed‑wildflower bouquet feels perfect for a Mother’s Day brunch at home.' },
+    { city: 'San Antonio, TX', text: 'In San Antonio, pair a bouquet with a small succulent arrangement for a long‑lasting, stylish combo.' },
+    { city: 'San Diego, CA', text: 'In San Diego, a coastal‑style bouquet with eucalyptus and light greens looks stunning and fresh.' },
+    { city: 'Dallas, TX', text: 'Dallas brides love a lush all‑white bouquet for a modern, elegant wedding look.' },
+    { city: 'San Jose, CA', text: 'For San Jose, consider a compact, high‑impact bouquet for tech‑office celebrations and small spaces.' },
+    { city: 'Austin, TX', text: 'Austin gardeners love a wild‑flower bouquet mixed with local foliage styles for a natural look.' },
+    { city: 'Jacksonville, FL', text: 'In Jacksonville, a mixed‑orange and yellow bouquet adds warmth to humid‑season decor and outdoor events.' },
+    { city: 'Fort Worth, TX', text: 'Fort Worth ranch‑style homes pair well with rustic‑barn floral arrangements for events and dinners.' },
+    { city: 'Columbus, OH', text: 'Columbus families often choose a large sympathy bouquet for cemetery visits and condolence deliveries.' },
+    { city: 'Charlotte, NC', text: 'Charlotte balcony owners love compact flower arrangements that fit on small tables and still make a big impact.' },
+    { city: 'San Francisco, CA', text: 'For San Francisco, a minimalist, green‑focused bouquet works beautifully in sleek city apartments.' },
+    { city: 'Toronto, ON', text: 'Toronto clients often select white‑and‑gold bouquets for upscale evening events and dinners.' },
+    { city: 'Montreal, QC', text: 'Montreal florists recommend small, chic bouquet centerpieces for round‑table dinners.' },
+    { city: 'Vancouver, BC', text: 'In Vancouver, a green‑heavy floral arrangement balances wet‑season indoors and feels fresh year‑round.' },
+    { city: 'Calgary, AB', text: 'Calgary customers love bright‑yellow bouquets as mood‑boosting gifts during winter lulls.' },
+    { city: 'Langhorne, PA', text: 'For Langhorne, a medium‑sized bouquet with lilies and roses works perfectly for Easter table decor and Sunday brunch.' },
+    { city: 'Miami, FL', text: 'In Miami, choose a bright, tropical‑style bouquet with orchids and birds of paradise for summer boating events and beachfront homes.' },
+    { city: 'Orlando, FL', text: 'In Orlando, a compact Easter bouquet works well for theme‑park resorts and hotel deliveries with tight lobbies and small spaces.' },
+    { city: 'San Bernardino, CA', text: 'San Bernardino customers love budget‑friendly mixed bouquets that look large but stay under a tight gift limit.' },
+    { city: 'Stockton, CA', text: 'In Stockton, a wide, low‑profile arrangement fits perfectly on dining tables for family dinners.' },
+    { city: 'Modesto, CA', text: 'Modesto florists recommend spring bouquets with fresh daffodils and tulips for valley‑style gift‑giving.' },
+    { city: 'North Las Vegas, NV', text: 'North Las Vegas clients often order bright‑bouquet starters for new‑home‑decor setups.' },
+    { city: 'Fremont, CA', text: 'Fremont florists recommend pairing a small bouquet with a succulent arrangement for tech‑worker housewarming gifts.' },
+    { city: 'Irving, TX', text: 'In Irving, a compact, high‑impact bouquet works well for office‑desk décor in suburban‑sprawl environments.' },
+    { city: 'Glendale, CA', text: 'Glendale homeowners love a neutral‑toned bouquet that pairs with modern‑gray living‑room palettes.' },
+    { city: 'Vallejo, CA', text: 'Vallejo residents often pick eucalyptus‑heavy bouquets for a spa‑style, calming feel in the home.' },
+    { city: 'Concord, CA', text: 'In Concord, a medium‑sized bouquet fits nicely on a kitchen island without taking up too much counter space.' },
+    { city: 'Santa Rosa, CA', text: 'Santa Rosa wine‑country homes pair well with rustic‑texture bouquets using dried‑stem accents.' },
+    { city: 'Berkley, MI', text: 'For Berkley, a small, modern‑style bouquet suits minimal‑decor apartments and small balconies.' },
+    { city: 'Lancaster, CA', text: 'Lancaster customers often choose a simple, classic white‑rose bouquet for church and family‑home visits.' },
+    { city: 'Palmdale, CA', text: 'In Palmdale, a low‑maintenance, green‑heavy arrangement works well for dry‑climate indoor‑space styling.' },
+    { city: 'Corona, CA', text: 'Corona residents love compact rose‑and‑tulip bouquets for front‑porch‑centerpiece vibes.' },
+    { city: 'Escondido, CA', text: 'Escondido florists suggest light‑green bouquets that match the city’s garden‑style residential look.' },
+    { city: 'Salinas, CA', text: 'For Salinas, a mixed‑pastel bouquet complements farmhouse and bungalow‑style homes.' },
+    { city: 'Perth Amboy, NJ', text: 'Perth Amboy customers often pick large‑stem bouquets to make a cozy‑apartment‑floor feel more festive.' },
+    { city: 'Waterbury, CT', text: 'In Waterbury, a compact, all‑white bouquet works beautifully for formal dinners and small‑space table centers.' },
+    { city: 'Visalia, CA', text: 'Visalia residents love a wide, low‑profile arrangement for farm‑style living‑room tables.' },
+    { city: 'Springfield, MO', text: 'Springfield MO customers often choose a soft‑pink bouquet to brighten small living‑room layouts.' },
+    { city: 'New Britain, CT', text: 'New Britain clients like practical, long‑lasting arrangements that pair well with active family‑lifestyle homes.' },
+    { city: 'El Monte, CA', text: 'El Monte residents often pick compact bouquets that fit nicely on narrow hallway tables and entryways.' },
+    { city: 'Chula Vista, CA', text: 'In Chula Vista, a coastal‑style bouquet with plenty of greens feels natural next to ocean‑view homes.' },
+    { city: 'Torrance, CA', text: 'Torrance florists recommend low‑maintenance, mixed‑bloom arrangements for busy‑family households.' },
+    { city: 'West Valley City, UT', text: 'West Valley City couples love a medium‑sized wedding‑style bouquet for at‑home celebrations.' },
+    { city: 'New Rochelle, NY', text: 'For New Rochelle, a compact, elegant bouquet suits town‑house entry‑tables and small dining areas.' },
+    { city: 'Tallahassee, FL', text: 'Tallahassee residents often pick natural‑tone bouquets that match the city’s green, shaded‑yard aesthetic.' },
+    { city: 'Englewood, NJ', text: 'Englewood households like compact, office‑style bouquets for condo tables and small living‑room layouts.' },
+    { city: 'Mason, OH', text: 'In Mason, a compact, mid‑width bouquet fits nicely on a suburban‑dining‑room table without feeling crowded.' },
+    { city: 'High Point, NC', text: 'High Point florists often pair small bouquets with green potted herbs for a fresh, home‑style touch.' },
+    { city: 'Chickasaw, AL', text: 'Chickasaw residents like simple, budget‑friendly bouquets that still feel festive for everyday decor.' },
+    { city: 'Norman, OK', text: 'Norman customers often choose a bright‑sunflower bouquet for university‑town‑style home‑and‑dorm‑gifts.' },
+    { city: 'Skokie, IL', text: 'In Skokie, a compact, multicolor bouquet works well for multicultural‑neighborhood gift‑giving.' },
+    { city: 'Miramar, FL', text: 'Miramar residents like high‑impact, tall bouquets that look big in photos and selfies with guests.' },
+    { city: 'Tinley Park, IL', text: 'Tinley Park customers often pick wide, low‑profile arrangements that fit perfectly in suburban‑family‑dining layouts.' },
+    { city: 'Broken Arrow, OK', text: 'Broken Arrow florists recommend a mix of soft‑pinks and light‑oranges for a warm‑family‑gathering style.' },
+    { city: 'Norwalk, CT', text: 'Norwalk residents love a compact, elegant bouquet that fits nicely in small‑apartment‑entryway tables.' },
+    { city: 'Centennial, CO', text: 'In Centennial, a low‑maintenance, green‑heavy arrangement suits active‑lifestyle homes with lots of outdoor time.' },
+    { city: 'Bloomington, IL', text: 'Bloomington florists suggest simple, classic‑style bouquets for university‑town professionals.' },
+    { city: 'Victorville, CA', text: 'Victorville residents often pick compact bouquets that don’t require too much watering in desert‑style homes.' },
+    { city: 'Evansville, IN', text: 'In Evansville, a budget‑style mixed‑bloom bouquet feels right for everyday‑table‑centerpiece use.' },
+    { city: 'Avondale, AZ', text: 'Avondale customers love practical, mid‑size bouquets that look great on kitchen‑countertop backs.' },
+    { city: 'Beaumont, CA', text: 'Beaumont residents often pick low‑maintenance, green‑focused arrangements for desert‑style living‑rooms.' },
+    { city: 'Fullerton, CA', text: 'In Fullerton, a compact, window‑sill‑style bouquet fits nicely by the kitchen for a bright morning‑mood boost.' },
+    { city: 'Oceanside, CA', text: 'Oceanside florists recommend coastal‑style bouquets with plenty of eucalyptus for a relaxed, ocean‑vibe look.' },
+    { city: 'Garden Grove, CA', text: 'Garden Grove customers like compact, family‑style bouquets that feel festive but not too formal.' },
+    { city: 'Cape Coral, FL', text: 'In Cape Coral, a light‑green and pastel‑style bouquet fits perfectly with boat‑dock and patio‑living vibes.' },
+    { city: 'Sunnyvale, CA', text: 'Sunnyvale residents often pick compact, modern‑style bouquets for tech‑worker condos and small‑space layouts.' },
+    { city: 'Wilmington, NC', text: 'Wilmington florists recommend coastal‑style arrangements that match the city’s marina and waterfront homes.' },
+    { city: 'Henderson, NV', text: 'In Henderson, a compact, colorful bouquet works well for busy‑family homes with lots of outdoor time.' },
+    { city: 'Springfield, IL', text: 'Springfield IL residents love a classic‑style white‑and‑pink bouquet for formal‑dinner and office
