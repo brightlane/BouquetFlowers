@@ -34,22 +34,12 @@ a {
   font-size: 16px;
 }
 
-/* HOLIDAY NAME COLOR */
-#holiday-name {
-  color: #7ec8e3;
-}
-
-/* HEADER */
-header {
-  position: fixed;
-  top: 50px;
-  width: 100%;
-  background: #fff;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  z-index: 9998;
+/* DATE STYLE - DARKER */
+#current-date {
+  color: #4B1F1F; /* Darker tone */
   font-weight: bold;
-  font-size: 18px;
+  margin-top: 8px;
+  font-size: 22px;
 }
 
 /* HERO SECTION */
@@ -59,68 +49,6 @@ header {
   background-size: cover;
   color: #fff;
   text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
-}
-
-/* DARKER "MOTHER’S DAY SPECIAL" */
-.hero #small-headline {
-  font-size: 20px;
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: #7f1d1d; /* darker wine tone */
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
-}
-
-/* CLICKABLE HERO TITLE */
-#hero-link h1 {
-  color: #0b3d91;
-  cursor: pointer;
-  text-decoration: underline;
-  font-size: 48px;
-  margin: 10px 0;
-  transition: color 0.3s;
-}
-
-#hero-link h1:hover {
-  color: #062f6c;
-}
-
-/* DARKER DATE */
-#current-date {
-  color: #9a3412; /* deeper burnt orange */
-  font-weight: bold;
-  margin-top: 8px;
-  font-size: 18px;
-}
-
-/* HERO CTA */
-.hero .cta {
-  background: #e11d48;
-  color: white;
-  padding: 18px 36px;
-  border-radius: 30px;
-  display: inline-block;
-  margin-top: 30px;
-  font-weight: bold;
-  font-size: 20px;
-  transition: background 0.3s;
-}
-
-.hero .cta:hover {
-  background: #be123c;
-}
-
-/* SECTIONS */
-.section { 
-  margin: 60px 20px;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.section h2 {
-  font-size: 32px;
-  margin-bottom: 20px;
-  color: #e11d48;
 }
 
 /* CITY TIPS */
@@ -138,46 +66,22 @@ header {
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-.city-tip a {
-  color: #333;
+/* TIP OF THE DAY */
+#tip-of-the-day {
+  font-size: 16px;
   font-weight: bold;
+  color: #7ec8e3;
+  margin-top: 10px;
+  font-style: italic;
 }
 
-.city-tip a:hover {
-  color: #e11d48;
-  text-decoration: underline;
-}
-
-/* CLOCK */
-#clock {
-  font-size: 18px;
-  margin-top: 8px;
-  font-weight: bold;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .hero #hero-link h1 {
-    font-size: 32px;
-  }
-
-  .hero .cta {
-    padding: 14px 24px;
-    font-size: 16px;
-  }
-
-  .urgency-bar {
-    font-size: 14px;
-    padding: 10px;
-  }
-}
 </style>
 </head>
 
 <body>
 
 <!-- URGENCY BAR -->
-<a href="http://www.floristone.com/main.cfm?occ=ea&source_id=aff&AffiliateID=2013017799">
+<a href="#" onclick="go()">
   <div class="urgency-bar">
     🚨 <span id="holiday-name">MOTHER’S DAY</span> DEAL ENDS IN:
     <span id="days">00</span>d :
@@ -188,35 +92,59 @@ header {
 </a>
 
 <header>
-  <a href="http://www.floristone.com/main.cfm?occ=ea&source_id=aff&AffiliateID=2013017799">🌸 Bloom Express – SAME DAY FLOWERS</a>
+  <a href="#" onclick="go()">🌸 Bloom Express – SAME DAY FLOWERS</a>
 </header>
 
 <!-- HERO -->
 <div class="hero">
   <div id="small-headline">MOTHER’S DAY SPECIAL</div>
-  <a href="http://www.floristone.com/main.cfm?occ=ea&source_id=aff&AffiliateID=2013017799" id="hero-link">
-    <h1>🌷 Fresh Flowers, Delivered Today</h1>
+  <a href="#" onclick="go()" id="hero-link">
+    <h1 id="hero-title">🌷 Fresh Flowers, Delivered Today</h1>
   </a>
   <div id="current-date"></div>
   <div id="clock"></div>
-  <a href="http://www.floristone.com/main.cfm?occ=ea&source_id=aff&AffiliateID=2013017799" class="cta">🌸 Check Same-Day Delivery</a>
+  <a href="#" onclick="go()" class="cta">🌸 Check Same-Day Delivery</a>
 </div>
 
 <!-- FEATURES -->
 <div class="section">
-  <h2><a href="http://www.floristone.com/main.cfm?occ=ea&source_id=aff&AffiliateID=2013017799">Why Choose Bloom Express?</a></h2>
-  <p><a href="http://www.floristone.com/main.cfm?occ=ea&source_id=aff&AffiliateID=2013017799">We deliver fresh, hand-picked flowers to your loved ones on the same day. Available in most cities and ZIP codes.</a></p>
+  <h2>Why Choose Bloom Express?</h2>
+  <p>We deliver fresh, hand-picked flowers to your loved ones on the same day. Available in most cities and ZIP codes.</p>
 </div>
 
 <!-- CITY TIPS -->
 <div class="section">
-  <h2><a href="http://www.floristone.com/main.cfm?occ=ea&source_id=aff&AffiliateID=2013017799">🌎 Local Flower Tips</a></h2>
+  <h2>🌎 Local Flower Tips</h2>
   <div id="city-container"></div>
 </div>
 
 <script>
 // ================= AFFILIATE LINK =================
 const LINK = "http://www.floristone.com/main.cfm?occ=ea&source_id=aff&AffiliateID=2013017799";
+function go() { window.location.href = LINK; }
+
+// ================= HOLIDAY TITLE ROTATION =================
+const HEADER_TITLES = [
+  '🌷 MOTHER’S DAY BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+  '🌷 LABOR DAY BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+  '🌷 MEMORIAL DAY BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+  '🌷 EASTER BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+  '🌷 VALENTINE’S BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+  '🌷 CHRISTMAS BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+  '🌷 THANKSGIVING BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
+];
+
+let currentHoliday = 'mothersday';
+const holidayKeys = ['mothersday', 'laborday', 'memorialday', 'easter', 'valentinesday', 'christmas', 'thanksgiving'];
+let rotationIndex = 0;
+
+const headlineInterval = setInterval(() => {
+  rotationIndex = (rotationIndex + 1) % holidayKeys.length;
+  currentHoliday = holidayKeys[rotationIndex];
+  document.getElementById('small-headline').textContent = `Happy ${currentHoliday.toUpperCase()}!`;
+  document.getElementById('hero-title').innerHTML = HEADER_TITLES[rotationIndex];
+  document.getElementById('holiday-name').textContent = currentHoliday.toUpperCase();
+}, 20 * 1000); // Rotate every 20 seconds
 
 // ================= DATE + CLOCK =================
 function updateClock() {
@@ -228,26 +156,13 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
-// ================= HOLIDAYS =================
-const HOLIDAYS = [
-  {name: "MOTHER’S DAY", date: new Date('May 10, 2026')},
-  {name: "MEMORIAL DAY", date: new Date('May 25, 2026')},
-  {name: "LABOR DAY", date: new Date('September 7, 2026')},
-  {name: "THANKSGIVING", date: new Date('November 26, 2026')},
-  {name: "CHRISTMAS", date: new Date('December 25, 2026')}
-];
-
-let hIndex = 0;
-function rotateHoliday() { hIndex = (hIndex + 1) % HOLIDAYS.length; }
-setInterval(rotateHoliday, 10000);
-
+// ================= COUNTDOWN =================
 function updateCountdown() {
   const now = new Date();
-  let target = HOLIDAYS[hIndex].date;
-  if (target < now) { rotateHoliday(); target = HOLIDAYS[hIndex].date; }
+  let target = new Date(`${HOLIDAYS[currentHoliday].month} ${HOLIDAYS[currentHoliday].day}, ${HOLIDAYS[currentHoliday].year}`);
+  if (target < now) { rotationIndex = (rotationIndex + 1) % holidayKeys.length; target = new Date(`${HOLIDAYS[currentHoliday].month} ${HOLIDAYS[currentHoliday].day}, ${HOLIDAYS[currentHoliday].year}`); }
   const diff = target - now;
 
-  document.getElementById('holiday-name').innerText = HOLIDAYS[hIndex].name;
   document.getElementById('days').innerText = String(Math.floor(diff / 86400000)).padStart(2,'0');
   document.getElementById('hours').innerText = String(Math.floor(diff / 3600000) % 24).padStart(2,'0');
   document.getElementById('minutes').innerText = String(Math.floor(diff / 60000) % 60).padStart(2,'0');
@@ -256,76 +171,32 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-// ================= CITY TIPS =================
-const CITY_TIPS = [
-  {city: "New York, NY", text: "Order before noon for same-day delivery."},
-  {city: "Los Angeles, CA", text: "Tall arrangements brighten big rooms."},
-  {city: "Chicago, IL", text: "Red tulips are a local favorite."},
-  {city: "Houston, TX", text: "Lilies add fragrance and fullness."},
-  {city: "Phoenix, AZ", text: "Bright pastel bouquets work best."},
-  {city: "Philadelphia, PA", text: "Wildflower bouquets fit brunch vibes."},
-  {city: "Langhorne, PA", text: "Lilies + roses make perfect home décor."}
+// ================= CITY TIPS WITH DAILY TIP =================
+const TIPS_BY_CITY = [
+  { city: 'New York, NY', text: 'Order before noon for same-day delivery to Manhattan offices and homes.', dailyTip: 'Today: Try a bouquet with tulips and roses for a lively, spring look.' },
+  { city: 'Los Angeles, CA', text: 'Choose a tall standing flower arrangement for a living-room centerpiece.', dailyTip: 'Today: Incorporate eucalyptus for a fresh, green touch.' },
+  { city: 'Chicago, IL', text: 'Red tulips are a local favorite for romantic gifts.', dailyTip: 'Today: A mixed bouquet of roses and lilies is perfect for anniversaries.' },
+  { city: 'Houston, TX', text: 'Add fresh lilies for volume and fragrance in bridal bouquets.', dailyTip: 'Today: A bright yellow bouquet works wonders for sunny days.' },
+  { city: 'Phoenix, AZ', text: 'Pastel bouquets are perfect for outdoor garden parties.', dailyTip: 'Today: Try a mix of lavender and white roses for a calming vibe.' },
+  // Add more city tips here...
 ];
 
-function renderCities() {
+function renderCityTips() {
   const container = document.getElementById("city-container");
-  CITY_TIPS.forEach(c => {
+  TIPS_BY_CITY.forEach(tip => {
     const div = document.createElement("div");
     div.className = "city-tip";
-    div.innerHTML = `<a href="${LINK}"><strong>${c.city}</strong><br>${c.text}</a>`;
+    div.innerHTML = `
+      <strong>${tip.city}</strong><br>
+      ${tip.text}
+      <div id="tip-of-the-day">${tip.dailyTip}</div>
+    `;
     container.appendChild(div);
   });
 }
-renderCities();
+renderCityTips();
+
 </script>
 
 </body>
 </html>
-const HEADER_TITLES = [
-    '🌷 MOTHER’S DAY BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
-    '🌷 LABOR DAY BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
-    '🌷 MEMORIAL DAY BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
-    '🌷 EASTER BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
-    '🌷 VALENTINE’S BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
-    '🌷 CHRISTMAS BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
-    '🌷 THANKSGIVING BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME‑DAY FLOWER ARRANGEMENTS EVERY ZIP',
-];
-
-let currentHoliday = 'mothersday'; // Default holiday
-const holidayKeys = ['mothersday', 'laborday', 'memorialday', 'easter', 'valentinesday', 'christmas', 'thanksgiving']; // Keys for holiday rotation
-
-let rotationIndex = 0;
-const headlineInterval = setInterval(() => {
-    rotationIndex = (rotationIndex + 1) % holidayKeys.length;
-    currentHoliday = holidayKeys[rotationIndex];
-    document.getElementById('small-headline').textContent = SMALL_HEADLINE_TITLES[rotationIndex % SMALL_HEADLINE_TITLES.length];
-    document.getElementById('hero-title').innerHTML = HEADER_TITLES[rotationIndex % HEADER_TITLES.length];
-    document.getElementById('holiday-name').textContent = currentHoliday.toUpperCase();
-}, 20 * 1000); // Rotate every 20 seconds
-
-// Clock ticking every 10 seconds
-function updateLiveCountdown() {
-    const now = new Date();
-    const holidayDate = HOLIDAYS[currentHoliday];
-    let diff = holidayDate - now;
-
-    if (diff <= 0) {
-        // If the holiday is past, immediately move to the next one
-        rotationIndex = (rotationIndex + 1) % holidayKeys.length;
-        currentHoliday = holidayKeys[rotationIndex];
-        diff = HOLIDAYS[currentHoliday] - now;
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-    document.getElementById('days').textContent = days.toString().padStart(2, '0');
-    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-}
-
-updateLiveCountdown();
-setInterval(updateLiveCountdown, 10 * 1000); // Update countdown every 10 seconds
