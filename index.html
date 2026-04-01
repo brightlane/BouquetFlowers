@@ -568,3 +568,59 @@
         const HOLIDAYS = {
             easter: new Date(2026, 3, 5, 23, 59, 59),      // April 5
             mothersday: new Date(2026, 4, 10, 23, 59, 59), // May 10
+            memorialday: new Date(2026, 4, 25, 23, 59, 59) // May 25
+        };
+
+        let currentHoliday = 'easter';
+
+        // LIVE COUNTDOWN EVERY SECOND
+        function updateLiveCountdown() {
+            const now = new Date();
+            const holidayDate = HOLIDAYS[currentHoliday];
+            let diff = holidayDate - now;
+            
+            if (diff <= 0) {
+                if (currentHoliday === 'easter') currentHoliday = 'mothersday';
+                else if (currentHoliday === 'mothersday') currentHoliday = 'memorialday';
+                else currentHoliday = 'easter'; // Loop
+                diff = HOLIDAYS[currentHoliday] - now;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            document.getElementById('holiday-name').textContent = currentHoliday.toUpperCase();
+            document.getElementById('hero-title').innerHTML = 
+                `🌷 ${currentHoliday.toUpperCase().replace('DAY', 'Day')} BOUTIQUE BLOOMS & BOUTIQUE BOUQUET<br>SAME-DAY FLOWER ARRANGEMENTS EVERY ZIP`;
+        }
+
+        // START IMMEDIATELY - UPDATE EVERY SECOND
+        updateLiveCountdown();
+        setInterval(updateLiveCountdown, 1000);
+
+        // Order click (to affiliate)
+        function orderNow() {
+            console.log('🌸 CLICKED - Affiliate: 2013017799 - Holiday: ' + currentHoliday);
+            window.open('http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799', '_blank');
+        }
+
+        // FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', (e) => {
+                e.stopPropagation();
+                q.parentElement.classList.toggle('active');
+            });
+        });
+
+        // Hero click
+        document.querySelector('.hero').addEventListener('click', orderNow);
+    </script>
+</body>
+</html>
