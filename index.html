@@ -34,6 +34,11 @@ a {
   font-size: 16px;
 }
 
+/* HOLIDAY NAME COLOR */
+#holiday-name {
+  color: #7ec8e3; /* Light blue */
+}
+
 /* HEADER */
 header {
   position: fixed;
@@ -74,6 +79,14 @@ header {
 
 #hero-link h1:hover {
   color: #062f6c; /* Slightly darker blue */
+}
+
+/* CURRENT DATE COLOR */
+#current-date {
+  color: #d35400; /* Dark orange */
+  font-weight: bold;
+  margin-top: 8px;
+  font-size: 18px;
 }
 
 /* HERO CTA */
@@ -132,8 +145,8 @@ header {
   text-decoration: underline;
 }
 
-/* CLOCK AND DATE */
-#clock, #current-date {
+/* CLOCK */
+#clock {
   font-size: 18px;
   margin-top: 8px;
   font-weight: bold;
@@ -207,7 +220,7 @@ function go() { window.location.href = LINK; }
 function updateClock() {
   const now = new Date();
   document.getElementById("current-date").innerText =
-      now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
   document.getElementById("clock").innerText = now.toLocaleTimeString('en-US');
 }
 setInterval(updateClock, 1000);
