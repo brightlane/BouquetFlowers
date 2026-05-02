@@ -1,11 +1,22 @@
 {
-  "program": "Floristone",
+  "program": "FloristOne",
   "affiliate_id": "2013017799",
   "base_url": "https://www.floristone.com/main.cfm",
-  "site_url": "https://brightlane.github.io/SameDayFlowers/",
-  "occasions": ["mothers-day","sympathy","birthday","get-well","anniversary","romance","thank-you","new-baby"],
-  "pricing": {"starting_from": 29.99, "service_fees": 0},
-  "ratings": {"score": 4.8, "review_count": 18742},
-  "affiliate_link": "http://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799",
+  "params": {
+    "occ": "cm",
+    "source_id": "aff"
+  },
+  "site_url": "https://brightlane.github.io/",
+  "supported_occasions": [
+    "mothers-day",
+    "sympathy",
+    "birthday",
+    "get-well",
+    "anniversary",
+    "romance",
+    "thank-you",
+    "new-baby",
+    "christmas"
+  ],
   "last_updated": "2026-05-02"
 }
