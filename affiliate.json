@@ -3,10 +3,11 @@
   "affiliate_id": "2013017799",
   "base_url": "https://www.floristone.com/main.cfm",
   "params": {
-    "occ": "cm",
-    "source_id": "aff"
+    "cat": "r",
+    "source_id": "aff",
+    "AffiliateID": "2013017799"
   },
-  "site_url": "https://brightlane.github.io/",
+  "site_url": "https://brightlane.github.io/BouquetFlowers/",
   "supported_occasions": [
     "mothers-day",
     "sympathy",
