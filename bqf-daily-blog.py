@@ -1,6 +1,6 @@
 import datetime, hashlib, os, re
 
-AFF_BASE = "https://www.floristone.com/main.cfm?source_id=aff&AffiliateID=21885"
+AFF_BASE = "http://www.floristone.com/main.cfm?cat=r&source_id=aff&AffiliateID=2013017799"
 BASE_URL = "https://brightlane.github.io/BouquetFlowers"
 today = datetime.date.today()
 date_str = str(today)
@@ -134,4 +134,4 @@ if os.path.exists("sitemap.xml"):
 
 print(f"Generated: {filename}")
 print(f"City: {city} | Occasion: {occasion['name']}")
-print(f"Affiliate ID: 21885 ✓")
+print(f"Affiliate ID: 2013017799 ✓")
