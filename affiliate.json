@@ -1,0 +1,11 @@
+{
+  "program": "Floristone",
+  "affiliate_id": "21885",
+  "base_url": "https://www.floristone.com/main.cfm",
+  "site_url": "https://brightlane.github.io/BouquetFlowers/",
+  "occasions": ["mothers-day","birthday","anniversary","sympathy","get-well","romance","thank-you","new-baby"],
+  "pricing": {"starting_from": 29.99, "service_fees": 0},
+  "ratings": {"score": 4.8, "review_count": 18742},
+  "affiliate_link": "https://www.floristone.com/main.cfm?occ=md&source_id=aff&AffiliateID=21885",
+  "last_updated": "2026-05-02"
+}
