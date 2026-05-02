@@ -1,0 +1,55 @@
+name: Daily Blog Generator
+on:
+  schedule:
+    - cron: "0 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Git config
+        run: |
+          git config user.name "auto-blog-bot"
+          git config user.email "bot@brightlane.io"
+
+      - name: Pull latest
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Generate daily blog post
+        run: python3 bqf-daily-blog.py
+
+      - name: Run multilingual Bing blast
+        run: python3 bqf_bing_blast.py
+
+      - name: Commit and push
+        run: |
+          git add .
+          git diff --staged --quiet && echo "Nothing to commit" && exit 0
+          git commit -m "Daily blog + Bing blast [$(date +'%Y-%m-%d')]"
+          git fetch origin main
+          if git rebase -X theirs origin/main; then
+            git push origin main && exit 0
+          fi
+          git rebase --abort || true
+          git reset --hard origin/main
+          git add .
+          git diff --staged --quiet && exit 0
+          git commit -m "Daily update (retry) [$(date +'%Y-%m-%d')]"
+          git push origin main
