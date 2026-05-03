@@ -2,22 +2,23 @@
   "program": "FloristOne",
   "affiliate_id": "2013017799",
   "base_url": "https://www.floristone.com/main.cfm",
-  "params": {
-    "cat": "r",
-    "source_id": "aff",
-    "AffiliateID": "2013017799"
-  },
+  "params": { "cat": "r", "source_id": "aff", "AffiliateID": "2013017799" },
+  "full_url": "https://www.floristone.com/main.cfm?cat=r&source_id=aff&AffiliateID=2013017799",
   "site_url": "https://brightlane.github.io/BouquetFlowers/",
   "supported_occasions": [
-    "mothers-day",
-    "sympathy",
-    "birthday",
-    "get-well",
-    "anniversary",
-    "romance",
-    "thank-you",
-    "new-baby",
-    "christmas"
+    "mothers-day", "sympathy", "birthday", "get-well",
+    "anniversary", "romance", "thank-you", "new-baby", "christmas"
   ],
-  "last_updated": "2026-05-02"
+  "properties": [
+    "https://brightlane.github.io/SendFlowersOnline/",
+    "https://brightlane.github.io/MothersDayFlowers/",
+    "https://brightlane.github.io/BouquetFlowers/",
+    "https://brightlane.github.io/ValentinesDayFlowers/",
+    "https://brightlane.github.io/FtdFlowers/",
+    "https://brightlane.github.io/SameDayFlowers/",
+    "https://brightlane.github.io/ChristmasFlowers/",
+    "https://brightlane.github.io/FlowerDelivery/",
+    "https://brightlane.github.io/SameDayFlorist/"
+  ],
+  "last_updated": "2026-05-03"
 }
