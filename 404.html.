@@ -1,26 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found | BouquetFlowers</title>
-    <meta name="robots" content="noindex">
-    <style>
-        :root{--rose:#b5204e;}
-        *{box-sizing:border-box;margin:0;padding:0;}
-        body{font-family:system-ui,sans-serif;background:#fdf8f3;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:20px;}
-        .emoji{font-size:4rem;margin-bottom:16px;}
-        h1{font-size:2rem;font-weight:800;color:var(--rose);margin-bottom:8px;}
-        p{font-size:1rem;color:#666;margin-bottom:24px;max-width:400px;}
-        .btn{display:inline-block;background:var(--rose);color:#fff;padding:13px 30px;border-radius:99px;font-weight:700;font-size:1rem;text-decoration:none;margin:6px;}
-        .btn.outline{background:#fff;color:var(--rose);border:2px solid var(--rose);}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Not Found | BouquetFlowers</title>
+<meta name="robots" content="noindex, follow">
+<style>
+:root{--rose:#b5204e;--bg:#fdf8f3;--border:#e8ddd8;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:#333;text-align:center;}
+.hero{background:linear-gradient(135deg,#b5204e,#e86a8a);color:#fff;padding:60px 20px;}
+h1{font-size:2.5rem;margin-bottom:10px;}
+p{max-width:500px;margin:0 auto 20px;font-size:1.1rem;color:rgba(255,255,255,0.9);}
+.btn{display:inline-block;background:#fff;color:#b5204e;padding:14px 30px;border-radius:50px;font-weight:bold;text-decoration:none;margin:8px;}
+.section{padding:40px 20px;}
+.related{background:#fff;border-top:1px solid var(--border);padding:30px 20px;}
+.related a{display:inline-block;margin:6px 8px;color:var(--rose);font-weight:bold;text-decoration:none;font-size:0.9em;}
+.related a:hover{text-decoration:underline;}
+footer{background:#1a1a1a;color:#888;padding:24px;font-size:0.8em;}
+footer a{color:#ccc;}
+</style>
 </head>
 <body>
-    <div class="emoji">🌸</div>
-    <h1>Page Not Found</h1>
-    <p>The page you're looking for doesn't exist. Let's get you back to beautiful flowers.</p>
-    <a href="https://brightlane.github.io/BouquetFlowers/" class="btn">Go Home</a>
-    <a href="https://www.floristone.com/main.cfm?occ=md&source_id=aff&AffiliateID=21885" class="btn outline">Order Flowers Now</a>
+
+<div class="hero">
+  <h1>🌸 Page Not Found</h1>
+  <p>The page you're looking for doesn't exist. Let's get you back to beautiful flowers.</p>
+  <a href="https://brightlane.github.io/BouquetFlowers/" class="btn">← Back to Home</a>
+  <a href="https://www.floristone.com/main.cfm?cat=r&source_id=aff&AffiliateID=2013017799"
+     class="btn" target="_blank" rel="nofollow sponsored noopener">Order Flowers Now 🌷</a>
+</div>
+
+<div class="section">
+  <h2>Shop Fresh Bouquets Today</h2>
+  <p style="max-width:500px;margin:16px auto 24px;color:#555;">Free same-day delivery across USA & Canada. Farm-fresh flowers from $29.99. $0 service fees.</p>
+  <a href="https://www.floristone.com/main.cfm?cat=r&source_id=aff&AffiliateID=2013017799"
+     style="display:inline-block;background:#b5204e;color:#fff;padding:14px 30px;border-radius:50px;font-weight:bold;text-decoration:none;"
+     target="_blank" rel="nofollow sponsored noopener">Browse All Bouquets 🌸</a>
+</div>
+
+<div class="related">
+  <strong>More Flower Delivery Sites:</strong><br><br>
+  <a href="https://brightlane.github.io/SendFlowersOnline/">Send Flowers Online</a>
+  <a href="https://brightlane.github.io/MothersDayFlowers/">Mother's Day Flowers</a>
+  <a href="https://brightlane.github.io/ValentinesDayFlowers/">Valentine's Day Flowers</a>
+  <a href="https://brightlane.github.io/FtdFlowers/">FTD Flowers</a>
+  <a href="https://brightlane.github.io/SameDayFlowers/">Same Day Flowers</a>
+  <a href="https://brightlane.github.io/ChristmasFlowers/">Christmas Flowers</a>
+  <a href="https://brightlane.github.io/FlowerDelivery/">Flower Delivery</a>
+  <a href="https://brightlane.github.io/SameDayFlorist/">Same Day Florist</a>
+</div>
+
+<footer>
+  <p>This page contains affiliate links. We may earn a commission at no cost to you.</p>
+  <p>© <span id="yr"></span> BouquetFlowers · <a href="https://brightlane.github.io/BouquetFlowers/">Home</a></p>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 </body>
 </html>
