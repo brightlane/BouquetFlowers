@@ -5,17 +5,34 @@ import urllib.request
 from datetime import datetime
 
 # ─────────────────────────────────────────────
-# 1. CONFIG
+# 1. CONFIG — DO NOT CHANGE AFFILIATE URL
 # ─────────────────────────────────────────────
-AFF_BASE = "https://www.floristone.com/main.cfm?source_id=aff&AffiliateID=21885"
+AFF_URL  = "https://www.floristone.com/main.cfm?cat=r&source_id=aff&AffiliateID=2013017799"
 BASE_URL = "https://brightlane.github.io/BouquetFlowers"
-TODAY = datetime.now().strftime("%Y-%m-%d")
-YEAR = datetime.now().strftime("%Y")
-seed = int(hashlib.md5(TODAY.encode()).hexdigest()[:8], 16)
+TODAY    = datetime.now().strftime("%Y-%m-%d")
+YEAR     = datetime.now().strftime("%Y")
+seed     = int(hashlib.md5(TODAY.encode()).hexdigest()[:8], 16)
 INDEXNOW_KEY = "3dd8ef03a39841008c6f5fe0c38144d5"
 
 # ─────────────────────────────────────────────
-# 2. 1500 CITIES USA + CANADA
+# 2. CROSS-LINKS
+# ─────────────────────────────────────────────
+RELATED_SITES = [
+    ("Send Flowers Online",     "https://brightlane.github.io/SendFlowersOnline/"),
+    ("Mother's Day Flowers",    "https://brightlane.github.io/MothersDayFlowers/"),
+    ("Valentine's Day Flowers", "https://brightlane.github.io/ValentinesDayFlowers/"),
+    ("FTD Flowers",             "https://brightlane.github.io/FtdFlowers/"),
+    ("Same Day Flowers",        "https://brightlane.github.io/SameDayFlowers/"),
+    ("Christmas Flowers",       "https://brightlane.github.io/ChristmasFlowers/"),
+    ("Flower Delivery",         "https://brightlane.github.io/FlowerDelivery/"),
+    ("Same Day Florist",        "https://brightlane.github.io/SameDayFlorist/"),
+]
+RELATED_HTML = " &nbsp;|&nbsp; ".join(
+    f'<a href="{url}">{name}</a>' for name, url in RELATED_SITES
+)
+
+# ─────────────────────────────────────────────
+# 3. 1500 CITIES USA + CANADA
 # ─────────────────────────────────────────────
 ALL_CITIES = list(dict.fromkeys([
     "New York","Los Angeles","Chicago","Houston","Phoenix","Philadelphia",
@@ -156,25 +173,25 @@ ALL_CITIES = list(dict.fromkeys([
 ]))
 
 # ─────────────────────────────────────────────
-# 3. OCCASIONS
+# 4. OCCASIONS — no occ tags
 # ─────────────────────────────────────────────
 OCCASIONS = [
-    {"en":"Mother's Day Flowers","fr":"Fleurs fête des mères","zh":"母亲节鲜花","es":"Flores día de la madre","ru":"Цветы на День матери","slug":"mothers-day","tag":"md"},
-    {"en":"Birthday Flowers",    "fr":"Fleurs d'anniversaire","zh":"生日鲜花",   "es":"Flores de cumpleaños","ru":"Цветы на день рождения","slug":"birthday","tag":"bd"},
-    {"en":"Anniversary Flowers", "fr":"Fleurs d'anniversaire de mariage","zh":"周年纪念花","es":"Flores de aniversario","ru":"Цветы на годовщину","slug":"anniversary","tag":"an"},
-    {"en":"Sympathy Flowers",    "fr":"Fleurs de sympathie","zh":"慰问鲜花",    "es":"Flores de condolencia","ru":"Цветы соболезнования","slug":"sympathy","tag":"sy"},
-    {"en":"Get Well Flowers",    "fr":"Fleurs de rétablissement","zh":"祝愿康复花","es":"Flores de recuperación","ru":"Цветы пожелания здоровья","slug":"get-well","tag":"gw"},
-    {"en":"Romance Flowers",     "fr":"Fleurs romantiques","zh":"浪漫鲜花",     "es":"Flores románticas","ru":"Романтические цветы","slug":"romance","tag":"ro"},
-    {"en":"Thank You Flowers",   "fr":"Fleurs de remerciement","zh":"感谢鲜花",  "es":"Flores de agradecimiento","ru":"Цветы благодарности","slug":"thank-you","tag":"ty"},
-    {"en":"New Baby Flowers",    "fr":"Fleurs nouveau-né","zh":"新生儿鲜花",     "es":"Flores bebé recién nacido","ru":"Цветы на рождение ребёнка","slug":"new-baby","tag":"nb"},
+    {"en":"Mother's Day Flowers","fr":"Fleurs fête des mères","zh":"母亲节鲜花","es":"Flores día de la madre","ru":"Цветы на День матери","slug":"mothers-day"},
+    {"en":"Birthday Flowers",    "fr":"Fleurs d'anniversaire","zh":"生日鲜花",  "es":"Flores de cumpleaños","ru":"Цветы на день рождения","slug":"birthday"},
+    {"en":"Anniversary Flowers", "fr":"Fleurs d'anniversaire de mariage","zh":"周年纪念花","es":"Flores de aniversario","ru":"Цветы на годовщину","slug":"anniversary"},
+    {"en":"Sympathy Flowers",    "fr":"Fleurs de sympathie","zh":"慰问鲜花",   "es":"Flores de condolencia","ru":"Цветы соболезнования","slug":"sympathy"},
+    {"en":"Get Well Flowers",    "fr":"Fleurs de rétablissement","zh":"祝愿康复花","es":"Flores de recuperación","ru":"Цветы пожелания здоровья","slug":"get-well"},
+    {"en":"Romance Flowers",     "fr":"Fleurs romantiques","zh":"浪漫鲜花",    "es":"Flores románticas","ru":"Романтические цветы","slug":"romance"},
+    {"en":"Thank You Flowers",   "fr":"Fleurs de remerciement","zh":"感谢鲜花", "es":"Flores de agradecimiento","ru":"Цветы благодарности","slug":"thank-you"},
+    {"en":"New Baby Flowers",    "fr":"Fleurs nouveau-né","zh":"新生儿鲜花",    "es":"Flores bebé recién nacido","ru":"Цветы на рождение ребёнка","slug":"new-baby"},
 ]
 
 # ─────────────────────────────────────────────
-# 4. MULTILINGUAL CONTENT
+# 5. MULTILINGUAL CONTENT
 # ─────────────────────────────────────────────
 LANGS = {
     "en": {
-        "dir": "bing",
+        "dir":    "bing",
         "title":  lambda o,c: f"Send {o['en']} Online to {c} — Free Same-Day Delivery",
         "h1":     lambda o,c: f"Send {o['en']} Online to {c}",
         "meta":   lambda o,c: f"Send {o['en'].lower()} online to {c}. Free same-day delivery, $0 fees, from $29.99. 4.8 stars from 18,742 customers.",
@@ -191,7 +208,7 @@ LANGS = {
         "footer": f"© {YEAR} BouquetFlowers · This page contains affiliate links.",
     },
     "fr": {
-        "dir": "bing-fr",
+        "dir":    "bing-fr",
         "title":  lambda o,c: f"Envoyer des {o['fr']} à {c} — Livraison gratuite le jour même",
         "h1":     lambda o,c: f"Envoyer des {o['fr']} à {c}",
         "meta":   lambda o,c: f"Envoyez des {o['fr'].lower()} à {c} en ligne. Livraison gratuite le jour même, 0$ de frais, dès 29,99$.",
@@ -208,7 +225,7 @@ LANGS = {
         "footer": f"© {YEAR} BouquetFlowers · Ce site contient des liens affiliés.",
     },
     "zh": {
-        "dir": "bing-zh",
+        "dir":    "bing-zh",
         "title":  lambda o,c: f"在线向{c}发送{o['zh']} — 当日免费送达",
         "h1":     lambda o,c: f"在线向{c}发送{o['zh']}",
         "meta":   lambda o,c: f"在线向{c}发送{o['zh']}。当日免费送达，零服务费，低至$29.99。18,742位客户评分4.8星。",
@@ -225,7 +242,7 @@ LANGS = {
         "footer": f"© {YEAR} BouquetFlowers · 本页面含有联盟链接。",
     },
     "es": {
-        "dir": "bing-es",
+        "dir":    "bing-es",
         "title":  lambda o,c: f"Enviar {o['es']} online a {c} — Entrega gratis el mismo día",
         "h1":     lambda o,c: f"Enviar {o['es']} online a {c}",
         "meta":   lambda o,c: f"Envía {o['es'].lower()} online a {c}. Entrega gratis el mismo día, $0 cargos, desde $29.99.",
@@ -242,7 +259,7 @@ LANGS = {
         "footer": f"© {YEAR} BouquetFlowers · Esta página contiene enlaces de afiliado.",
     },
     "ru": {
-        "dir": "bing-ru",
+        "dir":    "bing-ru",
         "title":  lambda o,c: f"Отправить {o['ru']} онлайн в {c} — Бесплатная доставка в день заказа",
         "h1":     lambda o,c: f"Отправить {o['ru']} онлайн в {c}",
         "meta":   lambda o,c: f"Отправьте {o['ru'].lower()} онлайн в {c}. Бесплатная доставка в день заказа, $0 сборов, от $29.99.",
@@ -261,9 +278,9 @@ LANGS = {
 }
 
 # ─────────────────────────────────────────────
-# 5. HTML TEMPLATE
+# 6. HTML TEMPLATE
 # ─────────────────────────────────────────────
-def build_page(lang_key, lang, occasion, city, aff_link, slug):
+def build_page(lang_key, lang, occasion, city, slug):
     return f"""<!DOCTYPE html>
 <html lang="{lang_key}">
 <head>
@@ -273,17 +290,15 @@ def build_page(lang_key, lang, occasion, city, aff_link, slug):
     <meta name="description" content="{lang['meta'](occasion,city)}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{BASE_URL}/{lang['dir']}/{slug}">
-    <meta property="og:title" content="{lang['title'](occasion,city)}">
-    <meta property="og:description" content="{lang['meta'](occasion,city)}">
     <script type="application/ld+json">
     {{"@context":"https://schema.org","@graph":[
       {{"@type":"Article","headline":"{lang['h1'](occasion,city)}","datePublished":"{TODAY}","dateModified":"{TODAY}","inLanguage":"{lang_key}","author":{{"@type":"Organization","name":"BouquetFlowers"}}}},
-      {{"@type":"Product","name":"Floristone {occasion['en']} — {city}","offers":{{"@type":"Offer","priceCurrency":"USD","price":"29.99","availability":"https://schema.org/InStock","url":"{aff_link}","deliveryLeadTime":{{"@type":"QuantitativeValue","value":"0","unitCode":"DAY"}}}},"aggregateRating":{{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"18742"}}}},
+      {{"@type":"Product","name":"Floristone {occasion['en']} — {city}","offers":{{"@type":"Offer","priceCurrency":"USD","price":"29.99","availability":"https://schema.org/InStock","url":"{AFF_URL}","deliveryLeadTime":{{"@type":"QuantitativeValue","value":"0","unitCode":"DAY"}}}},"aggregateRating":{{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"18742"}}}},
       {{"@type":"FAQPage","mainEntity":[{{"@type":"Question","name":"{lang['faqQ'](occasion,city)}","acceptedAnswer":{{"@type":"Answer","text":"{lang['faqA'](occasion,city)}"}}}}]}}
     ]}}
     </script>
     <style>
-        :root{{--brand:#FF2E63;--blue:#003366;--bg:#f9f9ff;--border:#e6e6f0;--mid:#666;}}
+        :root{{--brand:#FF2E63;--blue:#003366;--bg:#f9f9ff;--border:#e6e6f0;}}
         *{{box-sizing:border-box;margin:0;padding:0;}}
         body{{font-family:system-ui,sans-serif;background:var(--bg);color:#333;line-height:1.7;}}
         .nav{{background:#fff;padding:14px 5%;border-bottom:1px solid var(--border);font-weight:700;color:var(--brand);display:flex;justify-content:space-between;align-items:center;}}
@@ -304,6 +319,9 @@ def build_page(lang_key, lang, occasion, city, aff_link, slug):
         .faq-box{{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;margin:32px 0;}}
         .faq-box strong{{display:block;color:#1a1a1a;margin-bottom:8px;}}
         .faq-box p{{margin:0;font-size:0.92rem;}}
+        .related{{background:#fff;border-top:1px solid var(--border);padding:20px 24px;text-align:center;font-size:0.82rem;}}
+        .related a{{color:var(--brand);text-decoration:none;font-weight:600;}}
+        .related a:hover{{text-decoration:underline;}}
         .back{{display:block;text-align:center;margin-top:32px;font-size:0.85rem;color:var(--brand);text-decoration:none;}}
         footer{{background:#111;color:#888;text-align:center;padding:24px;font-size:0.78rem;}}
     </style>
@@ -325,7 +343,7 @@ def build_page(lang_key, lang, occasion, city, aff_link, slug):
     <div class="cta-box">
         <h2>{lang['cta'](occasion,city)}</h2>
         <p>{lang['note']}</p>
-        <a href="{aff_link}" class="cta-btn">🌷 {lang['cta'](occasion,city)}</a>
+        <a href="{AFF_URL}" class="cta-btn" target="_blank" rel="nofollow sponsored noopener">🌷 {lang['cta'](occasion,city)}</a>
         <div class="trust-row">
             <span>✓ FREE DELIVERY</span><span>✓ $0 FEES</span><span>✓ FRESHNESS GUARANTEED</span>
         </div>
@@ -336,21 +354,24 @@ def build_page(lang_key, lang, occasion, city, aff_link, slug):
     </div>
     <a href="{BASE_URL}/" class="back">{lang['back']}</a>
 </article>
+<div class="related">
+    <strong>More Flower Delivery Sites:</strong><br><br>
+    {RELATED_HTML}
+</div>
 <footer>{lang['footer']}</footer>
 </body>
 </html>"""
 
 # ─────────────────────────────────────────────
-# 6. GENERATE 2000 PAGES
+# 7. GENERATE 2000 PAGES
 # ─────────────────────────────────────────────
-PAGES_PER_LANG = 400  # 400 × 5 langs = 2000 total
-CITIES_PER_LANG = PAGES_PER_LANG // len(OCCASIONS)  # ~50 cities
-
-batch_start = seed % len(ALL_CITIES)
-city_batch = [ALL_CITIES[(batch_start + i) % len(ALL_CITIES)] for i in range(CITIES_PER_LANG)]
+PAGES_PER_LANG  = 400
+CITIES_PER_LANG = PAGES_PER_LANG // len(OCCASIONS)
+batch_start     = seed % len(ALL_CITIES)
+city_batch      = [ALL_CITIES[(batch_start + i) % len(ALL_CITIES)] for i in range(CITIES_PER_LANG)]
 
 all_urls = []
-total = 0
+total    = 0
 
 for lang_key, lang in LANGS.items():
     folder = lang['dir']
@@ -359,29 +380,11 @@ for lang_key, lang in LANGS.items():
         city_slug = city.lower().replace(" ", "-").replace("'", "")
         for occasion in OCCASIONS:
             slug = f"send-{occasion['slug']}-online-{city_slug}.html"
-            aff_link = f"{AFF_BASE}&occ={occasion['tag']}"
-            html = build_page(lang_key, lang, occasion, city, aff_link, slug)
+            html = build_page(lang_key, lang, occasion, city, slug)
             with open(f"{folder}/{slug}", "w", encoding="utf-8") as f:
                 f.write(html)
             all_urls.append(f"{BASE_URL}/{folder}/{slug}")
             total += 1
-
-# ─────────────────────────────────────────────
-# 7. UPDATE SITEMAP
-# ─────────────────────────────────────────────
-import re
-new_entries = "\n".join([
-    f'  <url><loc>{url}</loc><lastmod>{TODAY}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>'
-    for url in all_urls
-])
-
-if os.path.exists("sitemap.xml"):
-    with open("sitemap.xml", "r") as f:
-        sm = f.read()
-    sm = re.sub(r'  <url><loc>[^<]*/bing[^<]*</loc>.*?</url>\n', '', sm, flags=re.DOTALL)
-    sm = sm.replace("</urlset>", f"{new_entries}\n</urlset>")
-    with open("sitemap.xml", "w") as f:
-        f.write(sm)
 
 # ─────────────────────────────────────────────
 # 8. INDEXNOW PING
@@ -403,9 +406,10 @@ try:
     with urllib.request.urlopen(req, timeout=30) as resp:
         print(f"IndexNow: HTTP {resp.status} — {len(all_urls)} URLs submitted")
 except Exception as e:
-    print(f"IndexNow note (will succeed from GitHub Actions): {e}")
+    print(f"IndexNow note: {e}")
 
-print(f"\n✅ SFO Bing Blast complete!")
+print(f"\n✅ BouquetFlowers Bing Blast complete!")
+print(f"   Affiliate URL: {AFF_URL}")
 print(f"   Languages    : {', '.join(LANGS.keys())}")
 print(f"   Cities/lang  : {len(city_batch)}")
 print(f"   Occasions    : {len(OCCASIONS)}")
